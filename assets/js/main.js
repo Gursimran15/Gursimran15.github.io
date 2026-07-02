@@ -1,4 +1,4 @@
-/* Gursimran Singh — personal site
+/* Gursimran Singh, personal site
    Theme toggle, scroll reveal, and nav scrollspy. No dependencies. */
 (function () {
   'use strict';
@@ -26,7 +26,7 @@
       root.setAttribute('data-theme', next);
       try {
         localStorage.setItem('theme', next);
-      } catch (e) { /* storage unavailable — theme still applies for this visit */ }
+      } catch (e) { /* storage unavailable, theme still applies for this visit */ }
       updateToggleLabel();
     });
     updateToggleLabel();
