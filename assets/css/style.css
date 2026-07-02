@@ -438,6 +438,16 @@ section p {
   font-size: 0.93rem;
 }
 
+.pub-links {
+  margin: 0.5rem 0 0;
+  font-size: 0.88rem;
+}
+
+.pub-links a {
+  color: var(--accent-strong);
+  font-weight: 500;
+}
+
 /* Timeline-style lists (education, teaching, service, certifications) */
 
 .timeline {
