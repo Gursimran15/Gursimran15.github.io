@@ -96,14 +96,13 @@
   var grid = document.getElementById('gh-projects');
 
   var OVERRIDES = {
-    'DeeP4R': { title: 'DeeP4R', desc: 'Deep packet inspection / filtering in P4.', tag: 'P4' },
     'bfsde': { title: 'bfsde', desc: 'Barefoot/Intel Tofino SDE working files.' },
     'Malanalysis_tools_and_frameworks': { title: 'Malanalysis Tools & Frameworks', desc: 'Malware-analysis frameworks and usage reports.' },
     'Network-Analysis-Reports': { title: 'Network Analysis Reports', desc: 'Custom VirtualBox network to analyze malicious pcaps with technical write-ups and mitigations.' },
     'Quantitative_Foundations': { title: 'Quantitative Foundations', desc: 'Linear regression, gradient descent, face recognition/detection.', tag: 'MATLAB' },
     'Logistic-Regression-Cancer-Data': { title: 'Logistic Regression on Cancer Data', desc: 'Logistic regression from scratch on the Wisconsin Diagnostic Breast Cancer dataset.', tag: 'Jupyter' }
   };
-  var HIDDEN = ['Gursimran15.github.io', 'gursimran.github.io'];
+  var HIDDEN = ['Gursimran15.github.io', 'gursimran.github.io', 'DeeP4R'];
   var RECENT_CUTOFF = '2025-01-01';
 
   function projectCard(repo) {
