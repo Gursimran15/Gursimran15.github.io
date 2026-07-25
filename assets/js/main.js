@@ -85,4 +85,76 @@
     }, { rootMargin: '-35% 0px -55% 0px' });
     spyPairs.forEach(function (pair) { spy.observe(pair.section); });
   }
+
+  /* ---------- Projects: live from the GitHub API ----------
+     Rebuilds the card grid from the user's public repos so the section
+     always reflects the latest state of GitHub. Repos listed in OVERRIDES
+     keep their handwritten titles/descriptions; any other public, non-fork
+     repo pushed since RECENT_CUTOFF appears automatically. If the API is
+     unreachable (offline, rate limit), the static cards remain as-is. */
+
+  var grid = document.getElementById('gh-projects');
+
+  var OVERRIDES = {
+    'DeeP4R': { title: 'DeeP4R', desc: 'Deep packet inspection / filtering in P4.', tag: 'P4' },
+    'bfsde': { title: 'bfsde', desc: 'Barefoot/Intel Tofino SDE working files.' },
+    'Malanalysis_tools_and_frameworks': { title: 'Malanalysis Tools & Frameworks', desc: 'Malware-analysis frameworks and usage reports.' },
+    'Network-Analysis-Reports': { title: 'Network Analysis Reports', desc: 'Custom VirtualBox network to analyze malicious pcaps with technical write-ups and mitigations.' },
+    'Quantitative_Foundations': { title: 'Quantitative Foundations', desc: 'Linear regression, gradient descent, face recognition/detection.', tag: 'MATLAB' },
+    'Logistic-Regression-Cancer-Data': { title: 'Logistic Regression on Cancer Data', desc: 'Logistic regression from scratch on the Wisconsin Diagnostic Breast Cancer dataset.', tag: 'Jupyter' }
+  };
+  var HIDDEN = ['Gursimran15.github.io', 'gursimran.github.io'];
+  var RECENT_CUTOFF = '2025-01-01';
+
+  function projectCard(repo) {
+    var o = OVERRIDES[repo.name] || {};
+    var card = document.createElement('article');
+    card.className = 'card';
+
+    var h4 = document.createElement('h4');
+    h4.textContent = o.title || repo.name.replace(/[-_]/g, ' ');
+    var tag = o.tag || repo.language;
+    if (tag) {
+      var tagEl = document.createElement('span');
+      tagEl.className = 'tag';
+      tagEl.textContent = tag;
+      h4.appendChild(document.createTextNode(' '));
+      h4.appendChild(tagEl);
+    }
+    card.appendChild(h4);
+
+    var desc = document.createElement('p');
+    desc.textContent = o.desc || repo.description || 'View on GitHub.';
+    card.appendChild(desc);
+
+    var link = document.createElement('a');
+    link.className = 'card-link';
+    link.href = repo.html_url;
+    link.target = '_blank';
+    link.rel = 'noopener';
+    link.setAttribute('aria-label', (o.title || repo.name) + ' on GitHub (opens in a new tab)');
+    link.innerHTML = 'GitHub →';
+    card.appendChild(link);
+
+    return card;
+  }
+
+  if (grid && 'fetch' in window) {
+    var user = grid.getAttribute('data-github-user');
+    fetch('https://api.github.com/users/' + user + '/repos?sort=pushed&per_page=100')
+      .then(function (res) {
+        if (!res.ok) throw new Error('GitHub API ' + res.status);
+        return res.json();
+      })
+      .then(function (repos) {
+        var shown = repos.filter(function (r) {
+          if (r.fork || HIDDEN.indexOf(r.name) !== -1) return false;
+          return OVERRIDES.hasOwnProperty(r.name) || r.pushed_at >= RECENT_CUTOFF;
+        });
+        if (!shown.length) return;
+        grid.textContent = '';
+        shown.forEach(function (r) { grid.appendChild(projectCard(r)); });
+      })
+      .catch(function () { /* keep the static fallback cards */ });
+  }
 })();

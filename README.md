@@ -11,19 +11,27 @@ The `.nojekyll` file tells GitHub Pages to serve the files verbatim (no Jekyll p
 ```
 index.html                     all site content (single page)
 assets/css/style.css           styles + light/dark theme tokens (CSS variables)
-assets/js/main.js              theme toggle, scroll reveal, nav scrollspy
+assets/js/main.js              theme toggle, scroll reveal, nav scrollspy,
+                               live GitHub projects grid
 assets/img/profile.jpg         profile photo
 assets/img/favicon.svg         "GS" monogram favicon
-assets/Gursimran_Singh_CV.pdf  CV linked from the profile rail
+assets/Gursimran_Singh_CV.pdf  CV linked from the profile rail (built from cv/)
+cv/Gursimran_Singh_CV.tex      LaTeX source of the CV
 ```
 
 ## Editing
 
-- **Content** (publications, teaching, projects, etc.): edit the corresponding
+- **Content** (publications, teaching, etc.): edit the corresponding
   `<section>` in `index.html`. Everything is plain HTML, no templates.
+- **Projects**: the "Open-source & code" grid updates itself from the GitHub API
+  at page load (public, non-fork repos; newest push first). Handwritten titles and
+  descriptions live in `OVERRIDES` in `assets/js/main.js`; the static cards in
+  `index.html` are only the offline/rate-limit fallback.
 - **Colors/theme**: change the CSS custom properties at the top of
   `assets/css/style.css` (`:root` is the light theme, `[data-theme="dark"]` is dark).
-- **CV**: replace `assets/Gursimran_Singh_CV.pdf` with a new file of the same name.
+- **CV**: edit `cv/Gursimran_Singh_CV.tex`, build with
+  `tectonic Gursimran_Singh_CV.tex` (or `pdflatex`), and copy the PDF to
+  `assets/Gursimran_Singh_CV.pdf`.
 - **Social links**: edit the `mailto:`, GitHub, LinkedIn, Google Scholar, and ORCID
   `<a>` tags in the profile rail near the top of `index.html`.
 
