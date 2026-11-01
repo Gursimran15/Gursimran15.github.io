@@ -1,7 +1,8 @@
 # gursimran15.github.io
 
-Personal academic website of **Gursimran Singh**, Ph.D. student in Computer Science at
-Oklahoma State University. Served at <https://gursimran15.github.io>.
+Personal research website of **Gursimran Singh**, Ph.D. student in Computer Science at
+Oklahoma State University (programmable data-plane security, P4 / Intel Tofino, Internet
+measurement). Served at <https://gursimran15.github.io>.
 
 Self-contained static site: hand-written HTML/CSS/JS, no frameworks, no build step.
 The `.nojekyll` file tells GitHub Pages to serve the files verbatim (no Jekyll processing).
@@ -10,30 +11,48 @@ The `.nojekyll` file tells GitHub Pages to serve the files verbatim (no Jekyll p
 
 ```
 index.html                     all site content (single page)
-assets/css/style.css           styles + light/dark theme tokens (CSS variables)
-assets/js/main.js              theme toggle, scroll reveal, nav scrollspy,
+assets/css/style.css           styles, light/dark theme tokens (CSS variables), animations
+assets/js/main.js              theme toggle, scroll progress, scroll reveal, nav scrollspy,
+                               hero typewriter, count-up stats, constellation canvas,
+                               animated P4 pipeline, abstract/BibTeX toggles + copy,
                                live GitHub projects grid
 assets/img/profile.jpg         profile photo
 assets/img/favicon.svg         "GS" monogram favicon
-assets/Gursimran_Singh_CV.pdf  CV linked from the profile rail (built from cv/)
+assets/img/og-card.png         1200x630 preview card for link sharing (Open Graph / Twitter)
+assets/Gursimran_Singh_CV.pdf  CV linked from the site (built from cv/)
 cv/Gursimran_Singh_CV.tex      LaTeX source of the CV
 ```
 
+## Sections
+
+Hero (animated programmable-switch pipeline) · at-a-glance stats · About · Research
+(three threads with small animated illustrations, plus open research directions) · News ·
+Publications (abstract + BibTeX for each) · Experience & education (timeline) ·
+Teaching & mentoring · Service & leadership · Projects & code · Skills · Contact.
+
+All motion respects `prefers-reduced-motion` (animations are replaced by static
+illustrations) and pauses when the hero is scrolled out of view or the tab is hidden.
+
 ## Editing
 
-- **Content** (publications, teaching, etc.): edit the corresponding
+- **Content** (publications, teaching, service, news, etc.): edit the corresponding
   `<section>` in `index.html`. Everything is plain HTML, no templates.
-- **Projects**: the "Open-source & code" grid updates itself from the GitHub API
-  at page load (public, non-fork repos; newest push first). Handwritten titles and
-  descriptions live in `OVERRIDES` in `assets/js/main.js`; the static cards in
-  `index.html` are only the offline/rate-limit fallback.
+- **News**: add a `<li>` at the top of the `#news` list with a `<time datetime="YYYY-MM">`.
+- **Publications**: copy a `<li class="pub">` block; give the abstract and BibTeX blocks
+  unique ids and point the `data-toggle` / `data-copy` buttons at them.
+- **Projects**: the "Projects & code" grid updates itself from the GitHub API at page load
+  (public, non-fork repos; handwritten entries in `OVERRIDES` first, then anything pushed
+  since `RECENT_CUTOFF`). Edit `OVERRIDES` / `HIDDEN` in `assets/js/main.js`; the static
+  cards in `index.html` are only the offline/rate-limit fallback.
+- **Hero typewriter phrases**: `PHRASES` in `assets/js/main.js`.
 - **Colors/theme**: change the CSS custom properties at the top of
   `assets/css/style.css` (`:root` is the light theme, `[data-theme="dark"]` is dark).
-- **CV**: edit `cv/Gursimran_Singh_CV.tex`, build with
-  `tectonic Gursimran_Singh_CV.tex` (or `pdflatex`), and copy the PDF to
-  `assets/Gursimran_Singh_CV.pdf`.
-- **Social links**: edit the `mailto:`, GitHub, LinkedIn, Google Scholar, and ORCID
-  `<a>` tags in the profile rail near the top of `index.html`.
+- **CV**: edit `cv/Gursimran_Singh_CV.tex`, build with `pdflatex Gursimran_Singh_CV.tex`
+  (run twice so the page total resolves; needs `texlive-latex-extra` and, optionally,
+  `tex-gyre` for the Pagella font, otherwise it falls back to Palatino), then copy the PDF
+  to `assets/Gursimran_Singh_CV.pdf`.
+- **Social links**: the `mailto:`, GitHub, LinkedIn, Google Scholar, and ORCID links appear
+  in the hero, the About card, and the Contact section of `index.html`.
 
 ## Deploying
 
