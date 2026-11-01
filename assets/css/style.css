@@ -413,7 +413,7 @@ html:not(.js) .theme-toggle { display: none; }
 .rcard-tags { margin: auto 0 0; display: flex; flex-wrap: wrap; gap: 0.3rem; }
 
 .rcard-art { background: var(--bg-alt); border: 1px solid var(--border); border-radius: 12px; padding: 0.4rem 0.6rem; }
-.mini { width: 100%; height: auto; display: block; color: var(--text-muted); overflow: visible; }
+.mini { width: 100%; max-width: 330px; height: auto; display: block; margin: 0 auto; color: var(--text-muted); overflow: visible; }
 .mini .m-box { fill: var(--bg-elev); stroke: var(--border-strong); stroke-width: 1.4; }
 .mini .m-wire { stroke: var(--border-strong); stroke-width: 2.5; }
 .mini .m-loop { fill: none; stroke: var(--amber); stroke-width: 1.6; stroke-dasharray: 5 5; animation: dash 1.6s linear infinite; }
@@ -675,7 +675,8 @@ html:not(.js) .theme-toggle { display: none; }
 @media (max-width: 1024px) {
   .hero-inner { grid-template-columns: 1fr; gap: 2rem; padding-top: 3rem; }
   .hero-figure { max-width: 680px; }
-  .research-grid { grid-template-columns: 1fr; }
+  .research-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .research-grid .rcard:last-child { grid-column: span 2; }
   .stat-list { grid-template-columns: repeat(2, 1fr); }
 }
 
@@ -686,6 +687,8 @@ html:not(.js) .theme-toggle { display: none; }
   .btn-cv { margin-left: auto; }
   .about-grid { grid-template-columns: 1fr; }
   .about-card { max-width: 420px; }
+  .research-grid { grid-template-columns: 1fr; }
+  .research-grid .rcard:last-child { grid-column: auto; }
   .two-col { grid-template-columns: 1fr; }
   .skills-grid { grid-template-columns: 1fr; }
   .timeline::before { left: 0.45rem; }
