@@ -25,7 +25,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="assets/css/style.css?v=20261101c">
+  <link rel="stylesheet" href="assets/css/style.css?v=20261101d">
 
   <!-- Structured data for search engines -->
   <script type="application/ld+json">
@@ -100,15 +100,12 @@
         <div class="hero-text">
           <p class="eyebrow hero-in" style="--i:0"><span class="dot" aria-hidden="true"></span>Ph.D. student · Computer Science · Oklahoma State University</p>
           <h1 id="hero-name" class="hero-name hero-in" style="--i:1">Gursimran<br>Singh</h1>
-          <p class="hero-tagline hero-in" style="--i:2">
-            I build security into the network fabric itself:
-            <span class="typed-wrap"><span id="typed" class="typed">line-rate deep packet inspection on Intel Tofino</span><span class="caret" aria-hidden="true"></span></span>
-          </p>
+          <p class="hero-tagline hero-in" style="--i:2">I build and evaluate programmable network systems for security and resilience.</p>
           <p class="hero-lede hero-in" style="--i:3">
-            I research <strong>programmable network systems and security</strong>: how far application-layer
-            firewalls and intrusion detection can be pushed into P4 programmable switches, where the hardware
-            limits bite, and how to measure Internet censorship and resilience when networks are under stress.
-            Advised by <a href="https://experts.okstate.edu/hbhatta" target="_blank" rel="noopener">Dr.&nbsp;H.&nbsp;B.&nbsp;Acharya</a>.
+            I am a Ph.D. student in Computer Science at Oklahoma State University, advised by
+            <a href="https://experts.okstate.edu/hbhatta" target="_blank" rel="noopener">Dr.&nbsp;H.&nbsp;B.&nbsp;Acharya</a>.
+            My research combines P4 systems on Intel Tofino hardware with Internet measurement, focusing on the
+            capabilities, limits, and reliability of network systems.
           </p>
           <div class="hero-actions hero-in" style="--i:4">
             <a class="btn btn-primary" href="assets/Gursimran_Singh_CV.pdf" target="_blank" rel="noopener">
@@ -118,10 +115,10 @@
             <a class="btn" href="mailto:gursimran.singh@okstate.edu">Email me</a>
             <a class="btn" href="https://scholar.google.com/citations?user=DA-sGBgAAAAJ" target="_blank" rel="noopener">Google Scholar</a>
           </div>
-          <p class="hero-note hero-in" style="--i:5"><span class="pill pill-live">Seeking Summer 2027 research internships</span><span>programmable networking · network security · Internet measurement · heterogeneous data paths</span></p>
+          <p class="hero-note hero-in" style="--i:5"><span class="pill pill-live">Seeking Summer 2027 research internships</span><span>programmable networking · network security · Internet measurement</span></p>
         </div>
 
-        <!-- Interactive research panel: sliding animated scenes -->
+        <!-- Interactive research panel: sliding animated scenes (conceptual illustrations) -->
         <figure class="device hero-in" style="--i:2" id="device" aria-label="Animated research scenes">
           <div class="device-top">
             <span class="device-leds" aria-hidden="true"><i></i><i></i><i></i></span>
@@ -132,25 +129,25 @@
           <div class="device-stage">
             <!-- Scene 1: interactive P4 pipeline -->
             <div class="device-slide is-active" id="scene-1" role="tabpanel" aria-labelledby="tab-1" data-title="P4 match-action pipeline · interactive">
-          <svg id="pipeline" class="pipeline" viewBox="0 0 700 300" role="group" aria-label="Interactive diagram of a programmable switch pipeline: parser, match-action stages, deparser, recirculation and drop paths. Each block can be selected to read what it does.">
+          <svg id="pipeline" class="pipeline" viewBox="0 0 700 300" role="group" aria-label="Interactive diagram of a programmable switch pipeline: parser, match-action stages, deparser, an additional-pass loop, and a discard path. Each block can be selected to read what it does.">
             <defs>
               <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker>
             </defs>
             <line class="wire" x1="0" y1="190" x2="700" y2="190"/>
             <g id="packets"></g>
-            <g class="hot hot-loop" data-info="loop" tabindex="0" role="button" aria-label="Recirculation path">
+            <g class="hot hot-loop" data-info="loop" tabindex="0" role="button" aria-label="Additional processing pass (recirculation)">
               <path class="loop-hit" d="M548 190 L548 100 Q548 86 534 86 L150 86 Q136 86 136 100 L136 190"/>
               <path class="loop" d="M548 190 L548 100 Q548 86 534 86 L150 86 Q136 86 136 100 L136 190" marker-end="url(#arrow)"/>
-              <text class="label label-loop" x="342" y="74" text-anchor="middle">recirculate · cross-packet state</text>
+              <text class="label label-loop" x="342" y="74" text-anchor="middle">additional processing pass (recirculation)</text>
             </g>
-            <g class="hot hot-drop" data-info="drop" tabindex="0" role="button" aria-label="Drop path">
+            <g class="hot hot-drop" data-info="drop" tabindex="0" role="button" aria-label="Discard path">
               <path class="droppath" d="M295 190 L295 262" marker-end="url(#arrow)"/>
               <g class="bin"><rect x="281" y="266" width="28" height="26" rx="4"/><line x1="277" y1="266" x2="313" y2="266"/><line x1="289" y1="262" x2="301" y2="262"/></g>
-              <text class="label label-drop" x="328" y="286">drop</text>
+              <text class="label label-drop" x="270" y="286" text-anchor="end">discard</text>
             </g>
-            <g class="hot mem" data-info="memory" tabindex="0" role="button" aria-label="On-chip memory">
+            <g class="hot mem" data-info="memory" tabindex="0" role="button" aria-label="On-chip memory and per-flow state">
               <rect x="166" y="128" width="352" height="18" rx="4"/>
-              <text x="342" y="141" text-anchor="middle">SRAM / TCAM · registers · limited stages &amp; ALUs</text>
+              <text x="342" y="141" text-anchor="middle">SRAM / TCAM · per-flow state · limited stages &amp; ALUs</text>
             </g>
             <g class="hot block block-parser" data-info="parser" data-stage="parser" tabindex="0" role="button" aria-label="Parser">
               <rect x="40" y="160" width="86" height="60" rx="10"/><text x="83" y="195" text-anchor="middle">Parser</text>
@@ -170,39 +167,45 @@
             <g class="hot block block-parser" data-info="deparser" data-stage="deparser" tabindex="0" role="button" aria-label="Deparser">
               <rect x="560" y="160" width="100" height="60" rx="10"/><text x="610" y="195" text-anchor="middle">Deparser</text>
             </g>
-            <text class="label" x="4" y="232">ingress · 100 Gb/s+</text>
+            <text class="label" x="4" y="232">ingress</text>
             <text class="label" x="696" y="232" text-anchor="end">egress</text>
+            <g class="legend">
+              <circle cx="400" cy="262" r="5" class="pk pk-pass"/><text x="411" y="266">forwarded</text>
+              <circle cx="500" cy="262" r="5" class="pk pk-recirc"/><text x="511" y="266">extra pass</text>
+              <circle cx="600" cy="262" r="5" class="pk pk-drop"/><text x="611" y="266">discarded</text>
+              <circle cx="400" cy="286" r="5" class="pk pk-late"/><text x="411" y="290">flagged after release</text>
+            </g>
           </svg>
             </div>
 
-            <!-- Scene 2: in-network collective computation -->
-            <div class="device-slide is-right" id="scene-2" role="tabpanel" aria-labelledby="tab-2" data-title="In-network collective computation" inert>
+            <!-- Scene 2: reliable in-network computation (failure and recovery) -->
+            <div class="device-slide is-right" id="scene-2" role="tabpanel" aria-labelledby="tab-2" data-title="Reliable in-network computation" inert>
               <svg class="scene scene-coll" viewBox="0 0 700 300" aria-hidden="true">
-                <text class="label" x="210" y="30" text-anchor="middle">partial results in</text>
-                <text class="label label-amber" x="210" y="286" text-anchor="middle">aggregated result out</text>
                 <g class="links">
-                  <line x1="120" y1="60" x2="300" y2="150"/><line x1="120" y1="120" x2="300" y2="150"/>
-                  <line x1="120" y1="180" x2="300" y2="150"/><line x1="120" y1="240" x2="300" y2="150"/>
+                  <line x1="120" y1="80" x2="300" y2="100"/><line x1="120" y1="150" x2="300" y2="100"/><line x1="120" y1="220" x2="300" y2="100"/>
+                  <line class="alt" x1="120" y1="80" x2="300" y2="220"/><line class="alt" x1="120" y1="150" x2="300" y2="220"/><line class="alt" x1="120" y1="220" x2="300" y2="220"/>
+                  <line class="out-a" x1="400" y1="100" x2="560" y2="150"/><line class="out-b" x1="400" y1="220" x2="560" y2="150"/>
                 </g>
-                <g class="block"><rect x="40" y="43" width="80" height="34" rx="8"/><text x="80" y="65" text-anchor="middle">worker 1</text></g>
-                <g class="block"><rect x="40" y="103" width="80" height="34" rx="8"/><text x="80" y="125" text-anchor="middle">worker 2</text></g>
-                <g class="block"><rect x="40" y="163" width="80" height="34" rx="8"/><text x="80" y="185" text-anchor="middle">worker 3</text></g>
-                <g class="block"><rect x="40" y="223" width="80" height="34" rx="8"/><text x="80" y="245" text-anchor="middle">worker 4</text></g>
-                <g class="block switch"><rect x="300" y="110" width="100" height="80" rx="12"/><text x="350" y="143" text-anchor="middle">switch</text><text class="sigma" x="350" y="172" text-anchor="middle">Σ aggregate</text></g>
-                <g class="gauge"><text class="label" x="470" y="112">register budget</text><rect class="gauge-bg" x="470" y="120" width="190" height="14" rx="4"/><rect class="gauge-fill" x="470" y="120" width="0" height="14" rx="4"/><text class="label label-red gauge-warn" x="470" y="158">state exhausted → stall or drop?</text></g>
-                <text class="label" x="470" y="200">questions I study</text>
-                <text class="label-small" x="470" y="220">· exactly-once under loss, reordering</text>
-                <text class="label-small" x="470" y="238">· how many jobs before margins hit</text>
-                <text class="label-small" x="470" y="256">· failure handling, no recompute</text>
-                <circle class="c-in c-in-1" cx="120" cy="60" r="5"/><circle class="c-in c-in-2" cx="120" cy="120" r="5"/>
-                <circle class="c-in c-in-3" cx="120" cy="180" r="5"/><circle class="c-in c-in-4" cx="120" cy="240" r="5"/>
-                <circle class="c-out c-out-1" cx="300" cy="150" r="5"/><circle class="c-out c-out-2" cx="300" cy="150" r="5"/>
-                <circle class="c-out c-out-3" cx="300" cy="150" r="5"/><circle class="c-out c-out-4" cx="300" cy="150" r="5"/>
+                <g class="block"><rect x="40" y="63" width="80" height="34" rx="8"/><text x="80" y="85" text-anchor="middle">worker 1</text></g>
+                <g class="block"><rect x="40" y="133" width="80" height="34" rx="8"/><text x="80" y="155" text-anchor="middle">worker 2</text></g>
+                <g class="block"><rect x="40" y="203" width="80" height="34" rx="8"/><text x="80" y="225" text-anchor="middle">worker 3</text></g>
+                <g class="block dev-a"><rect x="300" y="70" width="100" height="60" rx="12"/><text x="350" y="96" text-anchor="middle">switch</text><text class="sub" x="350" y="116" text-anchor="middle">computes</text></g>
+                <g class="fault"><circle cx="350" cy="100" r="18"/><line x1="340" y1="90" x2="360" y2="110"/><line x1="360" y1="90" x2="340" y2="110"/><text class="label label-red" x="350" y="54" text-anchor="middle">device unavailable</text></g>
+                <g class="block dev-b"><rect x="300" y="190" width="100" height="60" rx="12"/><text x="350" y="216" text-anchor="middle">SmartNIC / host</text><text class="sub" x="350" y="236" text-anchor="middle">resumes</text></g>
+                <text class="label label-amber recov" x="350" y="276" text-anchor="middle">recovery at another location</text>
+                <g class="block result"><rect x="560" y="130" width="100" height="40" rx="10"/><text x="610" y="155" text-anchor="middle">result</text></g>
+                <text class="label obj" x="610" y="196" text-anchor="middle">research objective:</text>
+                <text class="label obj" x="610" y="214" text-anchor="middle">correct recovery</text>
+                <text class="label obj" x="610" y="232" text-anchor="middle">heterogeneous hardware</text>
+                <text class="label obj" x="610" y="250" text-anchor="middle">recovery cost</text>
+                <circle class="c-in c-a1" cx="120" cy="80" r="5"/><circle class="c-in c-a2" cx="120" cy="150" r="5"/><circle class="c-in c-a3" cx="120" cy="220" r="5"/>
+                <circle class="c-in c-b1" cx="120" cy="80" r="5"/><circle class="c-in c-b2" cx="120" cy="150" r="5"/><circle class="c-in c-b3" cx="120" cy="220" r="5"/>
+                <circle class="c-out" cx="400" cy="220" r="5"/>
               </svg>
             </div>
 
-            <!-- Scene 3: Internet resilience under disaster -->
-            <div class="device-slide is-right" id="scene-3" role="tabpanel" aria-labelledby="tab-3" data-title="Internet resilience under disaster" inert>
+            <!-- Scene 3: Internet resilience under disruption -->
+            <div class="device-slide is-right" id="scene-3" role="tabpanel" aria-labelledby="tab-3" data-title="Internet resilience under disruption" inert>
               <svg class="scene scene-res" viewBox="0 0 700 300" aria-hidden="true">
                 <g class="links">
                   <line x1="60" y1="150" x2="230" y2="70"/><line x1="60" y1="150" x2="230" y2="230"/>
@@ -215,10 +218,11 @@
                 <g class="node"><circle cx="230" cy="70" r="10"/></g><g class="node"><circle cx="230" cy="230" r="10"/></g>
                 <g class="node"><circle cx="400" cy="70" r="10"/></g><g class="node"><circle cx="400" cy="230" r="10"/></g>
                 <g class="node target"><circle cx="620" cy="150" r="12"/><text class="label" x="620" y="183" text-anchor="middle">destination</text></g>
-                <text class="label reroute" x="315" y="262" text-anchor="middle">rerouted around the damage</text>
-                <text class="label" x="350" y="28" text-anchor="middle">does the Internet route around disaster, and can we tell damage from filtering?</text>
+                <text class="label reroute" x="315" y="264" text-anchor="middle">alternative path observed</text>
+                <text class="label label-muted noresp" x="150" y="40" text-anchor="middle">no response · inconclusive</text>
                 <circle class="r-pk r-pk-1" cx="60" cy="150" r="6"/>
                 <circle class="r-pk r-pk-2" cx="60" cy="150" r="6"/>
+                <circle class="r-pk r-pk-3" cx="60" cy="150" r="6"/>
               </svg>
             </div>
 
@@ -228,52 +232,44 @@
                 <g class="vp"><circle cx="70" cy="80" r="10"/><text class="label" x="88" y="84">vantage · Ukraine</text></g>
                 <g class="vp"><circle cx="70" cy="150" r="10"/><text class="label" x="88" y="154">vantage · Russia</text></g>
                 <g class="vp"><circle cx="70" cy="220" r="10"/><text class="label" x="88" y="224">vantage · United States</text></g>
-                <g class="hops"><line x1="250" y1="150" x2="520" y2="150"/><line x1="290" y1="144" x2="290" y2="156"/><line x1="340" y1="144" x2="340" y2="156"/><line x1="390" y1="144" x2="390" y2="156"/><line x1="440" y1="144" x2="440" y2="156"/><line x1="490" y1="144" x2="490" y2="156"/><text class="label" x="385" y="134" text-anchor="middle">multi-protocol traceroute · hop by hop</text></g>
+                <g class="hops"><line x1="250" y1="150" x2="520" y2="150"/><line x1="290" y1="144" x2="290" y2="156"/><line x1="340" y1="144" x2="340" y2="156"/><line x1="390" y1="144" x2="390" y2="156"/><line x1="440" y1="144" x2="440" y2="156"/><line x1="490" y1="144" x2="490" y2="156"/><text class="label" x="385" y="134" text-anchor="middle">multi-protocol traceroute · where do responses originate?</text></g>
                 <g class="targets">
                   <circle class="t t-1" cx="620" cy="60" r="9"/><circle class="t t-2" cx="620" cy="105" r="9"/><circle class="t t-3" cx="620" cy="150" r="9"/><circle class="t t-4" cx="620" cy="195" r="9"/><circle class="t t-5" cx="620" cy="240" r="9"/>
-                  <text class="label" x="600" y="280" text-anchor="middle">web sites</text>
+                  <text class="label" x="620" y="30" text-anchor="middle">web sites</text>
                 </g>
-                <g class="legend"><circle cx="250" cy="266" r="5" class="ok"/><text class="label" x="261" y="270">reachable</text><circle cx="345" cy="266" r="5" class="soft"/><text class="label" x="356" y="270">soft failure</text><circle cx="455" cy="266" r="5" class="hard"/><text class="label" x="466" y="270">hard failure</text></g>
+                <g class="legend"><circle cx="70" cy="272" r="5" class="ok"/><text class="label" x="81" y="276">reachable</text><circle cx="175" cy="272" r="5" class="soft"/><text class="label" x="186" y="276">soft failure</text><circle cx="290" cy="272" r="5" class="hard"/><text class="label" x="301" y="276">hard failure</text><circle cx="425" cy="272" r="5" class="inc"/><text class="label" x="436" y="276">inconclusive</text></g>
                 <circle class="m-pk m-pk-1" cx="70" cy="80" r="5"/><circle class="m-pk m-pk-2" cx="70" cy="150" r="5"/><circle class="m-pk m-pk-3" cx="70" cy="220" r="5"/>
                 <circle class="m-pk m-pk-4" cx="70" cy="80" r="5"/><circle class="m-pk m-pk-5" cx="70" cy="150" r="5"/><circle class="m-pk m-pk-6" cx="70" cy="220" r="5"/>
-              </svg>
-            </div>
-
-            <!-- Scene 5: security and privacy -->
-            <div class="device-slide is-right" id="scene-5" role="tabpanel" aria-labelledby="tab-5" data-title="Security &amp; privacy" inert>
-              <svg class="scene scene-sec" viewBox="0 0 700 300" aria-hidden="true">
-                <line class="lane" x1="20" y1="90" x2="680" y2="90"/><line class="lane" x1="20" y1="150" x2="680" y2="150"/><line class="lane" x1="20" y1="210" x2="680" y2="210"/>
-                <g class="gate"><rect x="338" y="44" width="24" height="212" rx="6"/><g class="lock"><rect x="340" y="22" width="20" height="14" rx="3"/><path d="M344 22 V17 a6 6 0 0 1 12 0 V22"/></g><text class="label" x="350" y="278" text-anchor="middle">policy gate</text></g>
-                <text class="label" x="30" y="40">traffic in</text>
-                <text class="label" x="382" y="66">inspect headers and behaviour, not payloads</text>
-                <text class="label label-amber" x="30" y="276">encrypted flows stay opaque</text>
-                <text class="label label-red" x="520" y="226">policy violation</text>
-                <g class="s-pk s-pk-1"><rect x="28" y="83" width="26" height="14" rx="4"/></g>
-                <g class="s-pk s-pk-2"><rect x="28" y="143" width="26" height="14" rx="4"/><rect class="hdr" x="28" y="143" width="8" height="14" rx="3"/><path class="pad" d="M46 150 h6 v5 h-6 z M47 150 v-2 a2 2 0 0 1 4 0 v2"/></g>
-                <g class="s-pk s-pk-3"><rect x="28" y="203" width="26" height="14" rx="4"/></g>
               </svg>
             </div>
           </div>
 
           <figcaption class="device-foot">
+            <div class="device-status">
+              <span class="status status-ongoing" data-slide="1">Ongoing research</span>
+              <span class="status status-ongoing" data-slide="2" hidden>Ongoing research</span>
+              <span class="status status-ongoing" data-slide="3" hidden>Ongoing research</span>
+              <span class="status status-pub" data-slide="4" hidden>Published study · ongoing</span>
+              <span class="device-note">Conceptual illustrations, not experimental results.</span>
+            </div>
             <p id="pipe-info" class="device-info" data-slide="1" aria-live="polite">Hover, tap, or tab through the blocks to see what each part of a Tofino pipeline does, and where security functions run out of room.</p>
-            <p class="device-info" data-slide="2" hidden><strong>In-network collective computation.</strong> Workers stream partial results into a programmable switch that aggregates them at line rate and multicasts the result back. I am charting the operational margins of this idea: what happens to exactly-once semantics when state budgets, loss, or reordering bite, and how failures are handled without recomputing everything.</p>
-            <p class="device-info" data-slide="3" hidden><strong>Internet resilience under disaster.</strong> When war, earthquakes, or cable cuts take links down, does traffic route around the damage, and can measurements from outside tell damage apart from deliberate filtering? This grows out of my Russia–Ukraine measurement study.</p>
-            <p class="device-info" data-slide="4" hidden><strong>Internet measurement.</strong> Probes from many vantage points, multi-protocol traceroutes that localize interference hop by hop, and classifiers that separate hard failures from soft ones. A future direction: measurement at scale that accounts for the bias the probes themselves introduce.</p>
-            <p class="device-info" data-slide="5" hidden><strong>Security &amp; privacy.</strong> A future interest: in-network defenses that inspect only what they must, privacy-preserving measurement, and policy enforcement that still works when most traffic is encrypted.</p>
-            <p class="device-counters" data-slide="1" aria-label="Packets processed in this animation">
+            <p class="device-info" data-slide="2" hidden><strong>Reliable in-network computation.</strong> Workers send partial results to a programmable switch that computes on them. When that device becomes unavailable, the computation has to resume somewhere else, perhaps on a SmartNIC or a host, and still produce the correct result. The questions I work on: which computation belongs in the switch, on a SmartNIC or DPU, or on the CPU or GPU; how to recover correctly across that heterogeneous hardware; and what recovery costs.</p>
+            <p class="device-info" data-slide="3" hidden><strong>Internet resilience under disruption.</strong> When links fail, does traffic find another path, and can measurements from outside tell what happened? Sometimes an alternative path is observed; sometimes probes get no response and the outcome is inconclusive. Telling physical damage from deliberate filtering is part of the research question, not an assumption.</p>
+            <p class="device-info" data-slide="4" hidden><strong>Internet measurement.</strong> Probes from several vantage points, a classifier that separates hard failures from soft ones, and a multi-protocol traceroute used to investigate where filtering responses may originate. A failed response does not by itself identify a responsible hop or prove censorship; measurement uncertainty and probe behaviour are part of the analysis.</p>
+            <p class="device-counters" data-slide="1" aria-label="Illustrative packet counts in this animation">
               <span><b class="pk-dot pk-pass" aria-hidden="true"></b>forwarded <output id="cnt-pass">0</output></span>
-              <span><b class="pk-dot pk-recirc" aria-hidden="true"></b>recirculated <output id="cnt-recirc">0</output></span>
-              <span><b class="pk-dot pk-drop" aria-hidden="true"></b>dropped <output id="cnt-drop">0</output></span>
+              <span><b class="pk-dot pk-recirc" aria-hidden="true"></b>extra passes <output id="cnt-recirc">0</output></span>
+              <span><b class="pk-dot pk-drop" aria-hidden="true"></b>discarded <output id="cnt-drop">0</output></span>
+              <span><b class="pk-dot pk-late" aria-hidden="true"></b>flagged after release <output id="cnt-late">0</output></span>
+              <span class="device-counters-note">illustrative counts, not measurements</span>
             </p>
             <div class="device-nav">
               <button type="button" class="device-arrow" data-dir="-1" aria-label="Previous scene">&#8249;</button>
               <div class="device-tabs" role="tablist" aria-label="Research scenes">
                 <button type="button" role="tab" class="device-tab" id="tab-1" aria-selected="true" aria-controls="scene-1" data-slide="1">Pipeline</button>
-                <button type="button" role="tab" class="device-tab" id="tab-2" aria-selected="false" aria-controls="scene-2" data-slide="2" tabindex="-1">Collective</button>
+                <button type="button" role="tab" class="device-tab" id="tab-2" aria-selected="false" aria-controls="scene-2" data-slide="2" tabindex="-1">Computation</button>
                 <button type="button" role="tab" class="device-tab" id="tab-3" aria-selected="false" aria-controls="scene-3" data-slide="3" tabindex="-1">Resilience</button>
                 <button type="button" role="tab" class="device-tab" id="tab-4" aria-selected="false" aria-controls="scene-4" data-slide="4" tabindex="-1">Measurement</button>
-                <button type="button" role="tab" class="device-tab" id="tab-5" aria-selected="false" aria-controls="scene-5" data-slide="5" tabindex="-1">Privacy</button>
               </div>
               <button type="button" class="device-arrow" data-dir="1" aria-label="Next scene">&#8250;</button>
             </div>
@@ -328,27 +324,24 @@
             </p>
             <p>
               My research sits where <strong>programmable data planes</strong> meet <strong>network security</strong>.
-              I write P4 for Intel Tofino switches to implement deep packet inspection, stateful filtering, and
-              intrusion-detection functions at line rate, and I study the limits (stages, memory, parsing, instruction
-              set) that decide what can and cannot be done in the switch. I also build <strong>Internet measurement</strong>
-              tools that tell hard failures from soft ones and locate where interference happens, which I used to study
-              Internet access during the Russia–Ukraine war.
+              I write P4 for Intel Tofino switches to prototype packet inspection, stateful filtering, and detection
+              functions, and I study the limits (stages, memory, parsing, instruction set) that decide what can and
+              cannot be done in the switch, and at what cost. I also build <strong>Internet measurement</strong> tools
+              that separate hard failures from soft ones and investigate where filtering responses may originate,
+              which I used to study Internet access during the Russia–Ukraine war.
             </p>
             <p>
-              Outside the lab I teach (adjunct instructor for cybersecurity and software-development courses at RIT,
-              teaching assistant at OSU), mentor student researchers, review artifacts and papers for systems and
+              I have taught as an adjunct instructor for cybersecurity and software-development courses at RIT and as
+              a teaching assistant at OSU; I mentor student researchers, review artifacts and papers for systems and
               networking venues, and serve as President of OSU's Computer Science Graduate Student Association.
             </p>
             <ul class="pill-list" aria-label="Research interests">
               <li>Programmable data planes (P4, Intel Tofino)</li>
-              <li>In-network security: DPI, stateful firewalls, NIDS</li>
-              <li>Hardware limits of in-switch computation</li>
-              <li>Internet measurement &amp; censorship resilience</li>
-              <li>In-network collective computation</li>
-              <li>Internet resilience under disaster</li>
-              <li>Intent-based networking for programmable hardware</li>
-              <li>Heterogeneous data paths: ASIC, SmartNIC/DPU, FPGA, host</li>
-              <li>Security &amp; privacy</li>
+              <li>Stateful network security on switches</li>
+              <li>Capabilities and limits of commodity switches</li>
+              <li>Reliable in-network computation</li>
+              <li>Internet measurement &amp; resilience</li>
+              <li>Computation placement across switch, SmartNIC/DPU, and host</li>
             </ul>
           </div>
           <aside class="about-card">
@@ -392,16 +385,17 @@
             </svg>
           </div>
           <div class="feature-body">
-            <p class="feature-num">Thread 01 · 2021 – present</p>
+            <p class="feature-num">Thread 01 · 2021 – present <span class="status status-ongoing">Ongoing research</span></p>
             <h3>Programmable data-plane security on Intel Tofino</h3>
-            <p class="feature-q">Can a switch that only does simple arithmetic, has a few stages and a few MB of fast memory, still act as an application-layer firewall or intrusion-detection system?</p>
-            <p>I implement DPI and pattern matching, stateful filtering, and detection logic in P4 on Tofino and Tofino2, and measure what the hardware actually allows.</p>
+            <p class="feature-q">Can a commodity programmable switch act as an application-layer firewall or intrusion-detection system, and at what cost in resources and correctness?</p>
+            <p>I implement packet-inspection and stateful-filtering prototypes in P4 on Tofino and Tofino2, and evaluate their correctness, resource limits, and enforcement timing.</p>
             <ul class="feature-points">
-              <li>Packet-analysis and filtering algorithms built on recirculation, cross-packet flow state, and precomputed lookups.</li>
-              <li>Prototyped and evaluated on Tofino hardware with the P4 Studio SDE and a BF-RT control plane.</li>
+              <li>Prototypes built within parser, stage, memory, and instruction-set constraints, using the P4 Studio SDE and a BF-RT control plane.</li>
+              <li>Evaluation of when inspection completes correctly under load and when enforcement can take effect.</li>
+              <li>Context: an ongoing effort in our group to map which security and routing functions commodity programmable switches can support at full speed, which only at a cost in latency or memory, and which not at all.</li>
               <li>Systematized the field in <a href="#pub-netcom2025">Programmable Data Planes for Network Security</a> (NeTCoM 2025).</li>
             </ul>
-            <p class="feature-tags"><span class="tag">P4₁₆</span><span class="tag">TNA</span><span class="tag">Tofino2</span><span class="tag">DPI</span><span class="tag">firewalls</span><span class="tag">NIDS</span></p>
+            <p class="feature-tags"><span class="tag">P4₁₆</span><span class="tag">TNA</span><span class="tag">Tofino2</span><span class="tag">stateful filtering</span><span class="tag">inspection</span></p>
           </div>
         </article>
 
@@ -421,14 +415,15 @@
             </svg>
           </div>
           <div class="feature-body">
-            <p class="feature-num">Thread 02 · 2022 – present</p>
-            <h3>Internet censorship &amp; resilience measurement</h3>
-            <p class="feature-q">When a network is under political or military stress, which sites stop working, where along the path does it happen, and is it damage or deliberate filtering?</p>
-            <p>I build measurement tools that answer those questions and used them to study Internet access during the first months of the Russia–Ukraine war.</p>
+            <p class="feature-num">Thread 02 · 2022 – present <span class="status status-pub">Published study</span></p>
+            <h3>Internet measurement, censorship &amp; resilience</h3>
+            <p class="feature-q">When a network is under political or military stress, which sites stop working, where might the failures originate, and what can measurements from outside actually tell us?</p>
+            <p>I build measurement tools and used them to study Internet access during the first months of the Russia–Ukraine war, with data collected in March and July 2022.</p>
             <ul class="feature-points">
               <li>A classifier for <em>soft</em> failures (pages that load but are not what was asked for), beyond hard connection failures.</li>
-              <li>A multi-protocol traceroute implementation that localizes where interference occurs on a path.</li>
-              <li>Longitudinal measurements from Ukraine, Russia, and the U.S., March–July 2022 (<a href="#pub-asiaccs2023">ACM ASIA CCS 2023</a>).</li>
+              <li>A multi-protocol traceroute used to investigate where filtering responses may originate.</li>
+              <li>Measurements from Ukraine, Russia, and the U.S. (<a href="#pub-asiaccs2023">ACM ASIA CCS 2023 poster</a>).</li>
+              <li>Ongoing: how reachability and paths change during disruption, and how measurement uncertainty and probe behaviour affect the conclusions.</li>
             </ul>
             <p class="feature-tags"><span class="tag">measurement</span><span class="tag">traceroute</span><span class="tag">censorship</span><span class="tag">resilience</span></p>
           </div>
@@ -436,47 +431,45 @@
 
         <article class="feature reveal">
           <div class="feature-art" aria-hidden="true">
-            <svg viewBox="0 0 260 110" class="mini mini-intent">
-              <defs><marker id="mini-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker></defs>
-              <g class="m-intent"><rect x="12" y="34" width="70" height="7" rx="3"/><rect x="12" y="48" width="54" height="7" rx="3"/><rect x="12" y="62" width="62" height="7" rx="3"/></g>
-              <path class="m-arrow" d="M92 55 L124 55" marker-end="url(#mini-arrow)"/>
-              <g class="m-code"><text x="134" y="46">{ }</text><text x="134" y="66">C/C++</text></g>
-              <path class="m-arrow m-arrow-2" d="M178 55 L196 55" marker-end="url(#mini-arrow)"/>
-              <g class="m-fpga">
-                <rect x="204" y="36" width="10" height="10"/><rect x="217" y="36" width="10" height="10"/><rect x="230" y="36" width="10" height="10"/>
-                <rect x="204" y="49" width="10" height="10"/><rect x="217" y="49" width="10" height="10"/><rect x="230" y="49" width="10" height="10"/>
-                <rect x="204" y="62" width="10" height="10"/><rect x="217" y="62" width="10" height="10"/><rect x="230" y="62" width="10" height="10"/>
+            <svg viewBox="0 0 260 110" class="mini mini-collab">
+              <defs><marker id="mini-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker></defs>
+              <g class="m-soft"><rect class="m-box" x="14" y="26" width="90" height="58" rx="8"/><rect class="code" x="26" y="40" width="50" height="6" rx="3"/><rect class="code" x="26" y="52" width="66" height="6" rx="3"/><rect class="code" x="26" y="64" width="40" height="6" rx="3"/></g>
+              <path class="m-arrow m-arrow-1" d="M112 48 L148 48" marker-end="url(#mini-arrow)"/>
+              <path class="m-arrow m-arrow-2" d="M148 62 L112 62" marker-end="url(#mini-arrow)"/>
+              <g class="m-hw"><rect class="m-box" x="156" y="26" width="90" height="58" rx="8"/>
+                <rect class="cell" x="170" y="38" width="12" height="12"/><rect class="cell" x="186" y="38" width="12" height="12"/><rect class="cell" x="202" y="38" width="12" height="12"/><rect class="cell" x="218" y="38" width="12" height="12"/>
+                <rect class="cell" x="170" y="56" width="12" height="12"/><rect class="cell" x="186" y="56" width="12" height="12"/><rect class="cell" x="202" y="56" width="12" height="12"/><rect class="cell" x="218" y="56" width="12" height="12"/>
               </g>
-              <text class="m-text" x="47" y="90" text-anchor="middle">intent</text>
-              <text class="m-text" x="222" y="90" text-anchor="middle">FPGA</text>
+              <text class="m-text" x="59" y="100" text-anchor="middle">software</text>
+              <text class="m-text" x="201" y="100" text-anchor="middle">hardware</text>
             </svg>
           </div>
           <div class="feature-body">
-            <p class="feature-num">Thread 03 · 2026 – present · Keysight Technologies</p>
-            <h3>Intent-based networking for programmable hardware</h3>
-            <p class="feature-q">Can an operator state what the network should do in plain language and a protocol specification, and get a correct hardware implementation out?</p>
-            <p>As a part-time, remote R&amp;D Software Engineering Intern (FPGA development for AI infrastructure testing solutions) I work on the software side of a pipeline that turns intent and specifications into C/C++ implementations targeted for FPGAs.</p>
-            <ul class="feature-points">
-              <li>Designed the intent-to-implementation architecture: intent and specification ingestion, a C/C++ intermediate path, and a proposed direct intent-to-HDL path.</li>
-              <li>Collaborating with FPGA-focused interns on the hardware side.</li>
-            </ul>
-            <p class="feature-tags"><span class="tag">intent-based networking</span><span class="tag">C/C++</span><span class="tag">FPGA</span></p>
+            <p class="feature-num">Thread 03 · 2026 – present · Keysight Technologies <span class="status status-industry">Industry internship</span></p>
+            <h3>Software for FPGA-based AI infrastructure testing</h3>
+            <p class="feature-q">How do software and programmable hardware teams build test systems for AI infrastructure together?</p>
+            <p>As a part-time, remote R&amp;D Software Engineering Intern, I contribute software components and prototyping for FPGA-based AI infrastructure testing solutions, collaborating with hardware engineers.</p>
+            <p class="feature-tags"><span class="tag">C/C++</span><span class="tag">FPGA systems</span><span class="tag">test automation</span></p>
           </div>
         </article>
 
         <div class="directions reveal">
           <h3>Directions I am pursuing</h3>
-          <p class="directions-intro">Open questions behind my dissertation work. These are directions, not finished results.</p>
+          <p class="directions-intro">Open questions behind my dissertation work. These are ongoing directions, not finished results.</p>
           <ol class="directions-list stagger">
-            <li><strong>Correct, not just fast.</strong> When flow state, recirculation, and enforcement timing compete for the same pipeline, how do we guarantee that inspection actually completes for every packet we forward?</li>
-            <li><strong>Inspection capacity.</strong> Forwarded throughput is not the same as correctly inspected throughput. What are the right ways to measure when a security function exhausts a switch's stages, memory, or recirculation bandwidth?</li>
-            <li><strong>Heterogeneous data paths.</strong> How should security state move between ASIC switches, SmartNICs/DPUs, FPGAs, and hosts without losing exactly-once effects or safety during updates?</li>
-            <li><strong>Honest measurement.</strong> How much do measurement probes themselves bias what we conclude about censorship and resilience, and how do we correct for it?</li>
-            <li><strong>Who sustains circumvention?</strong> Refraction-networking deployments depend on cooperating operators. When one withdraws, how do users recover access without losing resistance to blocking?</li>
-            <li><strong>Smaller policies, same behaviour.</strong> Given an ordered firewall policy, what is the minimum subset of rules that enforces exactly the same decisions, and can the optimality be certified rather than trusted?</li>
-            <li><strong>Collective computation in the switch.</strong> Aggregating workers' partial results inside a programmable switch is fast; keeping it exactly-once under loss, reordering, and exhausted state budgets is the open problem.</li>
-            <li><strong>Resilience under disaster.</strong> When infrastructure fails, which paths survive, how quickly does reachability recover, and how do we separate physical damage from filtering in the measurements?</li>
+            <li><strong>Capabilities and limits.</strong> Which security and routing functions can commodity programmable switches support, and at what resource and performance cost?</li>
+            <li><strong>Inspection correctness.</strong> Under what workload and resource conditions does inspection complete correctly, and when can enforcement take effect?</li>
+            <li><strong>Reliable in-network computation.</strong> Which computation belongs deep in the network (a programmable switch), which on a SmartNIC or DPU, and which stays on the CPU or GPU, for both performance and robustness? And how can computations recover from device failures while preserving correct results across that heterogeneous hardware?</li>
+            <li><strong>Measurement and resilience.</strong> How do reachability and paths change during disruption, and how do measurement uncertainty and probe behaviour affect the conclusions?</li>
           </ol>
+          <details class="other-interests">
+            <summary>Exploratory interests</summary>
+            <ul>
+              <li>Sustainability of censorship-circumvention deployments that depend on cooperating operators.</li>
+              <li>Minimum equivalent firewall policies with checkable optimality.</li>
+              <li>Security and privacy of in-network processing on encrypted traffic.</li>
+            </ul>
+          </details>
         </div>
       </section>
 
@@ -490,7 +483,8 @@
           <li><time datetime="2026-10-30">Oct 2026</time><p>Selected for the inaugural <strong>Junior Program Committee of ACM ICS 2027</strong>, the International Conference on Supercomputing (Atlanta, June 2027).</p></li>
           <li><time datetime="2026-10-30">Oct 2026</time><p>Served on the <strong>Technical Program Committee of ACM S3 2026</strong>, the student workshop co-located with ACM MobiCom 2026 in Austin, Texas.</p></li>
           <li><time datetime="2026-09">Sep 2026</time><p>Joined <strong>Keysight Technologies</strong> as an R&amp;D Software Engineering Intern (FPGA development for AI infrastructure testing solutions), part-time and remote, working on intent-based networking for programmable hardware.</p></li>
-          <li><time datetime="2026-09">Sep 2026</time><p>Evaluating artifacts for the <strong>EuroSys 2027 Artifact Evaluation Committee</strong> across both submission cycles; also serving on the <strong>PPoPP 2027</strong> Artifact Evaluation Committee.</p></li>
+          <li><time datetime="2026-09">Sep 2026</time><p>Evaluated artifacts for the <strong>EuroSys 2027 Artifact Evaluation Committee</strong> (spring cycle); serving across both submission cycles.</p></li>
+          <li><time datetime="2026">2026</time><p>Joined the <strong>PPoPP 2027 Artifact Evaluation Committee</strong>.</p></li>
           <li><time datetime="2026-08">Aug 2026</time><p>Began my term as <strong>President of OSU's Computer Science Graduate Student Association</strong>; organized the Fall 2026 graduate orientation.</p></li>
           <li><time datetime="2026-05">2026</time><p>Joined the <strong>Shadow Technical Program Committee of ACM CoNEXT 2026</strong>.</p></li>
           <li><time datetime="2026-01">Jan 2026</time><p>Transferred to Oklahoma State University with my advisor; teaching assistant for <strong>Distributed and Cloud Computing</strong> (Spring 2026).</p></li>
@@ -503,7 +497,8 @@
       <section id="publications" class="section reveal">
         <div class="section-head">
           <p class="section-num">04 — Publications</p>
-          <h2>Both first-author. Expand for the abstract, BibTeX, or a plain-text citation.</h2>
+          <h2>Publications</h2>
+          <p class="section-sub">Two first-author publications: a systematization paper and a poster paper. Expand each for the abstract, BibTeX, or a plain-text citation.</p>
         </div>
         <ol class="pub-list stagger">
           <li class="pub" id="pub-netcom2025">
@@ -569,9 +564,10 @@
               <p class="pub-desc">
                 Asks whether the Internet routes around abuse: did Russia, as a major Internet power, use its network to
                 deny access to Ukraine during the first months of the war? We measured hard and soft failures of website
-                access from Ukraine, Russia, and the United States between March and July 2022, built a soft-failure
-                classifier and a multi-protocol traceroute to locate interference, and found a substantial change in access
-                to sites from Ukraine over the period while Russian ASes were not causing significant collateral damage through filtering.
+                access from Ukraine, Russia, and the United States, with data collected in March and July 2022, and built a
+                soft-failure classifier and a multi-protocol traceroute to investigate where filtering responses may originate.
+                Access to sites from Ukraine differed substantially between the two collection periods; the measurements did
+                not indicate significant collateral damage from filtering by Russian ASes, and the causes of individual failures remain uncertain.
               </p>
               <p class="pub-links">
                 <a href="https://doi.org/10.1145/3579856.3592822" target="_blank" rel="noopener">DOI</a>
@@ -617,7 +613,7 @@
             <div class="tl-body">
               <p class="tl-when">Sep 2026 – present</p>
               <h3>Keysight Technologies <span class="tl-role">R&amp;D Software Engineering Intern · FPGA development for AI infrastructure testing solutions (part-time, remote)</span></h3>
-              <p>Software-side contributor to an intent-based networking effort translating natural-language intent and protocol specifications into C/C++ implementations targeted for FPGA realization; designed the intent-to-implementation architecture.</p>
+              <p>Contribute software components and prototyping for FPGA-based AI infrastructure testing solutions, collaborating with hardware engineers.</p>
             </div>
           </li>
           <li class="tl-item">
@@ -641,7 +637,7 @@
             <div class="tl-body">
               <p class="tl-when">2019 – 2021</p>
               <h3>University at Buffalo (SUNY) <span class="tl-role">M.S. in Computer Science and Engineering · GPA 3.52/4.0</span></h3>
-              <p>Vice-President, CSE Graduate Student Association (2020–21). MITRE Embedded CTF 2021 with UB's team (implemented the RSA routines in C). 3rd place with UB's team in the 2020 regional round of the Collegiate Penetration Testing Competition.</p>
+              <p>Vice-President, CSE Graduate Student Association (2020–21). MITRE Embedded CTF 2021 with UB's team: implemented RSA key-generation and primality-testing routines in C for an embedded-security competition prototype. 3rd place with UB's team in the 2020 regional round of the Collegiate Penetration Testing Competition.</p>
             </div>
           </li>
           <li class="tl-item">
@@ -649,7 +645,7 @@
             <div class="tl-body">
               <p class="tl-when">2016 – 2019</p>
               <h3>University of Delhi, Sri Guru Gobind Singh College of Commerce <span class="tl-role">B.Sc. (Hons.) Computer Science</span></h3>
-              <p>Vice-President (2017–18) and then President (2018–19) of ACE, the college's computer science society; organizer of the CYTHON-18 tech fest; executive member of the International Cell. Virtual software internship with Curlyphi (Dec 2017 – Jan 2018) building a college-event website. Featured in the college's “Stars of the College” annual-report profile (2018).</p>
+              <p>Vice-President (2017–18) and then President (2018–19) of ACE, the college's computer science society; organizer of the CYTHON-18 tech fest; executive member of the International Cell. Virtual internship with Curlyphi (Dec 2017 – Jan 2018); separately built a college-event website. Profiled in the college's “Stars of the College” annual-report feature (2018).</p>
             </div>
           </li>
         </ol>
@@ -717,7 +713,7 @@
           <div>
             <h3 class="group-title">Competitions</h3>
             <ul class="timeline-simple">
-              <li><strong>MITRE Embedded CTF (eCTF) 2021</strong>, University at Buffalo team <span class="detail">implemented the team's RSA (512-bit) key-generation and primality-testing routines in C for a secure embedded wireless link · <a href="https://github.com/CactiLab/2021-ectf-UB-Cacti-design" target="_blank" rel="noopener">team repository</a></span></li>
+              <li><strong>MITRE Embedded CTF (eCTF) 2021</strong>, University at Buffalo team <span class="detail">implemented RSA key-generation and primality-testing routines in C for an embedded-security competition prototype · <a href="https://github.com/CactiLab/2021-ectf-UB-Cacti-design" target="_blank" rel="noopener">team repository</a></span></li>
               <li><strong>Collegiate Penetration Testing Competition (CPTC) 2020</strong>, University at Buffalo team <span class="detail">3rd place, regional round hosted by RIT's ESL Global Cybersecurity Institute, November 2020 · <a href="https://ubnetdef.org/about/competition-team/" target="_blank" rel="noopener">UBNetDef results</a></span></li>
             </ul>
           </div>
@@ -728,23 +724,27 @@
       <section id="projects" class="section reveal">
         <div class="section-head">
           <p class="section-num">08 — Projects &amp; code</p>
-          <h2>Public repositories load live from GitHub.</h2>
+          <h2>Selected code and systems projects.</h2>
         </div>
+        <h3 class="group-title">Systems &amp; security projects</h3>
+        <ul class="plain-list">
+          <li>MITRE Embedded CTF 2021 (University at Buffalo team): implemented RSA key-generation and primality-testing routines in C for an embedded-security competition prototype. <span class="tag">C</span> <a href="https://github.com/CactiLab/2021-ectf-UB-Cacti-design" target="_blank" rel="noopener">team repository</a></li>
+          <li>Core OS components in Pintos: kernel-level threading and the system-call interface. <span class="tag">C</span></li>
+          <li>Task offloading for QoS with a dynamic ANN that adapts at run time to query parameters (maximum hops, query volume). <span class="tag">C, C++, CUDA</span></li>
+          <li>Malicious-traffic analysis lab: a private VirtualBox network used to analyze three malicious packet captures, with write-ups and mitigations. <a href="https://github.com/Gursimran15/Network-Analysis-Reports" target="_blank" rel="noopener">repository</a></li>
+          <li>Malware-analysis frameworks and usage reports. <a href="https://github.com/Gursimran15/Malanalysis_tools_and_frameworks" target="_blank" rel="noopener">repository</a></li>
+        </ul>
+        <h3 class="group-title">Earlier coursework on GitHub</h3>
         <div class="card-grid stagger" id="gh-projects" data-github-user="Gursimran15">
-          <article class="card">
-            <h3>Network Analysis Reports</h3>
-            <p>Custom VirtualBox network to analyze three malicious packet captures, with technical write-ups and mitigations.</p>
-            <a class="card-link" href="https://github.com/Gursimran15/Network-Analysis-Reports" target="_blank" rel="noopener" aria-label="Network Analysis Reports on GitHub (opens in a new tab)">GitHub&nbsp;&rarr;</a>
-          </article>
-          <article class="card">
-            <h3>Malware-analysis tools &amp; frameworks</h3>
-            <p>Malware-analysis frameworks and usage reports.</p>
-            <a class="card-link" href="https://github.com/Gursimran15/Malanalysis_tools_and_frameworks" target="_blank" rel="noopener" aria-label="Malware-analysis tools and frameworks on GitHub (opens in a new tab)">GitHub&nbsp;&rarr;</a>
-          </article>
           <article class="card">
             <h3>Reliable transport protocols <span class="tag">C++</span></h3>
             <p>Alternating-Bit, Go-Back-N, and Selective-Repeat over an unreliable channel.</p>
             <a class="card-link" href="https://github.com/Gursimran15/MNC_PA2_PROTOCOLS" target="_blank" rel="noopener" aria-label="Reliable transport protocols on GitHub (opens in a new tab)">GitHub&nbsp;&rarr;</a>
+          </article>
+          <article class="card">
+            <h3>Multi-client TCP chat <span class="tag">C/C++</span></h3>
+            <p>Text chat application with a server and multiple clients.</p>
+            <a class="card-link" href="https://github.com/Gursimran15/MNC-PA1-ORIGNAL" target="_blank" rel="noopener" aria-label="Multi-client TCP chat on GitHub (opens in a new tab)">GitHub&nbsp;&rarr;</a>
           </article>
           <article class="card">
             <h3>Quantitative Foundations <span class="tag">MATLAB</span></h3>
@@ -757,12 +757,6 @@
             <a class="card-link" href="https://github.com/Gursimran15/Logistic-Regression-Cancer-Data" target="_blank" rel="noopener" aria-label="Logistic regression from scratch on GitHub (opens in a new tab)">GitHub&nbsp;&rarr;</a>
           </article>
         </div>
-        <h3 class="group-title">Systems coursework projects</h3>
-        <ul class="plain-list">
-          <li>Task offloading for QoS with a dynamic ANN that adapts at run time to query parameters (maximum hops, query volume). <span class="tag">C, C++, CUDA</span></li>
-          <li>Core OS components in Pintos: kernel-level threading and the system-call interface. <span class="tag">C</span></li>
-          <li>MITRE eCTF 2021 secure embedded wireless link (University at Buffalo team): RSA key generation and primality testing. <span class="tag">C</span></li>
-        </ul>
       </section>
 
       <!-- ================= Skills ================= -->
@@ -778,7 +772,9 @@
           </div>
           <div class="skill-group">
             <h3>Programmable networking</h3>
-            <ul class="pill-list"><li>Intel Tofino / Tofino2 (TNA)</li><li>P4 Studio SDE</li><li>BF-RT control plane</li><li>Parsing &amp; deparsing</li><li>Recirculation &amp; mirroring</li><li>Match-action pipeline design</li><li class="pill-light">BMv2</li><li class="pill-light">eBPF/XDP</li><li class="pill-light">SmartNIC / DPU</li><li class="pill-light">FPGA data paths</li></ul>
+            <ul class="pill-list"><li>Intel Tofino / Tofino2 (TNA)</li><li>P4 Studio SDE</li><li>BF-RT control plane</li><li>Parsing &amp; deparsing</li><li>Recirculation &amp; mirroring</li><li>Match-action pipeline design</li></ul>
+            <h3 class="skill-sub">Exposure only</h3>
+            <ul class="pill-list"><li class="pill-light">BMv2</li><li class="pill-light">eBPF/XDP</li><li class="pill-light">SmartNIC / DPU</li><li class="pill-light">FPGA data paths</li></ul>
           </div>
           <div class="skill-group">
             <h3>Measurement &amp; security tooling</h3>
@@ -789,7 +785,7 @@
             <ul class="pill-list"><li>Linux</li><li>Git</li><li>VirtualBox lab networks</li><li>Pintos</li><li>scikit-learn</li><li>Keras</li><li>NumPy</li><li>Pandas</li></ul>
           </div>
         </div>
-        <p class="muted small">Solid pills are daily research tools; outlined pills are tools I have used in projects or exploratory work.</p>
+        <p class="muted small">Solid pills are tools I use in research; outlined pills mark exposure through projects or exploratory work.</p>
       </section>
 
       <!-- ================= Contact ================= -->
@@ -844,6 +840,6 @@
 
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
 
-  <script src="assets/js/main.js?v=20261101c"></script>
+  <script src="assets/js/main.js?v=20261101d"></script>
 </body>
 </html>

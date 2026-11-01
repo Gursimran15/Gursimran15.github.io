@@ -27,10 +27,12 @@ robots.txt, sitemap.xml        search-engine hints
 
 ## Sections
 
-Hero with a sliding panel of five animated research scenes (interactive P4 pipeline with
-packet counters and stage explainer, in-network collective computation, Internet resilience
-under disaster, Internet measurement, security & privacy; tabs, arrows, keyboard, auto-advance,
-pause) · at-a-glance stats · on-this-page rail (wide screens) · About · Research (three feature
+Hero with a sliding panel of four animated research scenes (interactive P4 pipeline with
+illustrative packet counters and a stage explainer, reliable in-network computation with a
+failure-and-recovery sequence, Internet resilience under disruption including an inconclusive
+outcome, Internet measurement with an inconclusive verdict; tabs, arrows, keyboard, auto-advance,
+and a Pause control that also freezes CSS animations). The scenes are labelled as conceptual
+illustrations with Published / Ongoing / Industry status badges · at-a-glance stats · on-this-page rail (wide screens) · About · Research (three feature
 rows with animated illustrations, plus open directions) · News · Publications (cover tiles,
 abstract, BibTeX, plain-text citation) · Experience & education (timeline with monogram tiles) ·
 Teaching & mentoring · Service & leadership · Projects & code · Skills · Contact.
@@ -45,10 +47,10 @@ illustrations) and pauses when the hero is scrolled out of view or the tab is hi
 - **News**: add a `<li>` at the top of the `#news` list with a `<time datetime="YYYY-MM">`.
 - **Publications**: copy a `<li class="pub">` block; give the abstract and BibTeX blocks
   unique ids and point the `data-toggle` / `data-copy` buttons at them.
-- **Projects**: the "Projects & code" grid updates itself from the GitHub API at page load
-  (public, non-fork repos; handwritten entries in `OVERRIDES` first, then anything pushed
-  since `RECENT_CUTOFF`). Edit `OVERRIDES` / `HIDDEN` in `assets/js/main.js`; the static
-  cards in `index.html` are only the offline/rate-limit fallback.
+- **Projects**: the systems and security projects are a hand-written list in `index.html`.
+  The "Earlier coursework on GitHub" grid refreshes descriptions from the GitHub API at page
+  load but is a strict allowlist: only repositories named in `OVERRIDES` in
+  `assets/js/main.js` are ever shown. The static cards in `index.html` are the offline fallback.
 - **Hero typewriter phrases**: `PHRASES` in `assets/js/main.js`.
 - **Hero scenes**: each `<div class="device-slide">` in `index.html` holds one SVG scene; its
   caption is the matching `<p class="device-info" data-slide="N">`, its tab the matching

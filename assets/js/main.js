@@ -17,6 +17,7 @@
     motionBtn.removeAttribute('hidden');
     motionBtn.addEventListener('click', function () {
       motionPaused = !motionPaused;
+      document.documentElement.classList.toggle('motion-paused', motionPaused);
       motionBtn.setAttribute('aria-pressed', motionPaused ? 'true' : 'false');
       motionBtn.textContent = motionPaused ? 'Resume' : 'Pause';
       pauseListeners.forEach(function (fn) { fn(motionPaused); });
@@ -97,35 +98,6 @@
       entries.forEach(function (entry) { if (entry.isIntersecting) setActive(entry.target); });
     }, { rootMargin: '-30% 0px -60% 0px' });
     sections.forEach(function (s) { spy.observe(s); });
-  }
-
-  /* ---------- Hero typewriter ---------- */
-
-  var typed = document.getElementById('typed');
-  var PHRASES = [
-    'line-rate deep packet inspection on Intel Tofino',
-    'stateful firewalls inside a P4 match-action pipeline',
-    'measurement tools that locate Internet censorship',
-    'intent that compiles down to programmable hardware',
-    'security functions that stay correct under hardware limits'
-  ];
-  if (typed && !reduceMotion) {
-    var pi = 0, ci = PHRASES[0].length, deleting = true, holdUntil = Date.now() + 2800;
-    var tick = function () {
-      var now = Date.now();
-      if (motionPaused || now < holdUntil) { setTimeout(tick, 60); return; }
-      var phrase = PHRASES[pi];
-      if (!deleting) {
-        ci++; typed.textContent = phrase.slice(0, ci);
-        if (ci >= phrase.length) { deleting = true; holdUntil = now + 2600; }
-        setTimeout(tick, 38);
-      } else {
-        ci--; typed.textContent = phrase.slice(0, ci);
-        if (ci <= 0) { deleting = false; pi = (pi + 1) % PHRASES.length; holdUntil = now + 250; }
-        setTimeout(tick, 18);
-      }
-    };
-    setTimeout(tick, 600);
   }
 
   /* ---------- Count-up stats ---------- */
@@ -216,12 +188,12 @@
   var packetsLayer = document.getElementById('packets');
   var info = document.getElementById('pipe-info');
   var INFO = {
-    parser: '<strong>Parser.</strong> Slices header fields out of the packet by offset and length, fast enough for 100 Gb/s. It cannot parse free-form payloads such as HTTP, which is exactly why in-switch DPI needs tricks like recirculate-and-truncate.',
+    parser: '<strong>Parser.</strong> Slices header fields out of the packet by offset and length at line rate. It cannot parse free-form payloads such as HTTP, which is why payload inspection in a switch needs workarounds such as recirculate-and-truncate.',
     stage: '<strong>Match-action stage.</strong> Looks a key up in SRAM/TCAM tables and applies a handful of ALU operations. Every pass gets a fixed number of stages, so richer logic has to be spread across stages or across passes.',
     deparser: '<strong>Deparser.</strong> Reassembles the packet and sends it out of a port, mirrors it, or loops it back into the pipeline for another pass.',
-    loop: '<strong>Recirculation.</strong> Sends a packet through the pipeline again, carrying state between passes. It buys expressiveness (pattern matching, cross-packet checks) at the price of pipeline bandwidth.',
-    drop: '<strong>Drop.</strong> The policy verdict: a packet that matches a blocked pattern or violates flow state never leaves the switch.',
-    memory: '<strong>On-chip memory.</strong> A few MB of SRAM and TCAM shared between forwarding tables, per-flow registers, and whatever a security function needs. This budget is what every in-switch defense competes for.'
+    loop: '<strong>Additional processing pass.</strong> Recirculation sends a packet through the pipeline again when one pass is not enough. It buys expressiveness (longer pattern matches, multi-step checks) at the price of pipeline bandwidth.',
+    drop: '<strong>Discard.</strong> A packet can be discarded when an applicable verdict is available before release. Enforcement timing depends on the design: some verdicts arrive only after a packet has already been forwarded.',
+    memory: '<strong>On-chip memory and per-flow state.</strong> A few MB of SRAM and TCAM shared between forwarding tables, per-flow registers, and whatever a security function needs. State kept across packets of a flow lives here, and this budget is what every in-switch function competes for.'
   };
   var defaultInfo = info ? info.innerHTML : '';
 
@@ -230,6 +202,7 @@
     var Y = 190;
     var ROUTES = {
       pass:   [[-12, Y], [712, Y]],
+      late:   [[-12, Y], [712, Y]],
       recirc: [[-12, Y], [548, Y], [548, 96], [540, 86], [144, 86], [136, 96], [136, Y], [712, Y]],
       drop:   [[-12, Y], [295, Y], [295, 258]]
     };
@@ -255,8 +228,8 @@
       h.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); h.click(); } });
     });
 
-    var counters = { pass: document.getElementById('cnt-pass'), recirc: document.getElementById('cnt-recirc'), drop: document.getElementById('cnt-drop') };
-    var counts = { pass: 0, recirc: 0, drop: 0 };
+    var counters = { pass: document.getElementById('cnt-pass'), recirc: document.getElementById('cnt-recirc'), drop: document.getElementById('cnt-drop'), late: document.getElementById('cnt-late') };
+    var counts = { pass: 0, recirc: 0, drop: 0, late: 0 };
     function bump(k) { counts[k]++; if (counters[k]) counters[k].textContent = String(counts[k]); }
 
     function routeLength(pts) { var L = 0; for (var i = 1; i < pts.length; i++) L += Math.hypot(pts[i][0] - pts[i - 1][0], pts[i][1] - pts[i - 1][1]); return L; }
@@ -280,7 +253,7 @@
       var SPEED = 150;
       function spawn(now) {
         var r = Math.random();
-        var type = r < 0.58 ? 'pass' : (r < 0.84 ? 'recirc' : 'drop');
+        var type = r < 0.5 ? 'pass' : (r < 0.74 ? 'recirc' : (r < 0.88 ? 'drop' : 'late'));
         var el = document.createElementNS(NS, 'circle');
         el.setAttribute('r', type === 'drop' ? 5.5 : 6);
         el.setAttribute('class', 'pk packet pk-' + type);
@@ -306,7 +279,7 @@
           if (p.type === 'recirc' && !p.loopedBack && p.dist > 560 + 94 + 400 + 94 + 20) { p.loopedBack = true; p.el.setAttribute('class', 'pk packet pk-pass'); bump('recirc'); }
           if (p.type === 'drop' && pos[1] > Y + 1) { p.el.style.opacity = Math.max(0, 1 - (pos[1] - Y) / 70).toFixed(2); }
           if (p.dist >= p.len) {
-            if (!p.counted) { p.counted = true; bump(p.type === 'drop' ? 'drop' : 'pass'); }
+            if (!p.counted) { p.counted = true; bump(p.type === 'drop' ? 'drop' : (p.type === 'late' ? 'late' : 'pass')); }
             packetsLayer.removeChild(p.el); packets.splice(i, 1);
           }
         }
@@ -351,6 +324,11 @@
       if (countersRow) { if (cur === 0) countersRow.removeAttribute('hidden'); else countersRow.setAttribute('hidden', ''); }
       if (titleEl) titleEl.textContent = slides[cur].getAttribute('data-title') || '';
       if (pipeControl) pipeControl.setActive(cur === 0);
+      // restart the active scene's CSS timeline from the beginning
+      var active = slides[cur];
+      active.classList.add('replay');
+      void active.offsetWidth;
+      requestAnimationFrame(function () { active.classList.remove('replay'); });
       schedule();
     }
     function schedule() {
@@ -436,16 +414,12 @@
 
   var grid = document.getElementById('gh-projects');
   var OVERRIDES = {
-    'Network-Analysis-Reports': { title: 'Network Analysis Reports', desc: 'Custom VirtualBox network to analyze three malicious packet captures, with technical write-ups and mitigations.' },
-    'Malanalysis_tools_and_frameworks': { title: 'Malware-analysis tools & frameworks', desc: 'Malware-analysis frameworks and usage reports.' },
     'MNC_PA2_PROTOCOLS': { title: 'Reliable transport protocols', desc: 'Alternating-Bit, Go-Back-N, and Selective-Repeat over an unreliable channel.', tag: 'C++' },
     'MNC-PA1-ORIGNAL': { title: 'Multi-client TCP chat', desc: 'Text chat application with a server and multiple clients.', tag: 'C/C++' },
     'Quantitative_Foundations': { title: 'Quantitative Foundations', desc: 'Linear regression, gradient descent, face recognition and detection.', tag: 'MATLAB' },
     'Logistic-Regression-Cancer-Data': { title: 'Logistic regression from scratch', desc: 'Logistic regression on the Wisconsin Diagnostic Breast Cancer dataset, implemented without ML libraries.', tag: 'Jupyter' }
   };
-  var ORDER = Object.keys(OVERRIDES);
-  var HIDDEN = ['Gursimran15.github.io', 'gursimran.github.io', 'DeeP4R', 'bfsde', 'coursera-new', 'coursera-test', 'Hello'];
-  var RECENT_CUTOFF = '2025-01-01';
+  var ORDER = Object.keys(OVERRIDES);   // strict allowlist: only these repositories are ever shown
 
   function projectCard(repo) {
     var o = OVERRIDES[repo.name] || {};
@@ -464,13 +438,9 @@
     fetch('https://api.github.com/users/' + user + '/repos?sort=pushed&per_page=100')
       .then(function (res) { if (!res.ok) throw new Error('GitHub API ' + res.status); return res.json(); })
       .then(function (repos) {
-        var shown = repos.filter(function (r) { if (r.fork || HIDDEN.indexOf(r.name) !== -1) return false; return OVERRIDES.hasOwnProperty(r.name) || r.pushed_at >= RECENT_CUTOFF; });
+        var shown = repos.filter(function (r) { return !r.fork && OVERRIDES.hasOwnProperty(r.name); });
         if (!shown.length) return;
-        shown.sort(function (a, b) {
-          var ia = ORDER.indexOf(a.name), ib = ORDER.indexOf(b.name);
-          if (ia === -1 && ib === -1) return a.pushed_at < b.pushed_at ? 1 : -1;
-          if (ia === -1) return 1; if (ib === -1) return -1; return ia - ib;
-        });
+        shown.sort(function (a, b) { return ORDER.indexOf(a.name) - ORDER.indexOf(b.name); });
         grid.textContent = '';
         shown.forEach(function (r, i) { var c = projectCard(r); c.style.setProperty('--d', Math.min(i, 9) * 70 + 'ms'); grid.appendChild(c); });
         grid.classList.add('visible');

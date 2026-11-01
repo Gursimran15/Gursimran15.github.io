@@ -3,7 +3,6 @@
 %  Ph.D. Student, Computer Science, Oklahoma State University
 %
 %  Build:  pdflatex Gursimran_Singh_CV.tex   (run twice for page totals)
-%          or: latexmk -pdf Gursimran_Singh_CV.tex
 %  Fonts:  TeX Gyre Pagella if installed, otherwise Palatino (mathpazo).
 %  Then copy the PDF to  ../assets/Gursimran_Singh_CV.pdf  for the website.
 %=====================================================================
@@ -23,17 +22,17 @@
 \usepackage{fancyhdr}
 \usepackage{lastpage}
 \usepackage{ragged2e}
+\usepackage{needspace}
 \usepackage[hidelinks]{hyperref}
 
 \hypersetup{
   pdftitle={Gursimran Singh - Curriculum Vitae},
   pdfauthor={Gursimran Singh},
   pdfsubject={Curriculum Vitae: programmable network systems and security researcher},
-  pdfkeywords={P4, Intel Tofino, programmable data planes, network security, Internet measurement, censorship, intent-based networking},
+  pdfkeywords={P4, Intel Tofino, programmable data planes, network security, Internet measurement, in-network computation, resilience},
   colorlinks=true, urlcolor=accent, linkcolor=accent, citecolor=accent
 }
 
-% Machine-readable text for PDF parsers (pdfTeX)
 \ifdefined\pdfgentounicode \pdfgentounicode=1 \fi
 
 %---------------- Colours ----------------
@@ -45,7 +44,7 @@
 \raggedbottom
 \setlength{\parindent}{0pt}
 \setlength{\tabcolsep}{0pt}
-\linespread{0.98}
+\linespread{1.0}
 
 %---------------- Header / footer ----------------
 \pagestyle{fancy}
@@ -56,19 +55,19 @@
 \fancyfoot[R]{\footnotesize\color{muted}Page \thepage\ of \pageref{LastPage}}
 
 %---------------- Section titles ----------------
+% The rule sits below the title; every section keeps at least four lines with its heading.
 \titleformat{\section}[block]
   {\scshape\large\color{accent}}{}{0em}{}
   [{\color{accent}\titlerule[0.6pt]}]
-\titlespacing*{\section}{0pt}{6pt}{3pt}
+\titlespacing*{\section}{0pt}{7pt}{4pt}
+\newcommand{\cvsection}[2][5]{\Needspace{#1\baselineskip}\section{#2}}
 
 %---------------- Entry macros ----------------
-% Two-line entry: \entry{title}{right}{subtitle}{right2}
 \newcommand{\entry}[4]{%
   \item\begin{tabular*}{\linewidth}{@{}p{0.80\linewidth}@{\extracolsep{\fill}}r@{}}
     \leavevmode\textbf{#1} & \textbf{\small #2}\\
     \leavevmode{\small\itshape\color{muted} #3} & {\small\itshape\color{muted} #4}\\
   \end{tabular*}\vspace{-4pt}}
-% One-line entry: \line{left}{right}
 \newcommand{\entryline}[2]{%
   \item\begin{tabular*}{\linewidth}{@{}p{0.84\linewidth}@{\extracolsep{\fill}}r@{}}
     \leavevmode #1 & \small #2\\
@@ -95,22 +94,19 @@
    \href{https://scholar.google.com/citations?user=DA-sGBgAAAAJ}{Google Scholar} \,\textperiodcentered\,
    \href{https://orcid.org/0009-0002-8678-8056}{ORCID 0009-0002-8678-8056} \,\textperiodcentered\,
    \href{https://github.com/Gursimran15}{github.com/Gursimran15} \,\textperiodcentered\,
-   \href{https://www.linkedin.com/in/gursimran-singh-dhodi/}{linkedin.com/in/gursimran-singh-dhodi}}
+   \href{https://www.linkedin.com/in/gursimran-singh-dhodi/}{linkedin.com/in/gursimran-singh-dhodi}}\\[4pt]
+  {\small\textbf{Seeking Summer 2027 research internships \,\textperiodcentered\, Expected graduation May 2028}}
 \end{center}
 \vspace{-4pt}
 
 %---------------- SUMMARY ----------------
 \section{Research Summary}
-Ph.D. researcher in \textbf{programmable network systems and security}. I design and evaluate line-rate security
-functions (deep packet inspection, firewalls, intrusion detection) in \textbf{P4 on Intel Tofino} switches, characterize
-the hardware limits that constrain them, and build tools that measure \textbf{Internet censorship and resilience}.
-Two first-author publications; committee service for EuroSys, PPoPP, ICS, CoNEXT, and ACM~S3; adjunct teaching; industry
-work on intent-based networking.\\[2pt]
-{\small\textbf{Interests:} programmable data planes (P4, Tofino, SmartNICs/FPGAs) \,\textperiodcentered\, in-network security and collective computation
-\,\textperiodcentered\, Internet measurement, censorship, and resilience under disaster \,\textperiodcentered\, security and privacy \,\textperiodcentered\, dependable systems under hardware limits.}
+Ph.D. researcher in programmable network systems and security, with experience implementing and evaluating P4 prototypes
+on Intel Tofino hardware and developing Internet-measurement tools. Research interests include stateful network security,
+reliable in-network computation, and Internet resilience.
 
 %---------------- EDUCATION ----------------
-\section{Education}
+\cvsection{Education}
 \begin{entries}
   \entry{Oklahoma State University}{Jan 2026 -- Present}
         {Ph.D. in Computer Science \,\textperiodcentered\, Advisor: Dr.\ H.\,B.\ Acharya}{Expected May 2028}
@@ -123,7 +119,7 @@ work on intent-based networking.\\[2pt]
 \end{entries}
 
 %---------------- PUBLICATIONS ----------------
-\section{Publications}
+\cvsection{Publications}
 \begin{pubs}
   \item \me, H.\,B.\ Acharya, and Minseok Kwon.
     \textbf{Programmable Data Planes for Network Security.}
@@ -131,75 +127,63 @@ work on intent-based networking.\\[2pt]
     Computer Science \& Information Technology (CS \& IT) vol.\ 15, no.\ 13, pp.\ 163--180, July 2025.
     DOI: \href{https://doi.org/10.5121/csit.2025.151314}{10.5121/csit.2025.151314} \,\textperiodcentered\,
     \href{https://arxiv.org/abs/2507.22165}{arXiv:2507.22165}.\\
-    {\color{muted}Systematizes security on P4 switches across attack mitigation, firewalls and middleboxes, in-network cryptography,
-    and in-switch machine learning; identifies the workarounds (recirculate-and-truncate, lookup-table precomputation) that make
-    these functions feasible under memory and instruction-set limits, and the open problems that remain.}
+    {\color{muted}Systematization of security applications on P4 programmable switches, their hardware constraints, and the architectural workarounds that make them feasible.}
   \item \me\ and H.\,B.\ Acharya.
     \textbf{POSTER: A Cyberspace Study of the Russia--Ukraine War.}
     In \emph{Proc.\ ACM ASIA Conference on Computer and Communications Security (ASIA CCS 2023)},
     pp.\ 1016--1018, July 2023. DOI: \href{https://doi.org/10.1145/3579856.3592822}{10.1145/3579856.3592822}.\\
-    {\color{muted}Measured hard and soft failures of website access from Ukraine, Russia, and the United States (March--July 2022)
-    using a new soft-failure classifier and a multi-protocol traceroute; found a substantial change in access to sites from
-    Ukraine over the period, with no significant collateral damage from filtering by Russian ASes.}
+    {\color{muted}Poster paper: measurements of website access from Ukraine, Russia, and the United States collected in March and July 2022, with a soft-failure classifier and a multi-protocol traceroute.}
 \end{pubs}
 \vspace{2pt}
 {\small\color{muted}Additional first-author manuscripts are currently under submission (details available upon request).}
 
 %---------------- RESEARCH EXPERIENCE ----------------
-\section{Research Experience}
+\cvsection{Research Experience}
 \begin{entries}
   \entry{Doctoral Researcher, advised by Dr.\ H.\,B.\ Acharya}{2021 -- Present}
         {Oklahoma State University (2026 -- present) \,\textperiodcentered\, Rochester Institute of Technology (2021 -- 2025)}{}
   \vspace{1pt}
   \item \textbf{Programmable data-plane security on Intel Tofino} \hfill {\small 2021 -- Present}
   \begin{bullets}
-    \item Design and implement application-layer security functions (deep packet inspection and pattern matching,
-          stateful filtering, NIDS-style detection) in P4 on Intel Tofino and Tofino2 switches (Tofino Native
-          Architecture), engineering around per-stage memory, restricted instruction sets, and parser limits.
-    \item Develop packet-analysis and filtering algorithms that use recirculation, cross-packet flow state, and precomputed
-          lookups to approach firewall and intrusion-detection capability at line rate; prototype and evaluate on Tofino
-          hardware (P4 Studio SDE, BF-RT control plane).
-    \item First-authored a systematization of programmable-data-plane security research (NeTCoM 2025, [P1]).
-    \item \emph{Active directions:} correctness of inspection under recirculation and flow-state pressure (inspected versus merely
-          forwarded throughput); safe evolution of security state across heterogeneous data paths (ASIC, SmartNIC/DPU, FPGA, host)
-          with exactly-once enforcement and recovery; minimum equivalent firewall policies with checkable optimality certificates;
-          orchestration and failure handling for in-network computing.
+    \item Implemented packet-inspection and stateful-filtering prototypes in P4 on Intel Tofino/Tofino2, working within parser,
+          stage, memory, and instruction-set constraints.
+    \item Developed and evaluated packet-processing logic using the P4 Studio SDE and BF-RT control plane.
+    \item Investigate the relationship between completed inspection, enforcement timing, and throughput under constrained
+          hardware resources.
+    \item First-authored a systematization of programmable-data-plane security research, published at NeTCoM 2025 [P1].
   \end{bullets}
-  \item \textbf{Internet censorship and resilience measurement} \hfill {\small 2022 -- Present}
+  \item \textbf{Reliable in-network computation} (ongoing research) \hfill {\small 2026 -- Present}
   \begin{bullets}
-    \item Designed and implemented measurement tooling for the Russia--Ukraine war study: a classifier that
-          detects \emph{soft} failures of website access (beyond outright connection failures) and a multi-protocol
-          traceroute implementation that localizes where interference occurs along a path.
-    \item Collected and analyzed longitudinal measurements from Ukraine, Russia, and the United States (March--July 2022),
-          attributing reachability changes to network conditions versus filtering (ACM ASIA CCS 2023, [P2]).
-    \item \emph{Active directions:} sustainability of refraction-networking deployments when operators withdraw, recovering access
-          without losing resistance to blocking; probe-induced bias in censorship and resilience measurement.
+    \item Investigating which computation belongs in a programmable switch, on a SmartNIC/DPU, or on the host (CPU/GPU) for
+          performance and robustness, and how in-network computations can recover from device failures while preserving correct
+          results across that heterogeneous hardware, and at what cost.
+  \end{bullets}
+  \item \textbf{Internet measurement, censorship, and resilience} \hfill {\small 2022 -- Present}
+  \begin{bullets}
+    \item Designed and implemented measurement tooling for the Russia--Ukraine study: a classifier for \emph{soft} failures of
+          website access and a multi-protocol traceroute used to investigate where filtering responses may originate.
+    \item Collected and analyzed measurements from Ukraine, Russia, and the United States in March and July 2022 (ACM ASIA CCS 2023 [P2]).
+    \item Ongoing: how reachability and paths change during disruption, and how measurement uncertainty and probe behaviour
+          affect the conclusions.
   \end{bullets}
 \end{entries}
 
 %---------------- INDUSTRY EXPERIENCE ----------------
-\section{Industry Experience}
+\cvsection[8]{Industry Experience}
 \begin{entries}
   \entry{Keysight Technologies}{Sep 2026 -- Present}
         {R\&D Software Engineering Intern (FPGA development for AI infrastructure testing solutions) \,\textperiodcentered\, part-time, remote}{}
   \begin{bullets}
-    \item Software-side contributor to an intent-based networking effort that translates natural-language intent and protocol
-          specifications into C/C++ implementations targeted for FPGA realization, working alongside FPGA-focused interns.
-    \item Designed the intent-to-implementation architecture: intent/specification ingestion, a C/C++ intermediate path,
-          and a proposed direct intent-to-HDL path.
+    \item Contribute software components and prototyping for FPGA-based AI infrastructure testing solutions, collaborating with
+          hardware engineers.
   \end{bullets}
 \end{entries}
 
 %---------------- TEACHING ----------------
-\section{Teaching Experience}
+\cvsection[7]{Teaching Experience}
 \begin{entries}
   \entry{Adjunct Instructor, Rochester Institute of Technology}{2022, 2024 -- 2025}
         {CSEC-140 Intro to Cybersecurity (2022, 2025) \,\textperiodcentered\, CSCI-455 Principles of Cybersecurity (2024, 2025) \,\textperiodcentered\, GCIS-123 Software Dev.\ \& Problem Solving I (2025)}{}
-  \begin{bullets}
-    \item Instructor of record: delivered lectures and hands-on virtual labs covering authentication, data security,
-          risk management, network, system, and application security, and human factors.
-    \item Taught computational problem solving in Python: searching and sorting, file I/O, lists, classes, and dictionaries.
-  \end{bullets}
   \entry{Teaching Assistant, Rochester Institute of Technology}{2023 -- 2024}
         {CSCI-243 Mechanics of Programming \,\textperiodcentered\, CSEC-759 Advanced Networking \& Distributed Systems Security (graduate seminar)}{}
   \entry{Teaching Assistant, Oklahoma State University}{Spring 2026}
@@ -209,7 +193,7 @@ work on intent-based networking.\\[2pt]
 \end{entries}
 
 %---------------- SERVICE ----------------
-\section{Professional Service}
+\cvsection[7]{Professional Service}
 \begin{entries}
   \entryline{\textbf{Artifact Evaluation Committee}, EuroSys 2027 (both submission cycles)}{2026 -- 2027}
   \entryline{\textbf{Artifact Evaluation Committee}, ACM PPoPP 2027}{2026 -- 2027}
@@ -218,7 +202,7 @@ work on intent-based networking.\\[2pt]
   \entryline{\textbf{Shadow Technical Program Committee}, ACM CoNEXT 2026}{2026}
 \end{entries}
 
-\section{Leadership}
+\cvsection[6]{Leadership}
 \begin{entries}
   \entryline{\textbf{President}, Computer Science Graduate Student Association (CS-GSA), Oklahoma State University: lead a
     seven-officer board; orientation, professional-development talks, networking, travel/funding advocacy}{2026 -- 2027}
@@ -228,42 +212,42 @@ work on intent-based networking.\\[2pt]
 \end{entries}
 
 %---------------- COMPETITIONS & HONORS ----------------
-\section{Competitions \& Honors}
+\cvsection[6]{Competitions \& Honors}
 \begin{entries}
-  \entryline{\textbf{MITRE Embedded CTF (eCTF) 2021}, University at Buffalo team: implemented the team's RSA (512-bit) key-generation
-    and primality-testing routines in C for a secure embedded wireless link}{2021}
+  \entryline{\textbf{MITRE Embedded CTF (eCTF) 2021}, University at Buffalo team: implemented RSA key-generation and primality-testing
+    routines in C for an embedded-security competition prototype}{2021}
   \entryline{\textbf{3rd place, 2020 regional round} (hosted by RIT's ESL Global Cybersecurity Institute), Collegiate Penetration
     Testing Competition (CPTC), University at Buffalo team}{Nov 2020}
-  \entryline{\textbf{``Stars of the College''} feature, SGGSCC Annual Report, for academics and student leadership}{2018}
+  \entryline{\textbf{``Stars of the College''} profile feature, SGGSCC Annual Report}{2018}
 \end{entries}
 
 %---------------- SKILLS ----------------
-\section{Technical Skills}
+\cvsection[7]{Technical Skills}
 \begin{itemize}[leftmargin=0pt,label={},topsep=1pt,itemsep=0pt]\small
 \item\leavevmode
 \skill{Languages}{C, C++, P4\textsubscript{16}, Python, Java, Bash; CUDA and MATLAB (project experience)}
-\skill{Programmable networking}{Intel Tofino / Tofino2 (TNA), P4 Studio SDE, BF-RT control plane, parsing/deparsing, recirculation,
-  mirroring, match-action pipeline design; exposure to BMv2, eBPF/XDP, SmartNIC/DPU and FPGA data paths}
+\skill{Programmable networking (research use)}{Intel Tofino / Tofino2 (TNA), P4 Studio SDE, BF-RT control plane, parsing/deparsing,
+  recirculation, mirroring, match-action pipeline design}
+\skill{Exposure only}{BMv2, eBPF/XDP, SmartNIC/DPU and FPGA data paths}
 \skill{Measurement \& security tooling}{Scapy, Wireshark, Zmap, Nmap, traceroute-based path measurement, Aircrack-ng, Kali Linux, IDA, OllyDbg}
 \skill{Systems \& data}{Linux, Git, VirtualBox lab networks, Pintos kernel development; scikit-learn, Keras, NumPy, Pandas}
 \end{itemize}
 \vspace{-6pt}
 
 %---------------- CERTIFICATIONS ----------------
-\section{Certifications \& Training}
+\cvsection[5]{Certifications \& Training}
 \begin{entries}
   \entryline{\textbf{Intel Connectivity Academy}: ICA-XFG-101 (P4\textsubscript{16}, Tofino family, P4 Studio SDE);
     ICA-XFG-201 -- 206 (Advanced TNA: parsing/deparsing, recirculation, mirroring)}{2023 -- 2024}
   \entryline{\textbf{OffSec Wireless Professional (OSWP)} and \textbf{Kali Linux Certified Professional (KLCP)}, Offensive Security}{2023}
-  \entryline{\textbf{Google Cloud}: Introduction to Generative AI, Responsible AI, and Large Language Models}{2023}
 \end{entries}
 
 %---------------- PROJECTS ----------------
-\section{Selected Projects}
+\cvsection[5]{Selected Projects}
 \begin{itemize}[leftmargin=0pt,label={},topsep=0pt,itemsep=1pt]\small
-  \item \textbf{Reliable transport protocols and multi-client TCP chat} (C/C++): Alternating-Bit, Go-Back-N, and Selective-Repeat over an unreliable channel.
-  \item \textbf{Task offloading for QoS with a dynamic ANN} (C, C++, CUDA): run-time adaptation to query parameters (max hops, query volume).
   \item \textbf{Core OS components in Pintos} (C): kernel-level threading and the system-call interface.
+  \item \textbf{Task offloading for QoS with a dynamic ANN} (C, C++, CUDA): run-time adaptation to query parameters (max hops, query volume).
+  \item \textbf{Reliable transport protocols and multi-client TCP chat} (C/C++): Alternating-Bit, Go-Back-N, and Selective-Repeat over an unreliable channel.
 \end{itemize}
 
 \end{document}
