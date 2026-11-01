@@ -21,6 +21,8 @@ assets/img/favicon.svg         "GS" monogram favicon
 assets/img/og-card.png         1200x630 preview card for link sharing (Open Graph / Twitter)
 assets/Gursimran_Singh_CV.pdf  CV linked from the site (built from cv/)
 cv/Gursimran_Singh_CV.tex      LaTeX source of the CV
+404.html                       custom not-found page (GitHub Pages serves it automatically)
+robots.txt, sitemap.xml        search-engine hints
 ```
 
 ## Sections

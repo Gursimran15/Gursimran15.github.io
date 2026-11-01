@@ -9,6 +9,20 @@
   root.classList.add('js');
 
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var motionPaused = false;           // user-controlled pause for the hero animations
+  var pauseListeners = [];            // callbacks run when the pause state changes
+  var heroSection = document.querySelector('.hero');
+  var motionBtn = document.getElementById('motion-toggle');
+  if (motionBtn && !reduceMotion) {
+    motionBtn.removeAttribute('hidden');
+    motionBtn.addEventListener('click', function () {
+      motionPaused = !motionPaused;
+      motionBtn.setAttribute('aria-pressed', motionPaused ? 'true' : 'false');
+      motionBtn.textContent = motionPaused ? 'Resume animation' : 'Pause animation';
+      if (heroSection) heroSection.classList.toggle('paused', motionPaused);
+      pauseListeners.forEach(function (fn) { fn(motionPaused); });
+    });
+  }
 
   /* ---------- Theme toggle ---------- */
 
@@ -109,7 +123,7 @@
     typed.textContent = PHRASES[0];
     var tick = function () {
       var now = Date.now();
-      if (now < holdUntil) { setTimeout(tick, 60); return; }
+      if (motionPaused || now < holdUntil) { setTimeout(tick, 60); return; }
       var phrase = PHRASES[pi];
       if (!deleting) {
         ci++;
@@ -134,6 +148,7 @@
   function countUp(el) {
     var target = parseInt(el.getAttribute('data-count'), 10) || 0;
     if (reduceMotion) { el.textContent = target; return; }
+    el.textContent = '0';
     var start = null, dur = 900;
     var step = function (ts) {
       if (!start) start = ts;
@@ -220,8 +235,10 @@
       raf = requestAnimationFrame(draw);
     };
 
-    var start = function () { if (!running) { running = true; raf = requestAnimationFrame(draw); } };
+    var inView = false;
+    var start = function () { if (!running && !motionPaused && inView) { running = true; raf = requestAnimationFrame(draw); } };
     var stop = function () { running = false; if (raf) cancelAnimationFrame(raf); };
+    pauseListeners.push(function (paused) { if (paused) stop(); else start(); });
 
     hero.addEventListener('mousemove', function (e) {
       var r = hero.getBoundingClientRect();
@@ -234,9 +251,9 @@
 
     if ('IntersectionObserver' in window) {
       new IntersectionObserver(function (entries) {
-        entries.forEach(function (e) { if (e.isIntersecting && !document.hidden) start(); else stop(); });
+        entries.forEach(function (e) { inView = e.isIntersecting; if (inView && !document.hidden) start(); else stop(); });
       }, { threshold: 0.05 }).observe(hero);
-    } else { start(); }
+    } else { inView = true; start(); }
     document.addEventListener('visibilitychange', function () { if (document.hidden) stop(); else start(); });
   }
 
@@ -333,14 +350,16 @@
         pr = requestAnimationFrame(frame);
       }
 
-      var startPipe = function () { if (!animating) { animating = true; lastTs = 0; pr = requestAnimationFrame(frame); } };
+      var pipeInView = false;
+      var startPipe = function () { if (!animating && !motionPaused && pipeInView) { animating = true; lastTs = 0; pr = requestAnimationFrame(frame); } };
       var stopPipe = function () { animating = false; if (pr) cancelAnimationFrame(pr); };
+      pauseListeners.push(function (paused) { if (paused) stopPipe(); else startPipe(); });
 
       if ('IntersectionObserver' in window) {
         new IntersectionObserver(function (entries) {
-          entries.forEach(function (e) { if (e.isIntersecting && !document.hidden) startPipe(); else stopPipe(); });
+          entries.forEach(function (e) { pipeInView = e.isIntersecting; if (pipeInView && !document.hidden) startPipe(); else stopPipe(); });
         }, { threshold: 0.1 }).observe(svg);
-      } else { startPipe(); }
+      } else { pipeInView = true; startPipe(); }
       document.addEventListener('visibilitychange', function () { if (document.hidden) stopPipe(); else startPipe(); });
     }
   }

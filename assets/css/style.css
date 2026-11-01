@@ -280,6 +280,13 @@ html:not(.js) .theme-toggle { display: none; }
 
 .hero-figure { margin: 0; min-width: 0; }
 .hero-caption { font-size: 0.82rem; color: var(--text-muted); margin-top: 0.6rem; max-width: 60ch; }
+.motion-toggle {
+  display: inline-block; margin-left: 0.5rem; padding: 0.1rem 0.55rem; border-radius: 999px;
+  border: 1px solid var(--border-strong); background: transparent; color: var(--text-muted);
+  font-size: 0.74rem; font-weight: 600; cursor: pointer; vertical-align: middle;
+}
+.motion-toggle:hover { border-color: var(--accent); color: var(--accent-strong); }
+.hero.paused .pipeline .loop, .hero.paused .pipeline .droppath, .hero.paused .caret { animation-play-state: paused; }
 
 /* ---------- Pipeline SVG ---------- */
 

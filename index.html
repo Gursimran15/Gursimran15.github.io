@@ -129,7 +129,7 @@
         </div>
 
         <!-- Animated programmable-switch pipeline -->
-        <figure class="hero-figure" aria-hidden="true">
+        <figure class="hero-figure">
           <svg id="pipeline" class="pipeline" viewBox="0 0 700 340" role="img" aria-label="Animated illustration of packets flowing through a programmable switch pipeline: parser, match-action stages, deparser, with recirculation and drop paths">
             <defs>
               <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
@@ -197,7 +197,9 @@
               <circle cx="372" cy="318" r="5" class="pk pk-drop"/><text x="384" y="322">blocked by policy</text>
             </g>
           </svg>
-          <figcaption class="hero-caption">A P4 pipeline, the way I think about it: fixed stages, scarce memory, and the tricks (recirculation, precomputed lookups, cross-packet state) that turn a switch into a security middlebox.</figcaption>
+          <figcaption class="hero-caption">A P4 pipeline, the way I think about it: fixed stages, scarce memory, and the tricks (recirculation, precomputed lookups, cross-packet state) that turn a switch into a security middlebox.
+            <button id="motion-toggle" class="motion-toggle" type="button" aria-pressed="false" hidden>Pause animation</button>
+          </figcaption>
         </figure>
       </div>
     </section>
@@ -205,10 +207,10 @@
     <!-- ================= Stats ================= -->
     <section class="stats" aria-label="At a glance">
       <ul class="stat-list">
-        <li class="stat"><span class="stat-num" data-count="2">0</span><span class="stat-label">first-author publications</span></li>
-        <li class="stat"><span class="stat-num" data-count="5">0</span><span class="stat-label">program &amp; artifact committees (2026–27)</span></li>
-        <li class="stat"><span class="stat-num" data-count="5">0</span><span class="stat-label">students mentored on research &amp; capstone projects</span></li>
-        <li class="stat"><span class="stat-num" data-count="3">0</span><span class="stat-label">courses taught as adjunct instructor</span></li>
+        <li class="stat"><span class="stat-num" data-count="2">2</span><span class="stat-label">first-author publications</span></li>
+        <li class="stat"><span class="stat-num" data-count="5">5</span><span class="stat-label">program &amp; artifact committees (2026–27)</span></li>
+        <li class="stat"><span class="stat-num" data-count="5">5</span><span class="stat-label">students mentored on research &amp; capstone projects</span></li>
+        <li class="stat"><span class="stat-num" data-count="3">3</span><span class="stat-label">courses taught as adjunct instructor</span></li>
       </ul>
     </section>
 
@@ -242,7 +244,7 @@
             </p>
           </div>
           <aside class="about-card">
-            <img class="portrait" src="assets/img/profile.jpg" alt="Portrait of Gursimran Singh" width="400" height="400">
+            <img class="portrait" src="assets/img/profile.jpg" alt="Portrait of Gursimran Singh" width="400" height="400" loading="lazy" decoding="async">
             <ul class="fact-list">
               <li><span>Advisor</span><strong>Dr. H. B. Acharya</strong></li>
               <li><span>Program</span><strong>Ph.D. Computer Science, expected May 2028</strong></li>
