@@ -27,9 +27,12 @@ robots.txt, sitemap.xml        search-engine hints
 
 ## Sections
 
-Hero (animated programmable-switch pipeline) · at-a-glance stats · About · Research
-(three threads with small animated illustrations, plus open research directions) · News ·
-Publications (abstract + BibTeX for each) · Experience & education (timeline) ·
+Hero with a sliding panel of five animated research scenes (interactive P4 pipeline with
+packet counters and stage explainer, in-network collective computation, Internet resilience
+under disaster, Internet measurement, security & privacy; tabs, arrows, keyboard, auto-advance,
+pause) · at-a-glance stats · on-this-page rail (wide screens) · About · Research (three feature
+rows with animated illustrations, plus open directions) · News · Publications (cover tiles,
+abstract, BibTeX, plain-text citation) · Experience & education (timeline with monogram tiles) ·
 Teaching & mentoring · Service & leadership · Projects & code · Skills · Contact.
 
 All motion respects `prefers-reduced-motion` (animations are replaced by static
@@ -47,6 +50,11 @@ illustrations) and pauses when the hero is scrolled out of view or the tab is hi
   since `RECENT_CUTOFF`). Edit `OVERRIDES` / `HIDDEN` in `assets/js/main.js`; the static
   cards in `index.html` are only the offline/rate-limit fallback.
 - **Hero typewriter phrases**: `PHRASES` in `assets/js/main.js`.
+- **Hero scenes**: each `<div class="device-slide">` in `index.html` holds one SVG scene; its
+  caption is the matching `<p class="device-info" data-slide="N">`, its tab the matching
+  `.device-tab`. Scene animations are CSS keyframes in `assets/css/style.css` (`scene-*`).
+- **Cache-busting**: after editing CSS or JS, bump the `?v=` query on the `<link>`/`<script>`
+  tags in `index.html` and `404.html` so browsers fetch the new files.
 - **Colors/theme**: change the CSS custom properties at the top of
   `assets/css/style.css` (`:root` is the light theme, `[data-theme="dark"]` is dark).
 - **CV**: edit `cv/Gursimran_Singh_CV.tex`, build with `pdflatex Gursimran_Singh_CV.tex`

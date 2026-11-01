@@ -10,7 +10,7 @@
 \documentclass[letterpaper,10pt]{article}
 
 %---------------- Packages ----------------
-\usepackage[left=0.55in,right=0.55in,top=0.45in,bottom=0.55in]{geometry}
+\usepackage[left=0.5in,right=0.5in,top=0.42in,bottom=0.5in]{geometry}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \IfFileExists{tgpagella.sty}{\usepackage{tgpagella}}{\usepackage{mathpazo}}
@@ -45,7 +45,7 @@
 \raggedbottom
 \setlength{\parindent}{0pt}
 \setlength{\tabcolsep}{0pt}
-\linespread{1.0}
+\linespread{0.98}
 
 %---------------- Header / footer ----------------
 \pagestyle{fancy}
@@ -58,7 +58,7 @@
 %---------------- Section titles ----------------
 \titleformat{\section}[block]
   {\scshape\large\color{accent}}{}{0em}{}
-  [\vspace{-5pt}{\color{accent}\titlerule[0.6pt]}]
+  [{\color{accent}\titlerule[0.6pt]}]
 \titlespacing*{\section}{0pt}{6pt}{3pt}
 
 %---------------- Entry macros ----------------
@@ -104,11 +104,10 @@
 Ph.D. researcher in \textbf{programmable network systems and security}. I design and evaluate line-rate security
 functions (deep packet inspection, firewalls, intrusion detection) in \textbf{P4 on Intel Tofino} switches, characterize
 the hardware limits that constrain them, and build tools that measure \textbf{Internet censorship and resilience}.
-Two first-author publications; artifact-evaluation and program-committee service for EuroSys, PPoPP, ICS, CoNEXT, and ACM~S3;
-adjunct teaching in cybersecurity and software development; industry work on intent-based networking.\\[2pt]
-{\small\textbf{Interests:} programmable data planes (P4, Tofino, SmartNICs/FPGAs) \,\textperiodcentered\, in-network security
-(DPI, stateful firewalls, NIDS) \,\textperiodcentered\, Internet measurement and censorship resilience
-\,\textperiodcentered\, dependable high-performance network systems under hardware and operational constraints.}
+Two first-author publications; committee service for EuroSys, PPoPP, ICS, CoNEXT, and ACM~S3; adjunct teaching; industry
+work on intent-based networking.\\[2pt]
+{\small\textbf{Interests:} programmable data planes (P4, Tofino, SmartNICs/FPGAs) \,\textperiodcentered\, in-network security and collective computation
+\,\textperiodcentered\, Internet measurement, censorship, and resilience under disaster \,\textperiodcentered\, security and privacy \,\textperiodcentered\, dependable systems under hardware limits.}
 
 %---------------- EDUCATION ----------------
 \section{Education}
@@ -161,6 +160,10 @@ adjunct teaching in cybersecurity and software development; industry work on int
           lookups to approach firewall and intrusion-detection capability at line rate; prototype and evaluate on Tofino
           hardware (P4 Studio SDE, BF-RT control plane).
     \item First-authored a systematization of programmable-data-plane security research (NeTCoM 2025, [P1]).
+    \item \emph{Active directions:} correctness of inspection under recirculation and flow-state pressure (inspected versus merely
+          forwarded throughput); safe evolution of security state across heterogeneous data paths (ASIC, SmartNIC/DPU, FPGA, host)
+          with exactly-once enforcement and recovery; minimum equivalent firewall policies with checkable optimality certificates;
+          orchestration and failure handling for in-network computing.
   \end{bullets}
   \item \textbf{Internet censorship and resilience measurement} \hfill {\small 2022 -- Present}
   \begin{bullets}
@@ -169,6 +172,8 @@ adjunct teaching in cybersecurity and software development; industry work on int
           traceroute implementation that localizes where interference occurs along a path.
     \item Collected and analyzed longitudinal measurements from Ukraine, Russia, and the United States (March--July 2022),
           attributing reachability changes to network conditions versus filtering (ACM ASIA CCS 2023, [P2]).
+    \item \emph{Active directions:} sustainability of refraction-networking deployments when operators withdraw, recovering access
+          without losing resistance to blocking; probe-induced bias in censorship and resilience measurement.
   \end{bullets}
 \end{entries}
 
@@ -189,14 +194,14 @@ adjunct teaching in cybersecurity and software development; industry work on int
 \section{Teaching Experience}
 \begin{entries}
   \entry{Adjunct Instructor, Rochester Institute of Technology}{2022, 2024 -- 2025}
-        {CSEC-140 Introduction to Cybersecurity (2022, 2025) \,\textperiodcentered\, CSCI-455 Principles of Cybersecurity (2024, 2025) \,\textperiodcentered\, GCIS-123 Software Development \& Problem Solving I (2025)}{}
+        {CSEC-140 Intro to Cybersecurity (2022, 2025) \,\textperiodcentered\, CSCI-455 Principles of Cybersecurity (2024, 2025) \,\textperiodcentered\, GCIS-123 Software Dev.\ \& Problem Solving I (2025)}{}
   \begin{bullets}
     \item Instructor of record: delivered lectures and hands-on virtual labs covering authentication, data security,
           risk management, network, system, and application security, and human factors.
     \item Taught computational problem solving in Python: searching and sorting, file I/O, lists, classes, and dictionaries.
   \end{bullets}
   \entry{Teaching Assistant, Rochester Institute of Technology}{2023 -- 2024}
-        {CSCI-243 Mechanics of Programming \,\textperiodcentered\, CSEC-759 Graduate Seminar on Advanced Networking \& Distributed Systems Security}{}
+        {CSCI-243 Mechanics of Programming \,\textperiodcentered\, CSEC-759 Advanced Networking \& Distributed Systems Security (graduate seminar)}{}
   \entry{Teaching Assistant, Oklahoma State University}{Spring 2026}
         {Distributed and Cloud Computing}{}
   \entry{Research \& Capstone Mentor}{2022 -- 2025}
@@ -206,7 +211,7 @@ adjunct teaching in cybersecurity and software development; industry work on int
 %---------------- SERVICE ----------------
 \section{Professional Service}
 \begin{entries}
-  \entryline{\textbf{Artifact Evaluation Committee}, EuroSys 2027 (Spring cycle)}{2026}
+  \entryline{\textbf{Artifact Evaluation Committee}, EuroSys 2027 (both submission cycles)}{2026 -- 2027}
   \entryline{\textbf{Artifact Evaluation Committee}, ACM PPoPP 2027}{2026 -- 2027}
   \entryline{\textbf{Junior Program Committee}, ACM ICS 2027 (International Conference on Supercomputing)}{2026 -- 2027}
   \entryline{\textbf{Technical Program Committee}, ACM S3 2026 student workshop (co-located with ACM MobiCom 2026)}{2026}
@@ -215,11 +220,11 @@ adjunct teaching in cybersecurity and software development; industry work on int
 
 \section{Leadership}
 \begin{entries}
-  \entryline{\textbf{President}, Computer Science Graduate Student Association (CS-GSA), Oklahoma State University:
-    lead a seven-officer board; orientation, professional-development talks, networking, and travel/funding advocacy}{2026 -- 2027}
+  \entryline{\textbf{President}, Computer Science Graduate Student Association (CS-GSA), Oklahoma State University: lead a
+    seven-officer board; orientation, professional-development talks, networking, travel/funding advocacy}{2026 -- 2027}
   \entryline{\textbf{Council Member}, Doctoral Student Association, Rochester Institute of Technology}{2025}
   \entryline{\textbf{Vice-President}, CSE Graduate Student Association (CSEGSA), University at Buffalo}{2020 -- 2021}
-  \entryline{\textbf{Vice-President}, ACE (Computer Science Society), SGGSCC, University of Delhi; organizer, CYTHON-18 tech fest}{2017 -- 2018}
+  \entryline{\textbf{President} (2018 -- 2019) and \textbf{Vice-President} (2017 -- 2018), ACE (Computer Science Society), SGGSCC, University of Delhi; organizer, CYTHON-18 tech fest}{2017 -- 2019}
 \end{entries}
 
 %---------------- COMPETITIONS & HONORS ----------------
@@ -227,8 +232,8 @@ adjunct teaching in cybersecurity and software development; industry work on int
 \begin{entries}
   \entryline{\textbf{MITRE Embedded CTF (eCTF) 2021}, University at Buffalo team: implemented the team's RSA (512-bit) key-generation
     and primality-testing routines in C for a secure embedded wireless link}{2021}
-  \entryline{\textbf{3rd place, 2020 regional round} (hosted by RIT's ESL Global Cybersecurity Institute), Collegiate Penetration Testing
-    Competition (CPTC), University at Buffalo team}{Nov 2020}
+  \entryline{\textbf{3rd place, 2020 regional round} (hosted by RIT's ESL Global Cybersecurity Institute), Collegiate Penetration
+    Testing Competition (CPTC), University at Buffalo team}{Nov 2020}
   \entryline{\textbf{``Stars of the College''} feature, SGGSCC Annual Report, for academics and student leadership}{2018}
 \end{entries}
 
@@ -237,8 +242,8 @@ adjunct teaching in cybersecurity and software development; industry work on int
 \begin{itemize}[leftmargin=0pt,label={},topsep=1pt,itemsep=0pt]\small
 \item\leavevmode
 \skill{Languages}{C, C++, P4\textsubscript{16}, Python, Java, Bash; CUDA and MATLAB (project experience)}
-\skill{Programmable networking}{Intel Tofino / Tofino2 (TNA), P4 Studio SDE, BF-RT control plane (Python), parsing/deparsing,
-  recirculation, mirroring, match-action pipeline design; exposure to BMv2, eBPF/XDP, SmartNIC/DPU and FPGA data paths}
+\skill{Programmable networking}{Intel Tofino / Tofino2 (TNA), P4 Studio SDE, BF-RT control plane, parsing/deparsing, recirculation,
+  mirroring, match-action pipeline design; exposure to BMv2, eBPF/XDP, SmartNIC/DPU and FPGA data paths}
 \skill{Measurement \& security tooling}{Scapy, Wireshark, Zmap, Nmap, traceroute-based path measurement, Aircrack-ng, Kali Linux, IDA, OllyDbg}
 \skill{Systems \& data}{Linux, Git, VirtualBox lab networks, Pintos kernel development; scikit-learn, Keras, NumPy, Pandas}
 \end{itemize}
@@ -250,16 +255,15 @@ adjunct teaching in cybersecurity and software development; industry work on int
   \entryline{\textbf{Intel Connectivity Academy}: ICA-XFG-101 (P4\textsubscript{16}, Tofino family, P4 Studio SDE);
     ICA-XFG-201 -- 206 (Advanced TNA: parsing/deparsing, recirculation, mirroring)}{2023 -- 2024}
   \entryline{\textbf{OffSec Wireless Professional (OSWP)} and \textbf{Kali Linux Certified Professional (KLCP)}, Offensive Security}{2023}
+  \entryline{\textbf{Google Cloud}: Introduction to Generative AI, Responsible AI, and Large Language Models}{2023}
 \end{entries}
 
 %---------------- PROJECTS ----------------
 \section{Selected Projects}
 \begin{itemize}[leftmargin=0pt,label={},topsep=0pt,itemsep=1pt]\small
   \item \textbf{Reliable transport protocols and multi-client TCP chat} (C/C++): Alternating-Bit, Go-Back-N, and Selective-Repeat over an unreliable channel.
-  \item \textbf{Task offloading for QoS with a dynamic ANN} (C, C++, CUDA): run-time adaptation to query parameters (maximum hops, query volume).
+  \item \textbf{Task offloading for QoS with a dynamic ANN} (C, C++, CUDA): run-time adaptation to query parameters (max hops, query volume).
   \item \textbf{Core OS components in Pintos} (C): kernel-level threading and the system-call interface.
-  \item \textbf{Malicious-traffic analysis lab}: private VirtualBox network for analyzing three malicious packet captures, with write-ups and mitigations
-        (\href{https://github.com/Gursimran15/Network-Analysis-Reports}{GitHub}).
 \end{itemize}
 
 \end{document}
