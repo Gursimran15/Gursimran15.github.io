@@ -3,26 +3,53 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Gursimran Singh, Ph.D. Student, Computer Science · Oklahoma State University</title>
-  <meta name="description" content="Gursimran Singh is a Ph.D. student in Computer Science at Oklahoma State University working on in-network computation, data-plane programming (P4), programmable data planes for network security, and Internet censorship measurement.">
+  <title>Gursimran Singh · Programmable networks, security &amp; measurement · Ph.D. student, Oklahoma State University</title>
+  <meta name="description" content="Gursimran Singh is a Computer Science Ph.D. student at Oklahoma State University researching programmable data-plane security (P4 on Intel Tofino), in-network deep packet inspection and firewalls, and Internet censorship and resilience measurement.">
   <meta name="author" content="Gursimran Singh">
+  <meta name="theme-color" content="#0e6e8c">
   <link rel="canonical" href="https://gursimran15.github.io/">
 
-  <!-- Open Graph -->
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Gursimran Singh, Ph.D. Student, Computer Science">
-  <meta property="og:description" content="In-network computation and data-plane programming (P4), programmable data planes for network security, and Internet censorship measurement.">
+  <!-- Open Graph / Twitter -->
+  <meta property="og:type" content="profile">
+  <meta property="og:title" content="Gursimran Singh · Programmable networks, security &amp; measurement">
+  <meta property="og:description" content="Ph.D. student at Oklahoma State University. P4 / Intel Tofino data-plane security, in-network DPI and firewalls, Internet censorship measurement.">
   <meta property="og:url" content="https://gursimran15.github.io/">
-  <meta property="og:image" content="https://gursimran15.github.io/assets/img/profile.jpg">
+  <meta property="og:image" content="https://gursimran15.github.io/assets/img/og-card.png">
+  <meta name="twitter:card" content="summary_large_image">
 
   <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Source+Serif+4:ital,opsz,wght@0,8..60,500;0,8..60,600;1,8..60,500&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="assets/css/style.css">
+
+  <!-- Structured data for search engines -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Gursimran Singh",
+    "url": "https://gursimran15.github.io/",
+    "image": "https://gursimran15.github.io/assets/img/profile.jpg",
+    "email": "mailto:gursimran.singh@okstate.edu",
+    "jobTitle": "Ph.D. Student, Computer Science",
+    "affiliation": { "@type": "CollegeOrUniversity", "name": "Oklahoma State University" },
+    "alumniOf": [
+      { "@type": "CollegeOrUniversity", "name": "University at Buffalo, The State University of New York" },
+      { "@type": "CollegeOrUniversity", "name": "University of Delhi" }
+    ],
+    "knowsAbout": ["Programmable data planes", "P4", "Intel Tofino", "Network security", "Deep packet inspection", "Internet measurement", "Internet censorship", "Intent-based networking"],
+    "sameAs": [
+      "https://scholar.google.com/citations?user=DA-sGBgAAAAJ",
+      "https://orcid.org/0009-0002-8678-8056",
+      "https://github.com/Gursimran15",
+      "https://www.linkedin.com/in/gursimran-singh-dhodi/"
+    ]
+  }
+  </script>
 
   <!-- Set theme before first paint to avoid a flash of the wrong theme -->
   <script>
@@ -40,18 +67,22 @@
 
 <body id="top">
   <a class="skip-link" href="#main">Skip to content</a>
+  <div class="scroll-progress" aria-hidden="true"><span id="scroll-progress-bar"></span></div>
 
   <header class="site-header">
     <div class="header-inner">
-      <a class="brand" href="#top">Gursimran&nbsp;Singh</a>
+      <a class="brand" href="#top"><span class="brand-mark" aria-hidden="true">GS</span><span>Gursimran Singh</span></a>
       <nav class="site-nav" aria-label="Section navigation">
         <a href="#about">About</a>
         <a href="#research">Research</a>
         <a href="#publications">Publications</a>
+        <a href="#experience">Experience</a>
         <a href="#teaching">Teaching</a>
-        <a href="#projects">Projects</a>
         <a href="#service">Service</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
       </nav>
+      <a class="btn btn-small btn-cv" href="assets/Gursimran_Singh_CV.pdf" target="_blank" rel="noopener">CV</a>
       <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Switch theme">
         <svg class="icon icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
@@ -67,297 +98,629 @@
     </div>
   </header>
 
-  <div class="layout">
+  <main id="main">
 
-    <!-- ================= Profile rail ================= -->
-    <aside class="sidebar" aria-label="Profile and contact">
-      <img class="portrait" src="assets/img/profile.jpg" alt="Portrait of Gursimran Singh" width="400" height="400">
-      <h1 class="name">Gursimran Singh</h1>
-      <p class="role">Ph.D. Student, Computer Science</p>
-      <p class="affiliation">Oklahoma State University</p>
-      <p class="advisor">Advised by Dr.&nbsp;H.&nbsp;B.&nbsp;Acharya</p>
+    <!-- ================= Hero ================= -->
+    <section class="hero" aria-labelledby="hero-name">
+      <canvas id="hero-canvas" class="hero-canvas" aria-hidden="true"></canvas>
+      <div class="hero-inner">
+        <div class="hero-text">
+          <p class="eyebrow"><span class="dot" aria-hidden="true"></span>Ph.D. student · Computer Science · Oklahoma State University</p>
+          <h1 id="hero-name" class="hero-name">Gursimran Singh</h1>
+          <p class="hero-tagline">
+            I build security into the network fabric itself:
+            <span class="typed-wrap"><span id="typed" class="typed">line-rate deep packet inspection on Intel Tofino</span><span class="caret" aria-hidden="true"></span></span>
+          </p>
+          <p class="hero-lede">
+            I research <strong>programmable network systems and security</strong>: how far application-layer
+            firewalls and intrusion detection can be pushed into P4 programmable switches, where the hardware
+            limits bite, and how to measure Internet censorship and resilience when networks are under stress.
+            Advised by <a href="https://experts.okstate.edu/hbhatta" target="_blank" rel="noopener">Dr.&nbsp;H.&nbsp;B.&nbsp;Acharya</a>.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="assets/Gursimran_Singh_CV.pdf" target="_blank" rel="noopener">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+              Curriculum vitae (PDF)
+            </a>
+            <a class="btn" href="mailto:gursimran.singh@okstate.edu">Email me</a>
+            <a class="btn" href="https://scholar.google.com/citations?user=DA-sGBgAAAAJ" target="_blank" rel="noopener">Google Scholar</a>
+          </div>
+          <p class="hero-note"><span class="pill pill-live">Seeking Summer 2027 research internships</span> programmable networking · network security · Internet measurement · heterogeneous data paths</p>
+        </div>
 
-      <ul class="contact-list">
-        <li>
-          <a href="mailto:gursimran.singh@okstate.edu" aria-label="Email Gursimran Singh">
-            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-              <polyline points="22,6 12,13 2,6"/>
-            </svg>
-            <span>gursimran.singh@okstate.edu</span>
-          </a>
-        </li>
-        <li>
-          <a href="https://github.com/Gursimran15" target="_blank" rel="noopener" aria-label="GitHub profile (opens in a new tab)">
-            <svg class="icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
-              <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
-            </svg>
-            <span>GitHub</span>
-          </a>
-        </li>
-        <li>
-          <a href="https://www.linkedin.com/in/gursimran-singh-dhodi/" target="_blank" rel="noopener" aria-label="LinkedIn profile (opens in a new tab)">
-            <svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.55C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.72C24 .77 23.2 0 22.22 0z"/>
-            </svg>
-            <span>LinkedIn</span>
-          </a>
-        </li>
-        <li>
-          <a href="https://scholar.google.com/citations?hl=en&amp;user=DA-sGBgAAAAJ" target="_blank" rel="noopener" aria-label="Google Scholar profile (opens in a new tab)">
-            <svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path d="M5.242 13.769L0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269zM12 10a7 7 0 1 0 0 14 7 7 0 0 0 0-14z"/>
-            </svg>
-            <span>Google Scholar</span>
-          </a>
-        </li>
-        <li>
-          <a href="https://orcid.org/0009-0002-8678-8056" target="_blank" rel="noopener" aria-label="ORCID profile (opens in a new tab)">
-            <svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zM7.369 4.378c.525 0 .947.431.947.947 0 .525-.422.947-.947.947-.525 0-.947-.422-.947-.947 0-.516.422-.947.947-.947zm-.722 3.038h1.444v10.041H6.647V7.416zm3.562 0h3.9c3.712 0 5.344 2.653 5.344 5.025 0 2.578-2.016 5.025-5.325 5.025h-3.919V7.416zm1.444 1.303v7.444h2.297c3.272 0 4.022-2.484 4.022-3.722 0-2.016-1.284-3.722-4.097-3.722h-2.222z"/>
-            </svg>
-            <span>ORCID</span>
-          </a>
-        </li>
-        <li>
-          <a class="cv-link" href="assets/Gursimran_Singh_CV.pdf" target="_blank" rel="noopener" aria-label="Curriculum vitae, PDF (opens in a new tab)">
-            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-              <polyline points="14 2 14 8 20 8"/>
-              <line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/>
-            </svg>
-            <span>CV (PDF)</span>
-          </a>
-        </li>
-        <li class="location">
-          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-            <circle cx="12" cy="10" r="3"/>
+        <!-- Animated programmable-switch pipeline -->
+        <figure class="hero-figure" aria-hidden="true">
+          <svg id="pipeline" class="pipeline" viewBox="0 0 700 340" role="img" aria-label="Animated illustration of packets flowing through a programmable switch pipeline: parser, match-action stages, deparser, with recirculation and drop paths">
+            <defs>
+              <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                <path d="M0,0 L10,5 L0,10 z" fill="currentColor"/>
+              </marker>
+            </defs>
+            <!-- wire -->
+            <line class="wire" x1="0" y1="190" x2="700" y2="190"/>
+            <!-- packets are injected here by main.js (drawn beneath the blocks so they "enter" each stage) -->
+            <g id="packets"></g>
+            <!-- recirculation loop -->
+            <path class="loop" d="M548 190 L548 100 Q548 86 534 86 L150 86 Q136 86 136 100 L136 190" marker-end="url(#arrow)"/>
+            <text class="label label-loop" x="342" y="76" text-anchor="middle">recirculate · cross-packet state</text>
+            <!-- drop path -->
+            <path class="droppath" d="M295 190 L295 282" marker-end="url(#arrow)"/>
+            <g class="bin">
+              <rect x="281" y="286" width="28" height="30" rx="4"/>
+              <line x1="277" y1="286" x2="313" y2="286"/>
+              <line x1="289" y1="282" x2="301" y2="282"/>
+            </g>
+            <text class="label" x="295" y="332" text-anchor="middle">drop</text>
+            <!-- blocks -->
+            <g class="block block-parser" data-stage="parser">
+              <title>Programmable parser: extracts header fields by offset and length; no general-purpose parsing of variable-length payloads</title>
+              <rect x="40" y="160" width="86" height="60" rx="10"/>
+              <text x="83" y="195" text-anchor="middle">Parser</text>
+            </g>
+            <g class="block block-stage" data-stage="1">
+              <title>Match-action stage: table lookups in SRAM/TCAM and a few ALU operations per packet; every stage has a fixed budget</title>
+              <rect x="166" y="160" width="76" height="60" rx="10"/>
+              <text x="204" y="186" text-anchor="middle">match</text>
+              <text x="204" y="204" text-anchor="middle">action</text>
+            </g>
+            <g class="block block-stage" data-stage="2">
+              <rect x="258" y="160" width="76" height="60" rx="10"/>
+              <text x="296" y="186" text-anchor="middle">match</text>
+              <text x="296" y="204" text-anchor="middle">action</text>
+            </g>
+            <g class="block block-stage" data-stage="3">
+              <rect x="350" y="160" width="76" height="60" rx="10"/>
+              <text x="388" y="186" text-anchor="middle">match</text>
+              <text x="388" y="204" text-anchor="middle">action</text>
+            </g>
+            <g class="block block-stage" data-stage="4">
+              <rect x="442" y="160" width="76" height="60" rx="10"/>
+              <text x="480" y="186" text-anchor="middle">match</text>
+              <text x="480" y="204" text-anchor="middle">action</text>
+            </g>
+            <g class="block block-parser" data-stage="deparser">
+              <title>Deparser: reassembles the packet for forwarding, mirroring, or another pass through the pipeline</title>
+              <rect x="560" y="160" width="100" height="60" rx="10"/>
+              <text x="610" y="195" text-anchor="middle">Deparser</text>
+            </g>
+            <!-- memories -->
+            <g class="mem">
+              <rect x="166" y="128" width="352" height="18" rx="4"/>
+              <text x="342" y="141" text-anchor="middle">SRAM / TCAM · registers · limited stages &amp; ALUs</text>
+            </g>
+            <text class="label label-in" x="4" y="232">ingress · 100 Gb/s+</text>
+            <text class="label label-out" x="696" y="232" text-anchor="end">egress</text>
+            <!-- legend -->
+            <g class="legend">
+              <circle cx="372" cy="296" r="5" class="pk pk-pass"/><text x="384" y="300">forwarded</text>
+              <circle cx="472" cy="296" r="5" class="pk pk-recirc"/><text x="484" y="300">needs another pass</text>
+              <circle cx="372" cy="318" r="5" class="pk pk-drop"/><text x="384" y="322">blocked by policy</text>
+            </g>
           </svg>
-          <span>Stillwater, Oklahoma</span>
-        </li>
+          <figcaption class="hero-caption">A P4 pipeline, the way I think about it: fixed stages, scarce memory, and the tricks (recirculation, precomputed lookups, cross-packet state) that turn a switch into a security middlebox.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ================= Stats ================= -->
+    <section class="stats" aria-label="At a glance">
+      <ul class="stat-list">
+        <li class="stat"><span class="stat-num" data-count="2">0</span><span class="stat-label">first-author publications</span></li>
+        <li class="stat"><span class="stat-num" data-count="5">0</span><span class="stat-label">program &amp; artifact committees (2026–27)</span></li>
+        <li class="stat"><span class="stat-num" data-count="5">0</span><span class="stat-label">students mentored on research &amp; capstone projects</span></li>
+        <li class="stat"><span class="stat-num" data-count="3">0</span><span class="stat-label">courses taught as adjunct instructor</span></li>
       </ul>
-    </aside>
+    </section>
 
-    <!-- ================= Content ================= -->
-    <main id="main" class="content">
+    <div class="container">
 
-      <section id="about" class="reveal">
-        <h2>About</h2>
-        <p>
-          I am a Ph.D. student in Computer Science at Oklahoma State University, advised by
-          Dr.&nbsp;H.&nbsp;B.&nbsp;Acharya, with an expected graduation in 2028. My research centers on
-          in-network computation and data-plane programming in P4, programmable data planes for network
-          security, and network, Internet, and censorship measurement. I build high-performance packet
-          processors on the Intel Tofino (TNA) platform that approach the capability of application-layer
-          firewalls and network intrusion detection systems, and I design tools to detect and measure
-          Internet censorship.
-        </p>
-        <p>
-          Beyond research, I am active in academic service and teaching: I serve as President of the
-          Computer Science Graduate Student Association at OSU, and I have taught as an adjunct instructor
-          and teaching assistant across several security and systems courses.
-        </p>
+      <!-- ================= About ================= -->
+      <section id="about" class="section reveal">
+        <div class="section-head">
+          <h2>About</h2>
+          <p class="section-sub">Networks, security, and the hardware in between.</p>
+        </div>
+        <div class="about-grid">
+          <div class="about-text">
+            <p>
+              I am a Ph.D. student in Computer Science at Oklahoma State University, advised by
+              Dr.&nbsp;H.&nbsp;B.&nbsp;Acharya, with an expected graduation in May 2028. I began my doctoral work
+              at the Rochester Institute of Technology in 2021 and moved to OSU to continue with the same advisor.
+            </p>
+            <p>
+              My research sits where <strong>programmable data planes</strong> meet <strong>network security</strong>.
+              I write P4 for Intel Tofino switches to implement deep packet inspection, stateful filtering, and
+              intrusion-detection functions at line rate, and I study the limits (stages, memory, parsing, instruction
+              set) that decide what can and cannot be done in the switch. I also build <strong>Internet measurement</strong>
+              tools that tell hard failures from soft ones and locate where interference happens, which I used to study
+              Internet access during the Russia–Ukraine war.
+            </p>
+            <p>
+              Outside the lab I teach (adjunct instructor for cybersecurity and software-development courses at RIT,
+              teaching assistant at OSU), mentor student researchers, review artifacts and papers for systems and
+              networking venues, and serve as President of OSU's Computer Science Graduate Student Association.
+            </p>
+          </div>
+          <aside class="about-card">
+            <img class="portrait" src="assets/img/profile.jpg" alt="Portrait of Gursimran Singh" width="400" height="400">
+            <ul class="fact-list">
+              <li><span>Advisor</span><strong>Dr. H. B. Acharya</strong></li>
+              <li><span>Program</span><strong>Ph.D. Computer Science, expected May 2028</strong></li>
+              <li><span>Based in</span><strong>Stillwater, Oklahoma</strong></li>
+              <li><span>Email</span><a href="mailto:gursimran.singh@okstate.edu">gursimran.singh@okstate.edu</a></li>
+            </ul>
+            <ul class="social-row" aria-label="Profiles">
+              <li><a href="https://github.com/Gursimran15" target="_blank" rel="noopener" aria-label="GitHub (opens in a new tab)"><svg class="icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>GitHub</a></li>
+              <li><a href="https://www.linkedin.com/in/gursimran-singh-dhodi/" target="_blank" rel="noopener" aria-label="LinkedIn (opens in a new tab)"><svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.55C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.72C24 .77 23.2 0 22.22 0z"/></svg>LinkedIn</a></li>
+              <li><a href="https://scholar.google.com/citations?user=DA-sGBgAAAAJ" target="_blank" rel="noopener" aria-label="Google Scholar (opens in a new tab)"><svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5.242 13.769L0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269zM12 10a7 7 0 1 0 0 14 7 7 0 0 0 0-14z"/></svg>Scholar</a></li>
+              <li><a href="https://orcid.org/0009-0002-8678-8056" target="_blank" rel="noopener" aria-label="ORCID (opens in a new tab)"><svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zM7.369 4.378c.525 0 .947.431.947.947 0 .525-.422.947-.947.947-.525 0-.947-.422-.947-.947 0-.516.422-.947.947-.947zm-.722 3.038h1.444v10.041H6.647V7.416zm3.562 0h3.9c3.712 0 5.344 2.653 5.344 5.025 0 2.578-2.016 5.025-5.325 5.025h-3.919V7.416zm1.444 1.303v7.444h2.297c3.272 0 4.022-2.484 4.022-3.722 0-2.016-1.284-3.722-4.097-3.722h-2.222z"/></svg>ORCID</a></li>
+            </ul>
+          </aside>
+        </div>
         <ul class="pill-list" aria-label="Research interests">
-          <li>In-network computation &amp; data-plane programming (P4)</li>
-          <li>Programmable data planes for network security</li>
-          <li>Network &amp; Internet measurement</li>
-          <li>Network security &amp; censorship measurement</li>
+          <li>Programmable data planes (P4, Intel Tofino)</li>
+          <li>In-network security: DPI, stateful firewalls, NIDS</li>
+          <li>Hardware limits of in-switch computation</li>
+          <li>Internet measurement &amp; censorship resilience</li>
+          <li>Intent-based networking for programmable hardware</li>
+          <li>Heterogeneous data paths: ASIC, SmartNIC/DPU, FPGA, host</li>
         </ul>
       </section>
 
-      <section id="research" class="reveal">
-        <h2>Research</h2>
-        <article class="thread">
-          <h3>In-Network Computation Using Data-Plane Programming in P4 <span class="years">2021–Present</span></h3>
-          <p>
-            Developing high-performance packet processors comparable to application-layer firewalls and
-            network intrusion detection systems; implementing advanced algorithms for packet analysis and
-            filtering in P4 on the Intel Tofino (TNA) platform.
-          </p>
-        </article>
-        <article class="thread">
-          <h3>Internet Censorship Measurement <span class="years">2021–Present</span></h3>
-          <p>
-            Designed and implemented tools for detecting and measuring Internet censorship across multiple
-            countries; published measurement findings on the Russia–Ukraine conflict&rsquo;s impact on Internet
-            resilience (ASIACCS&nbsp;2023).
-          </p>
-        </article>
+      <!-- ================= Research ================= -->
+      <section id="research" class="section reveal">
+        <div class="section-head">
+          <h2>Research</h2>
+          <p class="section-sub">Three threads, one question: how do you make a fast, constrained network device <em>trustworthy</em>?</p>
+        </div>
+
+        <div class="research-grid">
+          <article class="rcard reveal">
+            <div class="rcard-art" aria-hidden="true">
+              <svg viewBox="0 0 260 110" class="mini mini-dpi">
+                <rect class="m-box" x="10" y="40" width="40" height="30" rx="6"/>
+                <rect class="m-box" x="66" y="40" width="34" height="30" rx="6"/>
+                <rect class="m-box" x="112" y="40" width="34" height="30" rx="6"/>
+                <rect class="m-box" x="158" y="40" width="34" height="30" rx="6"/>
+                <rect class="m-box" x="210" y="40" width="40" height="30" rx="6"/>
+                <path class="m-loop" d="M192 55 L198 55 L198 22 L58 22 L58 55"/>
+                <line class="m-wire" x1="0" y1="55" x2="260" y2="55"/>
+                <circle class="m-dot m-dot-1" cx="0" cy="55" r="4.5"/>
+                <circle class="m-dot m-dot-2" cx="0" cy="55" r="4.5"/>
+                <text class="m-text" x="130" y="96" text-anchor="middle">pattern matching across recirculations</text>
+              </svg>
+            </div>
+            <h3>Programmable data-plane security on Intel Tofino</h3>
+            <p class="rcard-years">2021 – present · RIT, then Oklahoma State</p>
+            <p>
+              Can a switch that only does simple arithmetic, has a few stages and a few MB of fast memory, still act
+              as an application-layer firewall or intrusion-detection system? I implement DPI and pattern matching,
+              stateful filtering, and detection logic in P4 on Tofino and Tofino2 and measure what the hardware
+              actually allows.
+            </p>
+            <ul class="rcard-points">
+              <li>Packet-analysis and filtering algorithms built on recirculation, cross-packet flow state, and precomputed lookups.</li>
+              <li>Prototyped and evaluated on Tofino hardware with the P4 Studio SDE and a BF-RT control plane.</li>
+              <li>Systematized the field in <a href="#pub-netcom2025">Programmable Data Planes for Network Security</a> (NeTCoM 2025).</li>
+            </ul>
+            <p class="rcard-tags"><span class="tag">P4₁₆</span><span class="tag">TNA</span><span class="tag">Tofino2</span><span class="tag">DPI</span><span class="tag">firewalls</span><span class="tag">NIDS</span></p>
+          </article>
+
+          <article class="rcard reveal">
+            <div class="rcard-art" aria-hidden="true">
+              <svg viewBox="0 0 260 110" class="mini mini-trace">
+                <line class="m-wire" x1="20" y1="55" x2="240" y2="55"/>
+                <circle class="m-hop h1" cx="20" cy="55" r="7"/>
+                <circle class="m-hop h2" cx="64" cy="55" r="7"/>
+                <circle class="m-hop h3" cx="108" cy="55" r="7"/>
+                <circle class="m-hop h4" cx="152" cy="55" r="7"/>
+                <circle class="m-hop h5" cx="196" cy="55" r="7"/>
+                <circle class="m-hop h6 m-target" cx="240" cy="55" r="8"/>
+                <circle class="m-probe" cx="20" cy="55" r="4.5"/>
+                <text class="m-text" x="20" y="90" text-anchor="start">vantage point</text>
+                <text class="m-text m-soft" x="240" y="90" text-anchor="end">soft failure</text>
+              </svg>
+            </div>
+            <h3>Internet censorship &amp; resilience measurement</h3>
+            <p class="rcard-years">2022 – present</p>
+            <p>
+              When a network is under political or military stress, which sites stop working, where along the path
+              does it happen, and is it damage or deliberate filtering? I build measurement tools that answer those
+              questions and used them to study Internet access during the first months of the Russia–Ukraine war.
+            </p>
+            <ul class="rcard-points">
+              <li>A classifier for <em>soft</em> failures (pages that load but are not what was asked for), beyond hard connection failures.</li>
+              <li>A multi-protocol traceroute implementation that localizes where interference occurs on a path.</li>
+              <li>Longitudinal measurements from Ukraine, Russia, and the U.S., March–July 2022 (<a href="#pub-asiaccs2023">ACM ASIA CCS 2023</a>).</li>
+            </ul>
+            <p class="rcard-tags"><span class="tag">measurement</span><span class="tag">traceroute</span><span class="tag">censorship</span><span class="tag">resilience</span></p>
+          </article>
+
+          <article class="rcard reveal">
+            <div class="rcard-art" aria-hidden="true">
+              <svg viewBox="0 0 260 110" class="mini mini-intent">
+                <g class="m-intent">
+                  <rect x="12" y="34" width="70" height="7" rx="3"/>
+                  <rect x="12" y="48" width="54" height="7" rx="3"/>
+                  <rect x="12" y="62" width="62" height="7" rx="3"/>
+                </g>
+                <path class="m-arrow" d="M92 55 L124 55" marker-end="url(#mini-arrow)"/>
+                <g class="m-code">
+                  <text x="134" y="46">{ }</text>
+                  <text x="134" y="66">C/C++</text>
+                </g>
+                <path class="m-arrow m-arrow-2" d="M178 55 L196 55" marker-end="url(#mini-arrow)"/>
+                <g class="m-fpga">
+                  <rect x="204" y="36" width="10" height="10"/><rect x="217" y="36" width="10" height="10"/><rect x="230" y="36" width="10" height="10"/>
+                  <rect x="204" y="49" width="10" height="10"/><rect x="217" y="49" width="10" height="10"/><rect x="230" y="49" width="10" height="10"/>
+                  <rect x="204" y="62" width="10" height="10"/><rect x="217" y="62" width="10" height="10"/><rect x="230" y="62" width="10" height="10"/>
+                </g>
+                <text class="m-text" x="47" y="90" text-anchor="middle">intent</text>
+                <text class="m-text" x="222" y="90" text-anchor="middle">FPGA</text>
+                <defs>
+                  <marker id="mini-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker>
+                </defs>
+              </svg>
+            </div>
+            <h3>Intent-based networking for programmable hardware</h3>
+            <p class="rcard-years">2026 – present · Keysight Technologies (industry internship)</p>
+            <p>
+              Can an operator state what the network should do in plain language and a protocol specification, and
+              get a correct hardware implementation out? As a part-time, remote intern I work on the software side of
+              a pipeline that turns intent and specifications into C/C++ implementations targeted for FPGAs.
+            </p>
+            <ul class="rcard-points">
+              <li>Designed the intent-to-implementation architecture: intent and specification ingestion, a C/C++ intermediate path, and a proposed direct intent-to-HDL path.</li>
+              <li>Collaborating with FPGA-focused interns on the hardware side.</li>
+            </ul>
+            <p class="rcard-tags"><span class="tag">intent-based networking</span><span class="tag">C/C++</span><span class="tag">FPGA</span></p>
+          </article>
+        </div>
+
+        <div class="directions reveal">
+          <h3>Directions I am pursuing</h3>
+          <p class="directions-intro">Open questions behind my dissertation work. These are directions, not finished results.</p>
+          <ol class="directions-list">
+            <li><strong>Correct, not just fast.</strong> When flow state, recirculation, and enforcement timing compete for the same pipeline, how do we guarantee that inspection actually completes for every packet we forward?</li>
+            <li><strong>Inspection capacity.</strong> Forwarded throughput is not the same as correctly inspected throughput. What are the right ways to measure when a security function exhausts a switch's stages, memory, or recirculation bandwidth?</li>
+            <li><strong>Heterogeneous data paths.</strong> How should security state move between ASIC switches, SmartNICs/DPUs, FPGAs, and hosts without losing exactly-once effects or safety during updates?</li>
+            <li><strong>Honest measurement.</strong> How much do measurement probes themselves bias what we conclude about censorship and resilience, and how do we correct for it?</li>
+          </ol>
+        </div>
       </section>
 
-      <section id="publications" class="reveal">
-        <h2>Publications</h2>
+      <!-- ================= News ================= -->
+      <section id="news" class="section reveal">
+        <div class="section-head">
+          <h2>News</h2>
+          <p class="section-sub">Recent milestones.</p>
+        </div>
+        <ul class="news-list">
+          <li class="reveal"><time datetime="2026-10-30">Oct 2026</time><p>Selected for the inaugural <strong>Junior Program Committee of ACM ICS 2027</strong>, the International Conference on Supercomputing (Atlanta, June 2027).</p></li>
+          <li class="reveal"><time datetime="2026-10-30">Oct 2026</time><p>Served on the <strong>Technical Program Committee of ACM S3 2026</strong>, the student workshop co-located with ACM MobiCom 2026 in Austin, Texas.</p></li>
+          <li class="reveal"><time datetime="2026-09">Sep 2026</time><p>Joined <strong>Keysight Technologies</strong> as a part-time, remote intern working on intent-based networking for programmable hardware.</p></li>
+          <li class="reveal"><time datetime="2026-09">Sep 2026</time><p>Evaluated artifacts for the <strong>EuroSys 2027 Artifact Evaluation Committee</strong> (Spring cycle); also serving on the <strong>PPoPP 2027</strong> Artifact Evaluation Committee.</p></li>
+          <li class="reveal"><time datetime="2026-08">Aug 2026</time><p>Began my term as <strong>President of OSU's Computer Science Graduate Student Association</strong>; organized the Fall 2026 graduate orientation.</p></li>
+          <li class="reveal"><time datetime="2026-05">2026</time><p>Joined the <strong>Shadow Technical Program Committee of ACM CoNEXT 2026</strong>.</p></li>
+          <li class="reveal"><time datetime="2026-01">Jan 2026</time><p>Teaching assistant for <strong>Distributed and Cloud Computing</strong> at Oklahoma State University (Spring 2026).</p></li>
+          <li class="reveal"><time datetime="2025-07">Jul 2025</time><p><strong>Programmable Data Planes for Network Security</strong> published at NeTCoM 2025 (also on arXiv).</p></li>
+          <li class="reveal"><time datetime="2023-07">Jul 2023</time><p>Poster <strong>A Cyberspace Study of the Russia–Ukraine War</strong> presented at ACM ASIA CCS 2023, Melbourne.</p></li>
+        </ul>
+      </section>
+
+      <!-- ================= Publications ================= -->
+      <section id="publications" class="section reveal">
+        <div class="section-head">
+          <h2>Publications</h2>
+          <p class="section-sub">Both first-author. Click <em>Abstract</em> or <em>BibTeX</em> to expand.</p>
+        </div>
         <ol class="pub-list">
-          <li class="pub">
+          <li class="pub reveal" id="pub-netcom2025">
             <div class="pub-badges">
-              <span class="badge badge-venue">NeTCoM · July 2025</span>
+              <span class="badge badge-venue">NeTCoM 2025</span>
+              <span class="badge badge-type">Conference paper · systematization</span>
+              <span class="badge badge-first">First author</span>
             </div>
-            <p class="pub-title">Programmable Data Planes for Network Security.</p>
-            <p class="pub-desc">Position paper systematizing recent advances in security applications built on programmable switches.</p>
-            <p class="pub-links"><a href="https://arxiv.org/pdf/2507.22165" target="_blank" rel="noopener">PDF (arXiv)</a> &middot; <a href="https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;user=DA-sGBgAAAAJ&amp;citation_for_view=DA-sGBgAAAAJ:2osOgNQ5qMEC" target="_blank" rel="noopener">Google Scholar</a></p>
+            <h3 class="pub-title">Programmable Data Planes for Network Security</h3>
+            <p class="pub-authors"><strong>Gursimran Singh</strong>, H. B. Acharya, and Minseok Kwon</p>
+            <p class="pub-venue">17th International Conference on Networks &amp; Communications (NeTCoM 2025), <em>Computer Science &amp; Information Technology (CS &amp; IT)</em> vol. 15, no. 13, pp. 163–180, July 2025.</p>
+            <p class="pub-desc">
+              Surveys how P4 programmable switches have been used for attack mitigation (spoofing, DDoS), firewalls and
+              middleboxes (including DPI), in-network cryptography, and in-switch machine learning. The emphasis is on
+              the non-obvious design techniques, such as recirculate-and-truncate and lookup-table precomputation,
+              that make these functions feasible under tight memory and instruction-set limits, and on what remains open.
+            </p>
+            <p class="pub-links">
+              <a href="https://doi.org/10.5121/csit.2025.151314" target="_blank" rel="noopener">DOI</a>
+              <a href="https://arxiv.org/abs/2507.22165" target="_blank" rel="noopener">arXiv</a>
+              <a href="https://arxiv.org/pdf/2507.22165" target="_blank" rel="noopener">PDF</a>
+              <a href="https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;user=DA-sGBgAAAAJ&amp;citation_for_view=DA-sGBgAAAAJ:2osOgNQ5qMEC" target="_blank" rel="noopener">Scholar</a>
+              <button type="button" class="linklike" data-toggle="abs-netcom2025" aria-expanded="false" aria-controls="abs-netcom2025">Abstract</button>
+              <button type="button" class="linklike" data-toggle="bib-netcom2025" aria-expanded="false" aria-controls="bib-netcom2025">BibTeX</button>
+            </p>
+            <div id="abs-netcom2025" class="pub-extra" hidden>
+              <p>The emergence of programmable data planes, and particularly switches supporting the P4 language, has transformed network security by enabling customized, line-rate packet processing. These switches, originally intended for flexible forwarding, now play a broader role: detecting and mitigating attacks such as DDoS and spoofing, enforcing next-generation firewall policies, and even supporting in-network cryptography and machine learning. These capabilities are made possible by techniques such as recirculate-and-truncate and lookup-table precomputation, which work around architectural constraints like limited memory and restricted instruction sets. In this paper, we systematize recent advances in security applications built on programmable switches, with an emphasis on the capabilities, challenges, and architectural workarounds. We highlight the non-obvious design techniques that make complex in-network security functions feasible despite the constraints of the hardware platform, and also comment on remaining issues and emerging research directions.</p>
+            </div>
+            <div id="bib-netcom2025" class="pub-extra" hidden>
+              <pre class="bibtex"><code>@inproceedings{singh2025programmable,
+  author    = {Singh, Gursimran and Acharya, H. B. and Kwon, Minseok},
+  title     = {Programmable Data Planes for Network Security},
+  booktitle = {Proceedings of the 17th International Conference on Networks \&amp; Communications (NeTCoM 2025)},
+  series    = {Computer Science \&amp; Information Technology (CS \&amp; IT)},
+  volume    = {15},
+  number    = {13},
+  pages     = {163--180},
+  month     = jul,
+  year      = {2025},
+  publisher = {AIRCC Publishing Corporation},
+  doi       = {10.5121/csit.2025.151314},
+  note      = {arXiv:2507.22165}
+}</code></pre>
+              <button type="button" class="btn btn-small copy-bib" data-copy="bib-netcom2025">Copy BibTeX</button>
+            </div>
           </li>
-          <li class="pub">
+
+          <li class="pub reveal" id="pub-asiaccs2023">
             <div class="pub-badges">
-              <span class="badge badge-venue">ACM ASIACCS · July 2023</span>
+              <span class="badge badge-venue">ACM ASIA CCS 2023</span>
+              <span class="badge badge-type">Poster paper</span>
+              <span class="badge badge-first">First author</span>
             </div>
-            <p class="pub-title">POSTER: A Cyberspace Study of the Russia–Ukraine War.</p>
-            <p class="pub-desc">Measurement findings on the conflict&rsquo;s impact on Internet resilience.</p>
-            <p class="pub-links"><a href="https://dl.acm.org/doi/10.1145/3579856.3592822" target="_blank" rel="noopener">ACM DL</a> &middot; <a href="https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;user=DA-sGBgAAAAJ&amp;citation_for_view=DA-sGBgAAAAJ:u5HHmVD_uO8C" target="_blank" rel="noopener">Google Scholar</a></p>
+            <h3 class="pub-title">POSTER: A Cyberspace Study of the Russia–Ukraine War</h3>
+            <p class="pub-authors"><strong>Gursimran Singh</strong> and H. B. Acharya</p>
+            <p class="pub-venue">Proceedings of the 2023 ACM Asia Conference on Computer and Communications Security (ASIA CCS '23), Melbourne, pp. 1016–1018, July 2023.</p>
+            <p class="pub-desc">
+              Asks whether the Internet routes around abuse: did Russia, as a major Internet power, use its network to
+              deny access to Ukraine during the first months of the war? We measured hard and soft failures of website
+              access from Ukraine, Russia, and the United States between March and July 2022, built a soft-failure
+              classifier and a multi-protocol traceroute to locate interference, and found a substantial change in access
+              to sites from Ukraine over the period while Russian ASes were not causing significant collateral damage through filtering.
+            </p>
+            <p class="pub-links">
+              <a href="https://doi.org/10.1145/3579856.3592822" target="_blank" rel="noopener">DOI</a>
+              <a href="https://dl.acm.org/doi/10.1145/3579856.3592822" target="_blank" rel="noopener">ACM DL</a>
+              <a href="https://openresearch.okstate.edu/server/api/core/bitstreams/a2e6bb76-61ec-4f2e-a6dc-afffeaed7699/content" target="_blank" rel="noopener">PDF (OSU repository)</a>
+              <a href="https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;user=DA-sGBgAAAAJ&amp;citation_for_view=DA-sGBgAAAAJ:u5HHmVD_uO8C" target="_blank" rel="noopener">Scholar</a>
+              <button type="button" class="linklike" data-toggle="abs-asiaccs2023" aria-expanded="false" aria-controls="abs-asiaccs2023">Abstract</button>
+              <button type="button" class="linklike" data-toggle="bib-asiaccs2023" aria-expanded="false" aria-controls="bib-asiaccs2023">BibTeX</button>
+            </p>
+            <div id="abs-asiaccs2023" class="pub-extra" hidden>
+              <p>This paper aims to investigate the resilience of the internet in the face of censorship through a current case study: the war between Russia and Ukraine. We focus on whether Russia, as a major Internet power, has been using its network to deny access to Ukraine (and whether the Internet is resilient enough to route around such abuse). We consider how Internet accessibility changed over the course of the first few months, considering both hard and soft failures of website access. Our result, in brief, is that there is a substantial difference in network access to sites from Ukraine between March and July 2022, but Russian ASes are not causing significant collateral damage by filtering. In addition, we present the tools and resources developed in the project, including a classifier to detect soft-failures and a new multi-protocol implementation of Traceroute to locate internet censorship.</p>
+            </div>
+            <div id="bib-asiaccs2023" class="pub-extra" hidden>
+              <pre class="bibtex"><code>@inproceedings{singh2023cyberspace,
+  author    = {Singh, Gursimran and Acharya, H. B.},
+  title     = {{POSTER}: A Cyberspace Study of the {Russia}-{Ukraine} War},
+  booktitle = {Proceedings of the 2023 ACM Asia Conference on Computer and Communications Security (ASIA CCS '23)},
+  pages     = {1016--1018},
+  month     = jul,
+  year      = {2023},
+  publisher = {ACM},
+  address   = {Melbourne, VIC, Australia},
+  doi       = {10.1145/3579856.3592822}
+}</code></pre>
+              <button type="button" class="btn btn-small copy-bib" data-copy="bib-asiaccs2023">Copy BibTeX</button>
+            </div>
+          </li>
+        </ol>
+        <p class="pub-note">Additional first-author manuscripts are currently under submission; details are available on request.</p>
+      </section>
+
+      <!-- ================= Experience / timeline ================= -->
+      <section id="experience" class="section reveal">
+        <div class="section-head">
+          <h2>Experience &amp; education</h2>
+          <p class="section-sub">Where the work happened.</p>
+        </div>
+        <ol class="timeline">
+          <li class="tl-item reveal">
+            <div class="tl-when">Sep 2026 – present</div>
+            <div class="tl-body">
+              <h3>Keysight Technologies <span class="tl-role">Intern, Intent-Based Networking (part-time, remote)</span></h3>
+              <p>Software-side contributor to an intent-based networking effort translating natural-language intent and protocol specifications into C/C++ implementations targeted for FPGA realization; designed the intent-to-implementation architecture.</p>
+            </div>
+          </li>
+          <li class="tl-item reveal">
+            <div class="tl-when">2026 – present</div>
+            <div class="tl-body">
+              <h3>Oklahoma State University <span class="tl-role">Ph.D. in Computer Science · expected May 2028</span></h3>
+              <p>Advisor: Dr. H. B. Acharya. Teaching assistant for Distributed and Cloud Computing (Spring 2026). President, Computer Science Graduate Student Association (2026–27).</p>
+            </div>
+          </li>
+          <li class="tl-item reveal">
+            <div class="tl-when">2021 – 2025</div>
+            <div class="tl-body">
+              <h3>Rochester Institute of Technology <span class="tl-role">Ph.D. coursework, Computing and Information Sciences · GPA 3.80/4.0</span></h3>
+              <p>Began doctoral research on P4 data-plane security and censorship measurement with Dr. Acharya; transferred to OSU to continue with him. Adjunct instructor (2022, 2024–2025) and teaching assistant (2023–2024). Council member, Doctoral Student Association (2025).</p>
+            </div>
+          </li>
+          <li class="tl-item reveal">
+            <div class="tl-when">2019 – 2021</div>
+            <div class="tl-body">
+              <h3>University at Buffalo (SUNY) <span class="tl-role">M.S. in Computer Science and Engineering · GPA 3.52/4.0</span></h3>
+              <p>Vice-President, CSE Graduate Student Association (2020–21). MITRE Embedded CTF 2021 with UB's team (implemented the RSA routines in C). 3rd place, regional round, Collegiate Penetration Testing Competition 2020.</p>
+            </div>
+          </li>
+          <li class="tl-item reveal">
+            <div class="tl-when">2016 – 2019</div>
+            <div class="tl-body">
+              <h3>University of Delhi, Sri Guru Gobind Singh College of Commerce <span class="tl-role">B.Sc. (Hons.) Computer Science</span></h3>
+              <p>Vice-President of ACE, the college's computer science society; organizer of the CYTHON-18 tech fest; executive member of the International Cell. Virtual software internship with Curlyphi (Dec 2017 – Jan 2018) building a college-event website. Featured in the college's “Stars of the College” annual-report profile (2018).</p>
+            </div>
           </li>
         </ol>
       </section>
 
-      <section id="education" class="reveal">
-        <h2>Education</h2>
-        <ul class="timeline">
-          <li>
-            <strong>Ph.D. in Computer Science</strong>, Oklahoma State University, Expected 2028
-            <span class="detail">Advisor: Dr.&nbsp;H.&nbsp;B.&nbsp;Acharya</span>
-          </li>
-          <li>
-            <strong>Ph.D. coursework, Computer and Information Science</strong>, Rochester Institute of Technology
-            <span class="detail">GPA 3.80/4.0 (Transferred)</span>
-          </li>
-          <li>
-            <strong>M.S., Computer and Information Science</strong>, SUNY Buffalo,2021
-            <span class="detail">GPA 3.52/4.0</span>
-          </li>
+      <!-- ================= Teaching ================= -->
+      <section id="teaching" class="section reveal">
+        <div class="section-head">
+          <h2>Teaching &amp; mentoring</h2>
+          <p class="section-sub">Explaining systems is part of building them.</p>
+        </div>
+        <div class="two-col">
+          <div>
+            <h3 class="group-title">Instructor of record · Rochester Institute of Technology</h3>
+            <ul class="course-list">
+              <li><span class="course-code">CSEC-140</span><span class="course-name">Introduction to Cybersecurity</span><span class="course-when">2022, 2025</span></li>
+              <li><span class="course-code">CSCI-455</span><span class="course-name">Principles of Cybersecurity</span><span class="course-when">2024, 2025</span></li>
+              <li><span class="course-code">GCIS-123</span><span class="course-name">Software Development &amp; Problem Solving I</span><span class="course-when">2025</span></li>
+            </ul>
+            <p class="muted small">Lectures and hands-on virtual labs on authentication, data security, risk management, network, system and application security, and human factors; computational problem solving in Python (searching and sorting, file I/O, lists, classes, dictionaries).</p>
+            <h3 class="group-title">Teaching assistant</h3>
+            <ul class="course-list">
+              <li><span class="course-code">OSU</span><span class="course-name">Distributed and Cloud Computing</span><span class="course-when">Spring 2026</span></li>
+              <li><span class="course-code">CSCI-243</span><span class="course-name">Mechanics of Programming (RIT)</span><span class="course-when">2023–24</span></li>
+              <li><span class="course-code">CSEC-759</span><span class="course-name">Graduate Seminar on Advanced Networking &amp; Distributed Systems Security (RIT)</span><span class="course-when">2023–24</span></li>
+            </ul>
+          </div>
+          <aside class="callout">
+            <h3>Mentoring</h3>
+            <p>Mentored <strong>three master's students and two undergraduates</strong> on research and capstone projects (2022–2025), from scoping a question to running experiments and writing it up.</p>
+            <h3>Certifications &amp; training</h3>
+            <ul class="plain-list compact">
+              <li><strong>Intel Connectivity Academy</strong>: ICA-XFG-101 (P4₁₆, Tofino, P4 Studio SDE, 2023); ICA-XFG-201–206 (advanced TNA: parsing/deparsing, recirculation, mirroring, 2024)</li>
+              <li><strong>OffSec</strong>: OSWP and KLCP (2023)</li>
+              <li><strong>Google Cloud</strong>: introductory generative AI, responsible AI, and LLM courses (2023)</li>
+            </ul>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ================= Service ================= -->
+      <section id="service" class="section reveal">
+        <div class="section-head">
+          <h2>Service &amp; leadership</h2>
+          <p class="section-sub">Reviewing, evaluating artifacts, and representing graduate students.</p>
+        </div>
+        <h3 class="group-title">Committees</h3>
+        <ul class="committee-grid">
+          <li class="committee reveal"><span class="committee-year">2026–27</span><strong>Junior Program Committee</strong><span>ACM ICS 2027 · International Conference on Supercomputing</span></li>
+          <li class="committee reveal"><span class="committee-year">2026–27</span><strong>Artifact Evaluation Committee</strong><span>ACM PPoPP 2027</span></li>
+          <li class="committee reveal"><span class="committee-year">2026</span><strong>Artifact Evaluation Committee</strong><span>EuroSys 2027 · Spring cycle</span></li>
+          <li class="committee reveal"><span class="committee-year">2026</span><strong>Technical Program Committee</strong><span>ACM S3 2026 student workshop · with ACM MobiCom 2026</span></li>
+          <li class="committee reveal"><span class="committee-year">2026</span><strong>Shadow Technical Program Committee</strong><span>ACM CoNEXT 2026</span></li>
+        </ul>
+        <h3 class="group-title">Leadership</h3>
+        <ul class="timeline-simple">
+          <li><strong>President</strong>, Computer Science Graduate Student Association, Oklahoma State University <span class="detail">2026–27 · lead a seven-officer board: orientation, professional-development talks and workshops, networking lunches, travel and funding advocacy</span></li>
+          <li><strong>Council Member</strong>, Doctoral Student Association, Rochester Institute of Technology <span class="detail">2025</span></li>
+          <li><strong>Vice-President</strong>, CSE Graduate Student Association (CSEGSA), University at Buffalo <span class="detail">2020–21</span></li>
+          <li><strong>Vice-President</strong>, ACE computer science society, SGGSCC, University of Delhi <span class="detail">2017–18 · organizer, CYTHON-18 tech fest</span></li>
+        </ul>
+        <h3 class="group-title">Competitions</h3>
+        <ul class="timeline-simple">
+          <li><strong>MITRE Embedded CTF (eCTF) 2021</strong>, University at Buffalo team <span class="detail">implemented the team's RSA (512-bit) key-generation and primality-testing routines in C for a secure embedded wireless link · <a href="https://github.com/CactiLab/2021-ectf-UB-Cacti-design" target="_blank" rel="noopener">team repository</a></span></li>
+          <li><strong>Collegiate Penetration Testing Competition (CPTC) 2020</strong>, University at Buffalo team <span class="detail">3rd place, regional round</span></li>
         </ul>
       </section>
 
-      <section id="teaching" class="reveal">
-        <h2>Teaching</h2>
-        <ul class="timeline">
-          <li>
-            <strong>Adjunct Instructor, RIT</strong>, CSEC-140: Introduction to Cybersecurity
-            <span class="detail">2022, 2025</span>
-          </li>
-          <li>
-            <strong>Adjunct Instructor, RIT</strong>, CSCI-455: Principles of Cybersecurity
-            <span class="detail">2024, 2025</span>
-          </li>
-          <li>
-            <strong>Adjunct Instructor, RIT</strong>, GCIS-123: Software Development &amp; Problem Solving I
-            <span class="detail">2025</span>
-          </li>
-          <li>
-            <strong>Teaching Assistant, RIT</strong>, CSCI-243 (Mechanics of Programming); CSEC-759 (Grad. Seminar on Advanced Networking &amp; Distributed Systems Security)
-            <span class="detail">2023–2024</span>
-          </li>
-          <li>
-            <strong>Teaching Assistant, Oklahoma State University</strong>, Distributed and Cloud Computing
-            <span class="detail">Spring 2026</span>
-          </li>
-        </ul>
-      </section>
-
-      <section id="projects" class="reveal">
-        <h2>Projects</h2>
-
-        <h3 class="group-title">Open-source &amp; code</h3>
+      <!-- ================= Projects ================= -->
+      <section id="projects" class="section reveal">
+        <div class="section-head">
+          <h2>Projects &amp; code</h2>
+          <p class="section-sub">Public repositories load live from GitHub; the cards below are the offline fallback.</p>
+        </div>
         <div class="card-grid" id="gh-projects" data-github-user="Gursimran15">
-          <!-- <article class="card">
-            <h4>bfsde</h4>
-            <p>Barefoot/Intel Tofino SDE working files.</p>
-            <a class="card-link" href="https://github.com/Gursimran15/bfsde" target="_blank" rel="noopener" aria-label="bfsde on GitHub (opens in a new tab)">GitHub&nbsp;&rarr;</a>
-          </article> -->
           <article class="card">
-            <h4>Malanalysis Tools &amp; Frameworks</h4>
-            <p>Malware-analysis frameworks and usage reports.</p>
-            <a class="card-link" href="https://github.com/Gursimran15/Malanalysis_tools_and_frameworks" target="_blank" rel="noopener" aria-label="Malanalysis Tools and Frameworks on GitHub (opens in a new tab)">GitHub&nbsp;&rarr;</a>
-          </article>
-          <article class="card">
-            <h4>Network Analysis Reports</h4>
-            <p>Custom VirtualBox network to analyze malicious pcaps with technical write-ups and mitigations.</p>
+            <h3>Network Analysis Reports</h3>
+            <p>Custom VirtualBox network to analyze three malicious packet captures, with technical write-ups and mitigations.</p>
             <a class="card-link" href="https://github.com/Gursimran15/Network-Analysis-Reports" target="_blank" rel="noopener" aria-label="Network Analysis Reports on GitHub (opens in a new tab)">GitHub&nbsp;&rarr;</a>
           </article>
           <article class="card">
-            <h4>Quantitative Foundations <span class="tag">MATLAB</span></h4>
-            <p>Linear regression, gradient descent, face recognition/detection.</p>
+            <h3>Malware-analysis tools &amp; frameworks</h3>
+            <p>Malware-analysis frameworks and usage reports.</p>
+            <a class="card-link" href="https://github.com/Gursimran15/Malanalysis_tools_and_frameworks" target="_blank" rel="noopener" aria-label="Malware-analysis tools and frameworks on GitHub (opens in a new tab)">GitHub&nbsp;&rarr;</a>
+          </article>
+          <article class="card">
+            <h3>Reliable transport protocols <span class="tag">C++</span></h3>
+            <p>Alternating-Bit, Go-Back-N, and Selective-Repeat over an unreliable channel.</p>
+            <a class="card-link" href="https://github.com/Gursimran15/MNC_PA2_PROTOCOLS" target="_blank" rel="noopener" aria-label="Reliable transport protocols on GitHub (opens in a new tab)">GitHub&nbsp;&rarr;</a>
+          </article>
+          <article class="card">
+            <h3>Quantitative Foundations <span class="tag">MATLAB</span></h3>
+            <p>Linear regression, gradient descent, face recognition and detection.</p>
             <a class="card-link" href="https://github.com/Gursimran15/Quantitative_Foundations" target="_blank" rel="noopener" aria-label="Quantitative Foundations on GitHub (opens in a new tab)">GitHub&nbsp;&rarr;</a>
           </article>
           <article class="card">
-            <h4>Logistic Regression on Cancer Data <span class="tag">Jupyter</span></h4>
-            <p>Logistic regression from scratch on the Wisconsin Diagnostic Breast Cancer dataset.</p>
-            <a class="card-link" href="https://github.com/Gursimran15/Logistic-Regression-Cancer-Data" target="_blank" rel="noopener" aria-label="Logistic Regression on Cancer Data on GitHub (opens in a new tab)">GitHub&nbsp;&rarr;</a>
+            <h3>Logistic regression from scratch <span class="tag">Jupyter</span></h3>
+            <p>Logistic regression on the Wisconsin Diagnostic Breast Cancer dataset, implemented without ML libraries.</p>
+            <a class="card-link" href="https://github.com/Gursimran15/Logistic-Regression-Cancer-Data" target="_blank" rel="noopener" aria-label="Logistic regression from scratch on GitHub (opens in a new tab)">GitHub&nbsp;&rarr;</a>
           </article>
         </div>
 
-        <h3 class="group-title">Selected coursework &amp; systems projects</h3>
+        <h3 class="group-title">Systems coursework projects</h3>
         <ul class="plain-list">
-          <li>
-            Networking components at the application &amp; transport layers, reliable transport protocols
-            (AlternatingBit, Go-Back-N, Selective-Repeat) and a multi-client TCP chat system.
-            <span class="tag">C/C++</span>
-          </li>
-          <li>
-            Task offloading for QoS optimization with a dynamic ANN, run-time adaptation to query parameters
-            (max-hops, query volume) to optimize QoS.
-            <span class="tag">C, C++, CUDA</span>
-          </li>
-          <li>
-            Core OS components in Pintos, kernel-level threading and system-call interfaces.
-            <span class="tag">C/Pintos</span>
-          </li>
+          <li>Task offloading for QoS with a dynamic ANN that adapts at run time to query parameters (maximum hops, query volume). <span class="tag">C, C++, CUDA</span></li>
+          <li>Core OS components in Pintos: kernel-level threading and the system-call interface. <span class="tag">C</span></li>
+          <li>MITRE eCTF 2021 secure embedded wireless link (University at Buffalo team): RSA key generation and primality testing. <span class="tag">C</span></li>
         </ul>
       </section>
 
-      <section id="service" class="reveal">
-        <h2>Service</h2>
-        <ul class="timeline">
-           <li><strong>Artifact Evaluation Committee member</strong>, EuroSys 2027 <span class="detail">invited and accepted</span></li>
-          <li><strong>Technical Program Committee member</strong>, ACM S3 2026 Workshop <span class="detail">invited and accepted</span></li>
-          <li><strong>Shadow Technical Program Committee (Shadow TPC) member</strong>, ACM CoNEXT 2026</li>
-          <li><strong>President</strong>, CS Graduate Student Association (CSGSA), Oklahoma State University <span class="detail">current</span></li>
-          <li><strong>Council Member</strong>, Doctoral Student Association (DSA), RIT <span class="detail">2025</span></li>
-          <li><strong>Vice-President</strong>, CSEGSA, University at Buffalo <span class="detail">2020–2021</span></li>
-          <li><strong>Mentorship</strong>, mentored 3 master&rsquo;s and 2 undergraduate students on research/capstone projects <span class="detail">2022–2025</span></li>
-        </ul>
+      <!-- ================= Skills ================= -->
+      <section id="skills" class="section reveal">
+        <div class="section-head">
+          <h2>Skills</h2>
+          <p class="section-sub">Listed by how much I have actually used them.</p>
+        </div>
+        <div class="skills-grid">
+          <div class="skill-group">
+            <h3>Languages</h3>
+            <ul class="pill-list"><li>C</li><li>C++</li><li>P4₁₆</li><li>Python</li><li>Java</li><li>Bash</li><li class="pill-light">CUDA</li><li class="pill-light">MATLAB</li></ul>
+          </div>
+          <div class="skill-group">
+            <h3>Programmable networking</h3>
+            <ul class="pill-list"><li>Intel Tofino / Tofino2 (TNA)</li><li>P4 Studio SDE</li><li>BF-RT control plane</li><li>Parsing &amp; deparsing</li><li>Recirculation &amp; mirroring</li><li>Match-action pipeline design</li><li class="pill-light">BMv2</li><li class="pill-light">eBPF/XDP</li><li class="pill-light">SmartNIC / DPU</li><li class="pill-light">FPGA data paths</li></ul>
+          </div>
+          <div class="skill-group">
+            <h3>Measurement &amp; security tooling</h3>
+            <ul class="pill-list"><li>Scapy</li><li>Wireshark</li><li>Zmap</li><li>Nmap</li><li>Traceroute-based measurement</li><li>Aircrack-ng</li><li>Kali Linux</li><li>IDA</li><li>OllyDbg</li></ul>
+          </div>
+          <div class="skill-group">
+            <h3>Systems &amp; data</h3>
+            <ul class="pill-list"><li>Linux</li><li>Git</li><li>VirtualBox lab networks</li><li>Pintos</li><li>scikit-learn</li><li>Keras</li><li>NumPy</li><li>Pandas</li></ul>
+          </div>
+        </div>
+        <p class="muted small">Lighter pills mark tools I have used in projects or exploratory work rather than daily research.</p>
       </section>
 
-      <section id="skills" class="reveal">
-        <h2>Skills</h2>
-        <div class="skill-group">
-          <h3>Languages</h3>
-          <ul class="pill-list">
-            <li>C</li><li>C++</li><li>P4</li><li>Python</li><li>Java</li><li>Shell scripting</li>
-          </ul>
+      <!-- ================= Contact ================= -->
+      <section id="contact" class="section reveal contact">
+        <div class="section-head">
+          <h2>Contact</h2>
+          <p class="section-sub">Happy to talk about research internships, collaborations, or P4.</p>
         </div>
-        <div class="skill-group">
-          <h3>Networking &amp; Security</h3>
-          <ul class="pill-list">
-            <li>Tofino Native Architecture (TNA)</li><li>Scapy</li><li>Wireshark</li><li>Zmap</li>
-            <li>Nmap</li><li>Aircrack-ng</li><li>Kali Linux</li><li>OllyDbg</li><li>IDA</li>
-          </ul>
+        <div class="contact-grid">
+          <a class="contact-card" href="mailto:gursimran.singh@okstate.edu">
+            <span class="contact-label">Email</span><span class="contact-value">gursimran.singh@okstate.edu</span>
+          </a>
+          <a class="contact-card" href="https://scholar.google.com/citations?user=DA-sGBgAAAAJ" target="_blank" rel="noopener">
+            <span class="contact-label">Google Scholar</span><span class="contact-value">DA-sGBgAAAAJ</span>
+          </a>
+          <a class="contact-card" href="https://orcid.org/0009-0002-8678-8056" target="_blank" rel="noopener">
+            <span class="contact-label">ORCID</span><span class="contact-value">0009-0002-8678-8056</span>
+          </a>
+          <a class="contact-card" href="https://github.com/Gursimran15" target="_blank" rel="noopener">
+            <span class="contact-label">GitHub</span><span class="contact-value">Gursimran15</span>
+          </a>
+          <a class="contact-card" href="https://www.linkedin.com/in/gursimran-singh-dhodi/" target="_blank" rel="noopener">
+            <span class="contact-label">LinkedIn</span><span class="contact-value">gursimran-singh-dhodi</span>
+          </a>
+          <a class="contact-card" href="assets/Gursimran_Singh_CV.pdf" target="_blank" rel="noopener">
+            <span class="contact-label">Curriculum vitae</span><span class="contact-value">PDF, updated November 2026</span>
+          </a>
         </div>
-        <div class="skill-group">
-          <h3>ML &amp; Data</h3>
-          <ul class="pill-list">
-            <li>Scikit-learn</li><li>Keras</li><li>NumPy</li><li>Pandas</li>
-          </ul>
-        </div>
+        <p class="muted small">Department of Computer Science, Oklahoma State University, Stillwater, Oklahoma. The CV's LaTeX source lives in this site's <a href="https://github.com/Gursimran15/Gursimran15.github.io/blob/main/cv/Gursimran_Singh_CV.tex" target="_blank" rel="noopener">GitHub repository</a>.</p>
       </section>
 
-      <section id="certifications" class="reveal">
-        <h2>Certifications</h2>
-        <ul class="timeline">
-          <li><strong>KLCP (2023) and OSWP (2023)</strong>, Offensive Security</li>
-          <li>
-            <strong>Intel Tofino / P4</strong>, ICA-XFG-101 (Intro to P4<sub>16</sub>, Tofino Family, P4 Studio SDE, 2023);
-            ICA-XFG-201–206 (Advanced TNA, parsing/deparsing, recirculation, mirroring, 2024)
-          </li>
-          <li><strong>Google Cloud</strong>, Introduction to Generative AI, Responsible AI, and LLMs (2023)</li>
-        </ul>
-      </section>
-
-    </main>
-  </div>
+    </div>
+  </main>
 
   <footer class="site-footer">
-    <p>© 2026 Gursimran Singh · Built with HTML &amp; CSS · Last updated July 2026</p>
+    <p>© <span id="year">2026</span> Gursimran Singh · Hand-written HTML, CSS, and JavaScript, no frameworks · Last updated November 2026</p>
     <p><a class="back-to-top" href="#top">Back to top ↑</a></p>
   </footer>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
 
   <script src="assets/js/main.js"></script>
 </body>
