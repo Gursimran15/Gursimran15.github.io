@@ -30,8 +30,8 @@ robots.txt, sitemap.xml        search-engine hints
 Hero with a sliding panel of four animated research scenes (interactive P4 pipeline with
 illustrative packet counters and a stage explainer, reliable in-network computation with a
 failure-and-recovery sequence, Internet resilience under disruption including an inconclusive
-outcome, Internet measurement with an inconclusive verdict; tabs, arrows, keyboard, auto-advance,
-and a Pause control that also freezes CSS animations). The scenes are labelled as conceptual
+outcome, Internet measurement with an inconclusive verdict; tabs, arrows, and keyboard switch scenes
+manually, and a Pause control freezes both the JavaScript and CSS animations). The scenes are labelled as conceptual
 illustrations with Published / Ongoing / Industry status badges · at-a-glance stats · on-this-page rail (wide screens) · About · Research (three feature
 rows with animated illustrations, plus open directions) · News · Publications (cover tiles,
 abstract, BibTeX, plain-text citation) · Experience & education (timeline with monogram tiles) ·

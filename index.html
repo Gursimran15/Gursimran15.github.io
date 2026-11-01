@@ -249,13 +249,13 @@
               <span class="status status-ongoing" data-slide="1">Ongoing research</span>
               <span class="status status-ongoing" data-slide="2" hidden>Ongoing research</span>
               <span class="status status-ongoing" data-slide="3" hidden>Ongoing research</span>
-              <span class="status status-pub" data-slide="4" hidden>Published study · ongoing</span>
+              <span class="status status-pub" data-slide="4" hidden>Published study</span>
               <span class="device-note">Conceptual illustrations, not experimental results.</span>
             </div>
             <p id="pipe-info" class="device-info" data-slide="1" aria-live="polite">Hover, tap, or tab through the blocks to see what each part of a Tofino pipeline does, and where security functions run out of room.</p>
-            <p class="device-info" data-slide="2" hidden><strong>Reliable in-network computation.</strong> Workers send partial results to a programmable switch that computes on them. When that device becomes unavailable, the computation has to resume somewhere else, perhaps on a SmartNIC or a host, and still produce the correct result. The questions I work on: which computation belongs in the switch, on a SmartNIC or DPU, or on the CPU or GPU; how to recover correctly across that heterogeneous hardware; and what recovery costs.</p>
+            <p class="device-info" data-slide="2" hidden><strong>Reliable in-network computation.</strong> A switch computes on workers' partial results; when it becomes unavailable, the computation resumes on another device and must still produce the correct result. I study where such computation belongs, how it recovers, and what recovery costs.</p>
             <p class="device-info" data-slide="3" hidden><strong>Internet resilience under disruption.</strong> When links fail, does traffic find another path, and can measurements from outside tell what happened? Sometimes an alternative path is observed; sometimes probes get no response and the outcome is inconclusive. Telling physical damage from deliberate filtering is part of the research question, not an assumption.</p>
-            <p class="device-info" data-slide="4" hidden><strong>Internet measurement.</strong> Probes from several vantage points, a classifier that separates hard failures from soft ones, and a multi-protocol traceroute used to investigate where filtering responses may originate. A failed response does not by itself identify a responsible hop or prove censorship; measurement uncertainty and probe behaviour are part of the analysis.</p>
+            <p class="device-info" data-slide="4" hidden><strong>Internet measurement.</strong> Probes from several vantage points, a classifier that separates hard failures from soft ones, and a multi-protocol traceroute used to investigate where filtering responses may originate. A failed response does not by itself identify a responsible hop or prove censorship. The Russia–Ukraine study is published; the measurement methods are ongoing work.</p>
             <p class="device-counters" data-slide="1" aria-label="Illustrative packet counts in this animation">
               <span><b class="pk-dot pk-pass" aria-hidden="true"></b>forwarded <output id="cnt-pass">0</output></span>
               <span><b class="pk-dot pk-recirc" aria-hidden="true"></b>extra passes <output id="cnt-recirc">0</output></span>
@@ -366,7 +366,7 @@
       <section id="research" class="section reveal">
         <div class="section-head">
           <p class="section-num">02 — Research</p>
-          <h2>Three threads, one question: how do you make a fast, constrained network device <em>trustworthy</em>?</h2>
+          <h2>Programmable networks, dependable computation, and Internet measurement.</h2>
         </div>
 
         <article class="feature reveal">
@@ -401,6 +401,39 @@
 
         <article class="feature feature-flip reveal">
           <div class="feature-art" aria-hidden="true">
+            <svg viewBox="0 0 260 110" class="mini mini-comp">
+              <line class="m-wire" x1="56" y1="34" x2="118" y2="40"/><line class="m-wire" x1="56" y1="55" x2="118" y2="40"/><line class="m-wire" x1="56" y1="76" x2="118" y2="40"/>
+              <line class="m-wire alt" x1="56" y1="34" x2="118" y2="78"/><line class="m-wire alt" x1="56" y1="55" x2="118" y2="78"/><line class="m-wire alt" x1="56" y1="76" x2="118" y2="78"/>
+              <line class="m-wire" x1="166" y1="40" x2="208" y2="56"/><line class="m-wire" x1="166" y1="78" x2="208" y2="56"/>
+              <rect class="m-box" x="14" y="26" width="42" height="16" rx="4"/><rect class="m-box" x="14" y="47" width="42" height="16" rx="4"/><rect class="m-box" x="14" y="68" width="42" height="16" rx="4"/>
+              <rect class="m-box dev-a" x="118" y="28" width="48" height="24" rx="6"/>
+              <g class="fault"><line x1="135" y1="33" x2="149" y2="47"/><line x1="149" y1="33" x2="135" y2="47"/></g>
+              <rect class="m-box dev-b" x="118" y="66" width="48" height="24" rx="6"/>
+              <rect class="m-box res" x="208" y="46" width="40" height="20" rx="6"/>
+              <circle class="c c-1" cx="56" cy="34" r="3.5"/><circle class="c c-2" cx="56" cy="55" r="3.5"/><circle class="c c-3" cx="56" cy="76" r="3.5"/>
+              <circle class="c c-4" cx="56" cy="34" r="3.5"/><circle class="c c-5" cx="56" cy="55" r="3.5"/><circle class="c c-6" cx="56" cy="76" r="3.5"/>
+              <circle class="c c-out" cx="166" cy="78" r="3.5"/>
+              <text class="m-text" x="35" y="100" text-anchor="middle">workers</text>
+              <text class="m-text" x="142" y="100" text-anchor="middle">switch → backup</text>
+              <text class="m-text" x="228" y="100" text-anchor="middle">result</text>
+            </svg>
+          </div>
+          <div class="feature-body">
+            <p class="feature-num">Thread 02 · 2026 – present <span class="status status-ongoing">Ongoing research</span></p>
+            <h3>Reliable in-network computation</h3>
+            <p class="feature-q">Which computation belongs deep in the network, which on a SmartNIC or DPU, and which stays on the CPU or GPU, and what happens to a computation when the device running it fails?</p>
+            <p>Programmable switches can compute on data as it passes through, for performance and for robustness. I study how such computations should be placed across heterogeneous hardware and how they can recover from device failures while still producing correct results.</p>
+            <ul class="feature-points">
+              <li>Placement: which functions a commodity switch can run at full speed, which only at a cost in latency or memory, and which belong on a SmartNIC, DPU, or host.</li>
+              <li>Recovery: resuming an in-network computation on another device after a failure, preserving exactly-once results.</li>
+              <li>Cost: what correct recovery costs in state, bandwidth, and time.</li>
+            </ul>
+            <p class="feature-tags"><span class="tag">in-network computing</span><span class="tag">Tofino</span><span class="tag">SmartNIC / DPU</span><span class="tag">fault tolerance</span></p>
+          </div>
+        </article>
+
+        <article class="feature reveal">
+          <div class="feature-art" aria-hidden="true">
             <svg viewBox="0 0 260 110" class="mini mini-trace">
               <line class="m-wire" x1="20" y1="55" x2="240" y2="55"/>
               <circle class="m-hop h1" cx="20" cy="55" r="7"/>
@@ -415,7 +448,7 @@
             </svg>
           </div>
           <div class="feature-body">
-            <p class="feature-num">Thread 02 · 2022 – present <span class="status status-pub">Published study</span></p>
+            <p class="feature-num">Thread 03 · 2022 – present <span class="status status-pub">Published study</span></p>
             <h3>Internet measurement, censorship &amp; resilience</h3>
             <p class="feature-q">When a network is under political or military stress, which sites stop working, where might the failures originate, and what can measurements from outside actually tell us?</p>
             <p>I build measurement tools and used them to study Internet access during the first months of the Russia–Ukraine war, with data collected in March and July 2022.</p>
@@ -429,7 +462,7 @@
           </div>
         </article>
 
-        <article class="feature reveal">
+        <article class="feature feature-flip reveal">
           <div class="feature-art" aria-hidden="true">
             <svg viewBox="0 0 260 110" class="mini mini-collab">
               <defs><marker id="mini-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker></defs>
@@ -445,7 +478,7 @@
             </svg>
           </div>
           <div class="feature-body">
-            <p class="feature-num">Thread 03 · 2026 – present · Keysight Technologies <span class="status status-industry">Industry internship</span></p>
+            <p class="feature-num">Thread 04 · 2026 – present · Keysight Technologies <span class="status status-industry">Industry internship</span></p>
             <h3>Software for FPGA-based AI infrastructure testing</h3>
             <p class="feature-q">How do software and programmable hardware teams build test systems for AI infrastructure together?</p>
             <p>As a part-time, remote R&amp;D Software Engineering Intern, I contribute software components and prototyping for FPGA-based AI infrastructure testing solutions, collaborating with hardware engineers.</p>

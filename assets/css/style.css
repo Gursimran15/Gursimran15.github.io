@@ -491,6 +491,28 @@ html:not(.js) .theme-toggle { display: none; }
 @keyframes probe { 0% { transform: translateX(0); } 11% { transform: translateX(44px); } 22% { transform: translateX(88px); } 33% { transform: translateX(132px); } 44% { transform: translateX(176px); } 55% { transform: translateX(220px); } 80% { transform: translateX(220px); opacity: 1; } 81% { opacity: 0; } 100% { transform: translateX(0); opacity: 0; } }
 @keyframes hop-ping { 0%, 8% { fill: var(--bg-elev); } 12% { fill: var(--accent); } 40%, 100% { fill: var(--bg-elev); } }
 @keyframes soft-fail { 0%, 52% { stroke: var(--text-muted); fill: var(--bg-elev); } 58%, 80% { stroke: var(--red); fill: var(--red-soft); } 100% { stroke: var(--text-muted); fill: var(--bg-elev); } }
+/* reliable in-network computation mini: results go to the switch, it fails, the other device resumes */
+.mini-comp .m-wire.alt { stroke-dasharray: 4 4; opacity: 0.6; }
+.mini-comp .dev-a { stroke: var(--accent); animation: mc-dev-a 8s linear infinite; }
+.mini-comp .dev-b { animation: mc-dev-b 8s linear infinite; }
+.mini-comp .res { animation: mc-res 8s linear infinite; }
+.mini-comp .fault line { stroke: var(--red); stroke-width: 2; opacity: 0; animation: mc-fault 8s linear infinite; }
+.mini-comp .c { fill: var(--accent); opacity: 0; }
+.mini-comp .c-out { fill: var(--amber); animation: mc-out 8s linear infinite; }
+.mini-comp .c-1 { animation: mc-a1 8s linear infinite; } .mini-comp .c-2 { animation: mc-a2 8s linear infinite 0.15s; } .mini-comp .c-3 { animation: mc-a3 8s linear infinite 0.3s; }
+.mini-comp .c-4 { animation: mc-b1 8s linear infinite; } .mini-comp .c-5 { animation: mc-b2 8s linear infinite 0.15s; } .mini-comp .c-6 { animation: mc-b3 8s linear infinite 0.3s; }
+@keyframes mc-a1 { 0% { transform: translate(0,0); opacity: 0; } 3% { opacity: 1; } 22% { transform: translate(62px,6px); opacity: 1; } 24%, 100% { transform: translate(62px,6px); opacity: 0; } }
+@keyframes mc-a2 { 0% { transform: translate(0,0); opacity: 0; } 3% { opacity: 1; } 22% { transform: translate(62px,-15px); opacity: 1; } 24%, 100% { transform: translate(62px,-15px); opacity: 0; } }
+@keyframes mc-a3 { 0% { transform: translate(0,0); opacity: 0; } 3% { opacity: 1; } 22% { transform: translate(62px,-36px); opacity: 1; } 24%, 100% { transform: translate(62px,-36px); opacity: 0; } }
+@keyframes mc-b1 { 0%, 42% { transform: translate(0,0); opacity: 0; } 45% { opacity: 1; } 62% { transform: translate(62px,44px); opacity: 1; } 64%, 100% { transform: translate(62px,44px); opacity: 0; } }
+@keyframes mc-b2 { 0%, 42% { transform: translate(0,0); opacity: 0; } 45% { opacity: 1; } 62% { transform: translate(62px,23px); opacity: 1; } 64%, 100% { transform: translate(62px,23px); opacity: 0; } }
+@keyframes mc-b3 { 0%, 42% { transform: translate(0,0); opacity: 0; } 45% { opacity: 1; } 62% { transform: translate(62px,2px); opacity: 1; } 64%, 100% { transform: translate(62px,2px); opacity: 0; } }
+@keyframes mc-out { 0%, 68% { transform: translate(0,0); opacity: 0; } 70% { opacity: 1; } 84% { transform: translate(42px,-22px); opacity: 1; } 86%, 100% { transform: translate(42px,-22px); opacity: 0; } }
+@keyframes mc-dev-a { 0%, 30% { stroke: var(--accent); opacity: 1; } 34%, 94% { stroke: var(--border-strong); opacity: 0.5; } 100% { stroke: var(--accent); opacity: 1; } }
+@keyframes mc-dev-b { 0%, 40% { stroke: var(--border-strong); } 44%, 94% { stroke: var(--accent); } 100% { stroke: var(--border-strong); } }
+@keyframes mc-res { 0%, 82% { stroke: var(--border-strong); } 86%, 94% { stroke: var(--amber); } 100% { stroke: var(--border-strong); } }
+@keyframes mc-fault { 0%, 31% { opacity: 0; } 34%, 94% { opacity: 1; } 100% { opacity: 0; } }
+
 .mini-collab .m-box { fill: var(--bg-alt); stroke: var(--border-strong); stroke-width: 1.4; }
 .mini-collab .code { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 1; animation: pulse-bar 4s ease-in-out infinite; }
 .mini-collab .code:nth-child(3) { animation-delay: 0.3s; } .mini-collab .code:nth-child(4) { animation-delay: 0.6s; }

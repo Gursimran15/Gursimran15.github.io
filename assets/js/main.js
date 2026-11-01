@@ -188,9 +188,9 @@
   var packetsLayer = document.getElementById('packets');
   var info = document.getElementById('pipe-info');
   var INFO = {
-    parser: '<strong>Parser.</strong> Slices header fields out of the packet by offset and length at line rate. It cannot parse free-form payloads such as HTTP, which is why payload inspection in a switch needs workarounds such as recirculate-and-truncate.',
-    stage: '<strong>Match-action stage.</strong> Looks a key up in SRAM/TCAM tables and applies a handful of ALU operations. Every pass gets a fixed number of stages, so richer logic has to be spread across stages or across passes.',
-    deparser: '<strong>Deparser.</strong> Reassembles the packet and sends it out of a port, mirrors it, or loops it back into the pipeline for another pass.',
+    parser: '<strong>Parser.</strong> A programmable state machine that walks a parse graph: each state extracts a fixed-layout header and picks the next state from a field value. The number of states and the bytes it can extract per packet are bounded, so it handles protocol headers well but cannot walk variable-length, free-form payloads such as HTTP. That is why payload inspection in a switch needs workarounds such as recirculate-and-truncate.',
+    stage: '<strong>Match-action stage.</strong> Matches a key against SRAM or TCAM tables and runs the chosen action on simple ALUs; stateful ALUs can read and update register state as the packet passes. The pipeline has a fixed number of stages per pass, so richer logic has to be spread across stages or across passes.',
+    deparser: '<strong>Deparser.</strong> Rebuilds the packet by emitting the valid headers in order and reattaching the payload. What happens next is decided elsewhere: the traffic manager queues the packet toward an egress port, replicates or mirrors it, or sends it to a recirculation port for another pass, and an egress pipeline can process it again on the way out.',
     loop: '<strong>Additional processing pass.</strong> Recirculation sends a packet through the pipeline again when one pass is not enough. It buys expressiveness (longer pattern matches, multi-step checks) at the price of pipeline bandwidth.',
     drop: '<strong>Discard.</strong> A packet can be discarded when an applicable verdict is available before release. Enforcement timing depends on the design: some verdicts arrive only after a packet has already been forwarded.',
     memory: '<strong>On-chip memory and per-flow state.</strong> A few MB of SRAM and TCAM shared between forwarding tables, per-flow registers, and whatever a security function needs. State kept across packets of a flow lives here, and this budget is what every in-switch function competes for.'
@@ -305,7 +305,7 @@
     var infos = Array.prototype.slice.call(device.querySelectorAll('.device-info'));
     var countersRow = device.querySelector('.device-counters');
     var titleEl = document.getElementById('device-title');
-    var cur = 0, autoTimer = 0, AUTO_MS = 9000, engaged = false, deviceInView = false;
+    var cur = 0, autoTimer = 0, AUTO_MS = 0, engaged = false, deviceInView = false;   // AUTO_MS = 0: scenes switch manually only
 
     function render(n) {
       cur = (n + slides.length) % slides.length;
@@ -333,7 +333,7 @@
     }
     function schedule() {
       clearTimeout(autoTimer);
-      if (reduceMotion || motionPaused || engaged || !deviceInView || document.hidden) return;
+      if (!AUTO_MS || reduceMotion || motionPaused || engaged || !deviceInView || document.hidden) return;
       autoTimer = setTimeout(function () { render(cur + 1); }, AUTO_MS);
     }
     tabs.forEach(function (t, i) {
