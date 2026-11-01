@@ -1,203 +1,264 @@
-%-------------------------
-% Resume in LaTeX, Gursimran Singh
-% Based on the standard single-column resume format (Jake's Resume style):
-% letterpaper, 11pt body, small-caps ruled section headings, 0.5in-ish margins.
-% Build: tectonic Gursimran_Singh_CV.tex   (or pdflatex)
-%-------------------------
+%=====================================================================
+%  Curriculum Vitae  --  Gursimran Singh
+%  Ph.D. Student, Computer Science, Oklahoma State University
+%
+%  Build:  pdflatex Gursimran_Singh_CV.tex   (run twice for page totals)
+%          or: latexmk -pdf Gursimran_Singh_CV.tex
+%  Fonts:  TeX Gyre Pagella if installed, otherwise Palatino (mathpazo).
+%  Then copy the PDF to  ../assets/Gursimran_Singh_CV.pdf  for the website.
+%=====================================================================
+\documentclass[letterpaper,10pt]{article}
 
-\documentclass[letterpaper,11pt]{article}
-
-\usepackage[empty]{fullpage}
+%---------------- Packages ----------------
+\usepackage[left=0.55in,right=0.55in,top=0.45in,bottom=0.55in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\IfFileExists{tgpagella.sty}{\usepackage{tgpagella}}{\usepackage{mathpazo}}
+\usepackage{microtype}
+\usepackage[usenames,dvipsnames]{xcolor}
 \usepackage{titlesec}
-\usepackage[usenames,dvipsnames]{color}
 \usepackage{enumitem}
-\usepackage[hidelinks]{hyperref}
-\usepackage{fancyhdr}
 \usepackage{tabularx}
+\usepackage{array}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{ragged2e}
+\usepackage[hidelinks]{hyperref}
 
+\hypersetup{
+  pdftitle={Gursimran Singh - Curriculum Vitae},
+  pdfauthor={Gursimran Singh},
+  pdfsubject={Curriculum Vitae: programmable network systems and security researcher},
+  pdfkeywords={P4, Intel Tofino, programmable data planes, network security, Internet measurement, censorship, intent-based networking},
+  colorlinks=true, urlcolor=accent, linkcolor=accent, citecolor=accent
+}
+
+% Machine-readable text for PDF parsers (pdfTeX)
+\ifdefined\pdfgentounicode \pdfgentounicode=1 \fi
+
+%---------------- Colours ----------------
+\definecolor{accent}{RGB}{14,110,140}
+\definecolor{ink}{RGB}{28,38,46}
+\definecolor{muted}{RGB}{95,108,118}
+
+\color{ink}
+\raggedbottom
+\setlength{\parindent}{0pt}
+\setlength{\tabcolsep}{0pt}
+\linespread{1.0}
+
+%---------------- Header / footer ----------------
 \pagestyle{fancy}
 \fancyhf{}
 \renewcommand{\headrulewidth}{0pt}
 \renewcommand{\footrulewidth}{0pt}
+\fancyfoot[L]{\footnotesize\color{muted}Gursimran Singh \,\textperiodcentered\, Curriculum Vitae \,\textperiodcentered\, Updated November 2026}
+\fancyfoot[R]{\footnotesize\color{muted}Page \thepage\ of \pageref{LastPage}}
 
-% Margins
-\addtolength{\oddsidemargin}{-0.5in}
-\addtolength{\evensidemargin}{-0.5in}
-\addtolength{\textwidth}{1in}
-\addtolength{\topmargin}{-.5in}
-\addtolength{\textheight}{1.0in}
+%---------------- Section titles ----------------
+\titleformat{\section}[block]
+  {\scshape\large\color{accent}}{}{0em}{}
+  [\vspace{-5pt}{\color{accent}\titlerule[0.6pt]}]
+\titlespacing*{\section}{0pt}{6pt}{3pt}
 
-\urlstyle{same}
-\raggedbottom
-\raggedright
-\setlength{\tabcolsep}{0in}
+%---------------- Entry macros ----------------
+% Two-line entry: \entry{title}{right}{subtitle}{right2}
+\newcommand{\entry}[4]{%
+  \item\begin{tabular*}{\linewidth}{@{}p{0.80\linewidth}@{\extracolsep{\fill}}r@{}}
+    \leavevmode\textbf{#1} & \textbf{\small #2}\\
+    \leavevmode{\small\itshape\color{muted} #3} & {\small\itshape\color{muted} #4}\\
+  \end{tabular*}\vspace{-4pt}}
+% One-line entry: \line{left}{right}
+\newcommand{\entryline}[2]{%
+  \item\begin{tabular*}{\linewidth}{@{}p{0.84\linewidth}@{\extracolsep{\fill}}r@{}}
+    \leavevmode #1 & \small #2\\
+  \end{tabular*}\vspace{-3pt}}
 
-% Section headings: small caps, large, horizontal rule
-\titleformat{\section}{
-  \vspace{-4pt}\scshape\raggedright\large
-}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+\newenvironment{entries}{\begin{itemize}[leftmargin=0pt,label={},itemsep=2pt,topsep=0pt,parsep=0pt]}{\end{itemize}}
+\newenvironment{bullets}{\begin{itemize}[leftmargin=1.15em,label=\textcolor{accent}{\textbullet},itemsep=1pt,topsep=2pt,parsep=0pt]\small}{\end{itemize}\vspace{-1pt}}
+\newenvironment{pubs}{\begin{enumerate}[leftmargin=1.9em,label={[P\arabic*]},itemsep=4pt,topsep=1pt,parsep=0pt]\small}{\end{enumerate}}
 
-% Machine-readable / ATS-parsable PDF text (pdfTeX only; XeTeX is unicode-native)
-\ifdefined\pdfgentounicode \pdfgentounicode=1 \fi
+\newcommand{\me}{\textbf{Gursimran Singh}}
+\newcommand{\skill}[2]{\textbf{#1}: #2\par\vspace{1.5pt}}
 
-%-------------------------
-% Custom commands
-\newcommand{\resumeItem}[1]{
-  \item\small{{#1 \vspace{-2pt}}}
-}
-
-\newcommand{\resumeSubheading}[4]{
-  \vspace{-2pt}\item
-    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
-      \textbf{#1} & #2 \\
-      \textit{\small#3} & \textit{\small #4} \\
-    \end{tabular*}\vspace{-7pt}
-}
-
-\newcommand{\resumeProjectHeading}[2]{
-    \item
-    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
-      \small#1 & #2 \\
-    \end{tabular*}\vspace{-7pt}
-}
-
-\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
-\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
-\newcommand{\resumeItemListStart}{\begin{itemize}}
-\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
-
+%=====================================================================
 \begin{document}
 
-%----------HEADING----------
+%---------------- HEADING ----------------
 \begin{center}
-    \textbf{\Huge \scshape Gursimran Singh} \\ \vspace{3pt}
-    \small (716) 491-0304 $|$ \href{mailto:gursimran.singh@okstate.edu}{gursimran.singh@okstate.edu} $|$
-    \href{https://gursimran15.github.io/}{gursimran15.github.io} \\ \vspace{1pt}
-    \small \href{https://www.linkedin.com/in/gursimran-singh-dhodi/}{linkedin.com/in/gursimran-singh-dhodi} $|$
-    \href{https://github.com/Gursimran15}{github.com/Gursimran15} $|$
-    \href{https://scholar.google.com/citations?user=DA-sGBgAAAAJ}{Google Scholar}
+  {\Huge\scshape\color{ink} Gursimran Singh}\\[4pt]
+  {\color{muted}Ph.D. Student, Computer Science \,\textperiodcentered\, Oklahoma State University \,\textperiodcentered\, Stillwater, OK}\\[3pt]
+  {\small
+   \href{mailto:gursimran.singh@okstate.edu}{gursimran.singh@okstate.edu} \,\textperiodcentered\,
+   (716) 491-0304 \,\textperiodcentered\,
+   \href{https://gursimran15.github.io/}{gursimran15.github.io}\\[1pt]
+   \href{https://scholar.google.com/citations?user=DA-sGBgAAAAJ}{Google Scholar} \,\textperiodcentered\,
+   \href{https://orcid.org/0009-0002-8678-8056}{ORCID 0009-0002-8678-8056} \,\textperiodcentered\,
+   \href{https://github.com/Gursimran15}{github.com/Gursimran15} \,\textperiodcentered\,
+   \href{https://www.linkedin.com/in/gursimran-singh-dhodi/}{linkedin.com/in/gursimran-singh-dhodi}}
 \end{center}
+\vspace{-4pt}
 
-%-----------RESEARCH INTERESTS-----------
-\section{Research Interests}
-\small{In-network computation and data-plane programming (P4); programmable data planes for network security; network and Internet measurement; network security and censorship measurement.}
-\vspace{-2pt}
+%---------------- SUMMARY ----------------
+\section{Research Summary}
+Ph.D. researcher in \textbf{programmable network systems and security}. I design and evaluate line-rate security
+functions (deep packet inspection, firewalls, intrusion detection) in \textbf{P4 on Intel Tofino} switches, characterize
+the hardware limits that constrain them, and build tools that measure \textbf{Internet censorship and resilience}.
+Two first-author publications; artifact-evaluation and program-committee service for EuroSys, PPoPP, ICS, CoNEXT, and ACM~S3;
+adjunct teaching in cybersecurity and software development; industry work on intent-based networking.\\[2pt]
+{\small\textbf{Interests:} programmable data planes (P4, Tofino, SmartNICs/FPGAs) \,\textperiodcentered\, in-network security
+(DPI, stateful firewalls, NIDS) \,\textperiodcentered\, Internet measurement and censorship resilience
+\,\textperiodcentered\, dependable high-performance network systems under hardware and operational constraints.}
 
-%-----------EDUCATION-----------
+%---------------- EDUCATION ----------------
 \section{Education}
-  \resumeSubHeadingListStart
-    \resumeSubheading
-      {Oklahoma State University}{Stillwater, OK}
-      {Ph.D. in Computer Science; Advisor: Dr. H. B. Acharya}{Expected 2028}
-    \resumeSubheading
-      {Rochester Institute of Technology}{Rochester, NY}
-      {Ph.D. coursework, Computer and Information Science; GPA 3.80/4.0}{Transferred}
-    \resumeSubheading
-      {State University of New York at Buffalo}{Buffalo, NY}
-      {M.S., Computer and Information Science; GPA 3.52/4.0}{2021}
-  \resumeSubHeadingListEnd
+\begin{entries}
+  \entry{Oklahoma State University}{2026 -- Present}
+        {Ph.D. in Computer Science \,\textperiodcentered\, Advisor: Dr.\ H.\,B.\ Acharya}{Expected May 2028}
+  \entry{Rochester Institute of Technology}{2021 -- 2025}
+        {Ph.D. coursework, Computing and Information Sciences \,\textperiodcentered\, GPA 3.80/4.0 \,\textperiodcentered\, transferred to OSU with advisor}{Rochester, NY}
+  \entry{University at Buffalo (SUNY)}{2019 -- 2021}
+        {M.S. in Computer Science and Engineering \,\textperiodcentered\, GPA 3.52/4.0}{Buffalo, NY}
+  \entry{University of Delhi, Sri Guru Gobind Singh College of Commerce}{2016 -- 2019}
+        {B.Sc.\ (Hons.) Computer Science}{New Delhi, India}
+\end{entries}
 
-%-----------PUBLICATIONS-----------
+%---------------- PUBLICATIONS ----------------
 \section{Publications}
-  \resumeSubHeadingListStart
-    \resumeProjectHeading
-      {\textbf{Programmable Data Planes for Network Security}}{NeTCoM, July 2025}
-      \resumeItemListStart
-        \resumeItem{Position paper systematizing recent advances in security applications built on programmable switches.}
-      \resumeItemListEnd
-    \resumeProjectHeading
-      {\textbf{POSTER: A Cyberspace Study of the Russia--Ukraine War}}{ACM ASIACCS, July 2023}
-      \resumeItemListStart
-        \resumeItem{Measurement findings on the conflict's impact on Internet resilience.}
-      \resumeItemListEnd
-  \resumeSubHeadingListEnd
+\begin{pubs}
+  \item \me, H.\,B.\ Acharya, and Minseok Kwon.
+    \textbf{Programmable Data Planes for Network Security.}
+    In \emph{Proc.\ 17th International Conference on Networks \& Communications (NeTCoM 2025)},
+    Computer Science \& Information Technology (CS \& IT) vol.\ 15, no.\ 13, pp.\ 163--180, July 2025.
+    DOI: \href{https://doi.org/10.5121/csit.2025.151314}{10.5121/csit.2025.151314} \,\textperiodcentered\,
+    \href{https://arxiv.org/abs/2507.22165}{arXiv:2507.22165}.\\
+    {\color{muted}Systematizes security on P4 switches across attack mitigation, firewalls and middleboxes, in-network cryptography,
+    and in-switch machine learning; identifies the workarounds (recirculate-and-truncate, lookup-table precomputation) that make
+    these functions feasible under memory and instruction-set limits, and the open problems that remain.}
+  \item \me\ and H.\,B.\ Acharya.
+    \textbf{POSTER: A Cyberspace Study of the Russia--Ukraine War.}
+    In \emph{Proc.\ ACM ASIA Conference on Computer and Communications Security (ASIA CCS 2023)},
+    pp.\ 1016--1018, July 2023. DOI: \href{https://doi.org/10.1145/3579856.3592822}{10.1145/3579856.3592822}.\\
+    {\color{muted}Measured hard and soft failures of website access from Ukraine, Russia, and the United States (March--July 2022)
+    using a new soft-failure classifier and a multi-protocol traceroute; found a substantial change in access to sites from
+    Ukraine over the period, with no significant collateral damage from filtering by Russian ASes.}
+\end{pubs}
+\vspace{2pt}
+{\small\color{muted}Additional first-author manuscripts are currently under submission (details available upon request).}
 
-%-----------RESEARCH EXPERIENCE-----------
+%---------------- RESEARCH EXPERIENCE ----------------
 \section{Research Experience}
-  \resumeSubHeadingListStart
-    \resumeSubheading
-      {In-Network Computation Using Data-Plane Programming in P4}{2021 -- Present}
-      {Oklahoma State University / RIT}{}
-      \resumeItemListStart
-        \resumeItem{Developing high-performance packet processors comparable to application-layer firewalls and network intrusion detection systems.}
-        \resumeItem{Implementing advanced algorithms for packet analysis and filtering in P4 on the Intel Tofino (TNA) platform.}
-      \resumeItemListEnd
-    \resumeSubheading
-      {Internet Censorship Measurement}{2021 -- Present}
-      {Oklahoma State University / RIT}{}
-      \resumeItemListStart
-        \resumeItem{Designed and implemented tools for detecting and measuring Internet censorship across multiple countries.}
-        \resumeItem{Published measurement findings on the Russia--Ukraine conflict's impact on Internet resilience (ASIACCS 2023).}
-      \resumeItemListEnd
-  \resumeSubHeadingListEnd
+\begin{entries}
+  \entry{Doctoral Researcher, advised by Dr.\ H.\,B.\ Acharya}{2021 -- Present}
+        {Oklahoma State University (2026 -- present) \,\textperiodcentered\, Rochester Institute of Technology (2021 -- 2025)}{}
+  \vspace{1pt}
+  \item \textbf{Programmable data-plane security on Intel Tofino} \hfill {\small 2021 -- Present}
+  \begin{bullets}
+    \item Design and implement application-layer security functions (deep packet inspection and pattern matching,
+          stateful filtering, NIDS-style detection) in P4 on Intel Tofino and Tofino2 switches (Tofino Native
+          Architecture), engineering around per-stage memory, restricted instruction sets, and parser limits.
+    \item Develop packet-analysis and filtering algorithms that use recirculation, cross-packet flow state, and precomputed
+          lookups to approach firewall and intrusion-detection capability at line rate; prototype and evaluate on Tofino
+          hardware (P4 Studio SDE, BF-RT control plane).
+    \item First-authored a systematization of programmable-data-plane security research (NeTCoM 2025, [P1]).
+  \end{bullets}
+  \item \textbf{Internet censorship and resilience measurement} \hfill {\small 2022 -- Present}
+  \begin{bullets}
+    \item Designed and implemented measurement tooling for the Russia--Ukraine war study: a classifier that
+          detects \emph{soft} failures of website access (beyond outright connection failures) and a multi-protocol
+          traceroute implementation that localizes where interference occurs along a path.
+    \item Collected and analyzed longitudinal measurements from Ukraine, Russia, and the United States (March--July 2022),
+          attributing reachability changes to network conditions versus filtering (ACM ASIA CCS 2023, [P2]).
+  \end{bullets}
+\end{entries}
 
-%-----------TEACHING EXPERIENCE-----------
+%---------------- INDUSTRY EXPERIENCE ----------------
+\section{Industry Experience}
+\begin{entries}
+  \entry{Keysight Technologies}{Sep 2026 -- Present}
+        {Intern, Intent-Based Networking (part-time, remote)}{}
+  \begin{bullets}
+    \item Software-side contributor to an intent-based networking effort that translates natural-language intent and protocol
+          specifications into C/C++ implementations targeted for FPGA realization, working alongside FPGA-focused interns.
+    \item Designed the intent-to-implementation architecture: intent/specification ingestion, a C/C++ intermediate path,
+          and a proposed direct intent-to-HDL path.
+  \end{bullets}
+\end{entries}
+
+%---------------- TEACHING ----------------
 \section{Teaching Experience}
-  \resumeSubHeadingListStart
-    \resumeSubheading
-      {Adjunct Instructor, Rochester Institute of Technology}{2022, 2024 -- 2025}
-      {CSEC-140 Intro to Cybersecurity; CSCI-455 Principles of Cybersecurity; GCIS-123 Software Dev I}{}
-      \resumeItemListStart
-        \resumeItem{Delivered lectures and hands-on virtual labs covering authentication, data security, risk management, network and system security, application security, and human factors.}
-        \resumeItem{Taught computational problem solving in Python: searching and sorting, file I/O, lists, classes, and dictionaries.}
-      \resumeItemListEnd
-    \resumeSubheading
-      {Teaching Assistant, Rochester Institute of Technology}{2023 -- 2024}
-      {CSCI-243 Mechanics of Programming; CSEC-759 Networking \& Distributed Systems Security}{}
-    \resumeSubheading
-      {Teaching Assistant, Oklahoma State University}{Spring 2026}
-      {Distributed and Cloud Computing}{}
-  \resumeSubHeadingListEnd
+\begin{entries}
+  \entry{Adjunct Instructor, Rochester Institute of Technology}{2022, 2024 -- 2025}
+        {CSEC-140 Introduction to Cybersecurity (2022, 2025) \,\textperiodcentered\, CSCI-455 Principles of Cybersecurity (2024, 2025) \,\textperiodcentered\, GCIS-123 Software Development \& Problem Solving I (2025)}{}
+  \begin{bullets}
+    \item Instructor of record: delivered lectures and hands-on virtual labs covering authentication, data security,
+          risk management, network, system, and application security, and human factors.
+    \item Taught computational problem solving in Python: searching and sorting, file I/O, lists, classes, and dictionaries.
+  \end{bullets}
+  \entry{Teaching Assistant, Rochester Institute of Technology}{2023 -- 2024}
+        {CSCI-243 Mechanics of Programming \,\textperiodcentered\, CSEC-759 Graduate Seminar on Advanced Networking \& Distributed Systems Security}{}
+  \entry{Teaching Assistant, Oklahoma State University}{Spring 2026}
+        {Distributed and Cloud Computing}{}
+  \entry{Research \& Capstone Mentor}{2022 -- 2025}
+        {Mentored three master's students and two undergraduate students on research and capstone projects}{}
+\end{entries}
 
-%-----------SERVICE-----------
-\section{Academic \& Professional Service}
-  \resumeSubHeadingListStart
-    \resumeProjectHeading{\textbf{Artifact Evaluation Committee member}, EuroSys 2027 (invited and accepted)}{2026 -- 2027}
-    \resumeProjectHeading{\textbf{Technical Program Committee member}, ACM S3 2026 Workshop (invited and accepted)}{2026}
-    \resumeProjectHeading{\textbf{Shadow Technical Program Committee member}, ACM CoNEXT 2026}{2026}
-    \resumeProjectHeading{\textbf{President}, CS Graduate Student Association (CSGSA), Oklahoma State University}{Current}
-    \resumeProjectHeading{\textbf{Council Member}, Doctoral Student Association (DSA), RIT}{2025}
-    \resumeProjectHeading{\textbf{Vice-President}, CSEGSA, University at Buffalo}{2020 -- 2021}
-    \resumeProjectHeading{\textbf{Mentorship}: 3 master's and 2 undergraduate students, research and capstone projects}{2022 -- 2025}
-  \resumeSubHeadingListEnd
+%---------------- SERVICE ----------------
+\section{Professional Service}
+\begin{entries}
+  \entryline{\textbf{Artifact Evaluation Committee}, EuroSys 2027 (Spring cycle)}{2026}
+  \entryline{\textbf{Artifact Evaluation Committee}, ACM PPoPP 2027}{2026 -- 2027}
+  \entryline{\textbf{Junior Program Committee}, ACM ICS 2027 (International Conference on Supercomputing)}{2026 -- 2027}
+  \entryline{\textbf{Technical Program Committee}, ACM S3 2026 student workshop (co-located with ACM MobiCom 2026)}{2026}
+  \entryline{\textbf{Shadow Technical Program Committee}, ACM CoNEXT 2026}{2026}
+\end{entries}
 
-%-----------PROJECTS-----------
-\section{Selected Projects}
-  \resumeSubHeadingListStart
-    \resumeProjectHeading
-      {\textbf{Reliable transport protocols and TCP chat system} $|$ \emph{C/C++}}{}
-      \resumeItemListStart
-        \resumeItem{Implemented Alternating-Bit, Go-Back-N, and Selective-Repeat protocols and a multi-client TCP chat system.}
-      \resumeItemListEnd
-    \resumeProjectHeading
-      {\textbf{Task offloading for QoS optimization with a dynamic ANN} $|$ \emph{C, C++, CUDA}}{}
-      \resumeItemListStart
-        \resumeItem{Prototype that adapts at run time to query parameters (max-hops, query volume) to optimize QoS.}
-      \resumeItemListEnd
-    \resumeProjectHeading
-      {\textbf{Core OS components in Pintos} $|$ \emph{C}}{}
-      \resumeItemListStart
-        \resumeItem{Kernel-level threading and system-call interfaces.}
-      \resumeItemListEnd
-  \resumeSubHeadingListEnd
+\section{Leadership}
+\begin{entries}
+  \entryline{\textbf{President}, Computer Science Graduate Student Association (CS-GSA), Oklahoma State University:
+    lead a seven-officer board; orientation, professional-development talks, networking, and travel/funding advocacy}{2026 -- 2027}
+  \entryline{\textbf{Council Member}, Doctoral Student Association, Rochester Institute of Technology}{2025}
+  \entryline{\textbf{Vice-President}, CSE Graduate Student Association (CSEGSA), University at Buffalo}{2020 -- 2021}
+  \entryline{\textbf{Vice-President}, ACE (Computer Science Society), SGGSCC, University of Delhi; organizer, CYTHON-18 tech fest}{2017 -- 2018}
+\end{entries}
 
-%-----------TECHNICAL SKILLS-----------
+%---------------- COMPETITIONS & HONORS ----------------
+\section{Competitions \& Honors}
+\begin{entries}
+  \entryline{\textbf{MITRE Embedded CTF (eCTF) 2021}, University at Buffalo team: implemented the team's RSA (512-bit) key-generation
+    and primality-testing routines in C for a secure embedded wireless link}{2021}
+  \entryline{\textbf{3rd place, regional round}, Collegiate Penetration Testing Competition (CPTC), University at Buffalo team}{2020}
+  \entryline{\textbf{``Stars of the College''} feature, SGGSCC Annual Report, for academics and student leadership}{2018}
+\end{entries}
+
+%---------------- SKILLS ----------------
 \section{Technical Skills}
- \begin{itemize}[leftmargin=0.15in, label={}]
-    \small{\item{
-     \textbf{Languages}: C, C++, P4, Python, Java, Shell scripting \\ \vspace{2pt}
-     \textbf{Networking \& Security}: Tofino Native Architecture (TNA), Scapy, Wireshark, Zmap, Nmap, Aircrack-ng, Kali Linux, OllyDbg, IDA \\ \vspace{2pt}
-     \textbf{ML \& Data}: Scikit-learn, Keras, NumPy, Pandas
-    }}
- \end{itemize}
- \vspace{-6pt}
+\begin{itemize}[leftmargin=0pt,label={},topsep=1pt,itemsep=0pt]\small
+\item\leavevmode
+\skill{Languages}{C, C++, P4\textsubscript{16}, Python, Java, Bash; CUDA and MATLAB (project experience)}
+\skill{Programmable networking}{Intel Tofino / Tofino2 (TNA), P4 Studio SDE, BF-RT control plane (Python), parsing/deparsing,
+  recirculation, mirroring, match-action pipeline design; exposure to BMv2, eBPF/XDP, SmartNIC/DPU and FPGA data paths}
+\skill{Measurement \& security tooling}{Scapy, Wireshark, Zmap, Nmap, traceroute-based path measurement, Aircrack-ng, Kali Linux, IDA, OllyDbg}
+\skill{Systems \& data}{Linux, Git, VirtualBox lab networks, Pintos kernel development; scikit-learn, Keras, NumPy, Pandas}
+\end{itemize}
+\vspace{-6pt}
 
-%-----------CERTIFICATIONS-----------
-\section{Certifications}
-  \resumeSubHeadingListStart
-    \resumeProjectHeading{\textbf{KLCP and OSWP}, Offensive Security}{2023}
-    \resumeProjectHeading{\textbf{Intel Tofino / P4}: ICA-XFG-101 (P4\textsubscript{16}, Tofino, SDE); ICA-XFG-201--206 (Advanced TNA)}{2023 -- 2024}
-    \resumeProjectHeading{\textbf{Google Cloud}: Intro to Generative AI, Responsible AI, and LLMs}{2023}
-  \resumeSubHeadingListEnd
+%---------------- CERTIFICATIONS ----------------
+\section{Certifications \& Training}
+\begin{entries}
+  \entryline{\textbf{Intel Connectivity Academy}: ICA-XFG-101 (P4\textsubscript{16}, Tofino family, P4 Studio SDE);
+    ICA-XFG-201 -- 206 (Advanced TNA: parsing/deparsing, recirculation, mirroring)}{2023 -- 2024}
+  \entryline{\textbf{OffSec Wireless Professional (OSWP)} and \textbf{Kali Linux Certified Professional (KLCP)}, Offensive Security}{2023}
+\end{entries}
+
+%---------------- PROJECTS ----------------
+\section{Selected Projects}
+\begin{itemize}[leftmargin=0pt,label={},topsep=0pt,itemsep=1pt]\small
+  \item \textbf{Reliable transport protocols and multi-client TCP chat} (C/C++): Alternating-Bit, Go-Back-N, and Selective-Repeat over an unreliable channel.
+  \item \textbf{Task offloading for QoS with a dynamic ANN} (C, C++, CUDA): run-time adaptation to query parameters (maximum hops, query volume).
+  \item \textbf{Core OS components in Pintos} (C): kernel-level threading and the system-call interface.
+  \item \textbf{Malicious-traffic analysis lab}: private VirtualBox network for analyzing three malicious packet captures, with write-ups and mitigations
+        (\href{https://github.com/Gursimran15/Network-Analysis-Reports}{GitHub}).
+\end{itemize}
 
 \end{document}
